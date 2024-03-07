@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Content id="Bottom" height="50" width="800" xmlns="http://www.br-automation.com/iat2015/contentDefinition/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Widgets>
+    <Widget xsi:type="widgets.brease.NavigationBar" id="NavigationBar1" top="0" left="140" width="560" height="60" zIndex="0">
+      <Widgets>
+        <Widget xsi:type="widgets.brease.NavigationButton" id="NavigationButtonMain" top="5" left="40" height="40" zIndex="0" image="Media/SymbolLib/Symbols/Engine.svg" pageId="Main" />
+        <Widget xsi:type="widgets.brease.NavigationButton" id="NavigationButtonSDM" top="5" left="160" height="40" zIndex="1" image="Media/SymbolLib/Diagnostic/Diagnostics.svg" imageAlign="top" pageId="SDM" cornerRadius="10px" />
+        <Widget xsi:type="widgets.brease.NavigationButton" id="NavigationButtonCockpit" top="5" left="280" height="40" zIndex="2" image="Media/SymbolLib/Symbols/Tool.svg" pageId="Cockpit" />
+        <Widget xsi:type="widgets.brease.NavigationButton" id="NavigationButtonAlarm" top="5" left="400" height="40" zIndex="3" image="Media/SymbolLib/Alarm/Alarm.svg" pageId="Alarm" />
+      </Widgets>
+    </Widget>
+  </Widgets>
+</Content>

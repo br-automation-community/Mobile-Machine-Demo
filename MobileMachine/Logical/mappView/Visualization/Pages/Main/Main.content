@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Content id="Main" height="380" width="800" xmlns="http://www.br-automation.com/iat2015/contentDefinition/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Widgets>
+    <Widget xsi:type="widgets.brease.Ellipse" id="Ellipse1" top="40" left="450" width="200" height="180" zIndex="0" />
+    <Widget xsi:type="widgets.brease.Rectangle" id="Rectangle2" top="160" left="460" width="180" height="80" zIndex="1" cornerRadius="10px" backColor="rgba(255, 255, 255, 1)" />
+    <Widget xsi:type="widgets.brease.Ellipse" id="Ellipse2" top="40" left="130" width="200" height="180" zIndex="2" />
+    <Widget xsi:type="widgets.brease.Rectangle" id="Rectangle1" top="160" left="140" width="180" height="80" zIndex="3" cornerRadius="10px" backColor="rgba(255, 255, 255, 1)" />
+    <Widget xsi:type="widgets.brease.NumericOutput" id="NumericOutputSpeed" top="80" left="180" width="120" height="70" zIndex="4" format="{'metric':{'decimalPlaces':0,'minimumIntegerDigits':1},'imperial':{'decimalPlaces':1,'minimumIntegerDigits':1},'imperial-us':{'decimalPlaces':1,'minimumIntegerDigits':1}}" fontSize="50px" />
+    <Widget xsi:type="widgets.brease.NumericOutput" id="NumericOutputSpeed1" top="80" left="500" width="120" height="70" zIndex="5" format="{'metric':{'decimalPlaces':0,'minimumIntegerDigits':1},'imperial':{'decimalPlaces':1,'minimumIntegerDigits':1},'imperial-us':{'decimalPlaces':1,'minimumIntegerDigits':1}}" fontSize="50px" />
+    <Widget xsi:type="widgets.brease.Image" id="ImageEngine" top="280" left="100" width="40" height="40" zIndex="6" image="Media/SymbolLib/Symbols/Engine.svg" imageColor="rgba(255, 255, 255, 1)" />
+    <Widget xsi:type="widgets.brease.Image" id="ImageTemperature" top="300" left="120" width="20" height="20" zIndex="7" image="Media/SymbolLib/Symbols/Temperature.svg" imageColor="rgba(255, 255, 255, 1)" />
+    <Widget xsi:type="widgets.brease.NumericOutput" id="NumericOutputTemperature" top="290" left="180" zIndex="8" unit="{'metric':'°','imperial':'°','imperial-us':'°'}" unitAlign="right" />
+    <Widget xsi:type="widgets.brease.Label" id="Label1" top="240" left="100" width="640" zIndex="9" text="Motorkontrollleuchten" textAlign="center" />
+  </Widgets>
+</Content>

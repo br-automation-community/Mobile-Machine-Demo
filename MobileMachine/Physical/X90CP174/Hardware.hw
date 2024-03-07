@@ -6,6 +6,15 @@
       <Connection Connector="SL" TargetModule="X90CP174_48_S1" TargetConnector="X1" />
     </Module>
     <Connection Connector="X1" TargetModule="X1" TargetConnector="SL" />
+    <Connector Name="IF2">
+      <Parameter ID="ActivateDevice" Value="1" />
+      <Parameter ID="HostName" Value="mobileautomation" />
+      <Parameter ID="Mode" Value="Manual" />
+      <Parameter ID="InternetAddress" Value="192.168.0.50" />
+      <Parameter ID="SubnetMask" Value="255.255.255.0" />
+      <Parameter ID="ActivateSnmp" Value="2" />
+    </Connector>
+    <Parameter ID="ConfigurationID" Value="MobileMachine_X90CP174" />
     <Parameter ID="Cyclic1Duration" Value="10000" />
     <Parameter ID="Cyclic1Tolerance" Value="10000" />
     <Parameter ID="Cyclic2Duration" Value="20000" />
@@ -22,6 +31,24 @@
     <Parameter ID="Cyclic7Tolerance" Value="1000000" />
     <Parameter ID="Cyclic8Duration" Value="10000" />
     <Parameter ID="Cyclic8Tolerance" Value="30000000" />
+    <Group ID="FileDevice1" />
+    <Parameter ID="FileDeviceName1" Value="USER" />
+    <Parameter ID="FileDevicePath1" Value="USER_PATH" />
+    <Parameter ID="EthernetHostName" Value="mobileautomation" />
+    <Parameter ID="ActivateOpcUa" Value="1" />
+    <Parameter ID="OpcUaInformationModels_PV_Version" Value="2" />
+    <Parameter ID="OpcUaInformationModel_Facet" Value="0" />
+    <Parameter ID="OpcUaInformationModel_TypeInformation" Value="0" />
+    <Parameter ID="OpcUaInformationModel_BaseObjectTypeForStructures" Value="0" />
+  </Module>
+  <Module Name="X90DI110.10-00" Type="X90DI110.10-00" Version="1.1.1.0">
+    <Connection Connector="ST" TargetModule="X90CP174_48_S1" TargetConnector="ST2" />
+  </Module>
+  <Module Name="X90IF730.04-00" Type="X90IF730.04-00" Version="1.0.2.0">
+    <Connection Connector="ST" TargetModule="X90CP174_48_S1" TargetConnector="ST1" />
+  </Module>
+  <Module Name="X90PO210.08-00" Type="X90PO210.08-00" Version="1.4.0.0">
+    <Connection Connector="ST" TargetModule="X90CP174_48_S1" TargetConnector="ST3" />
   </Module>
   <Module Name="X90SL104.48-S1" Type="X90SL104.48-S1" Version="2.5.0.0">
     <Connection Connector="SL" TargetModule="X90CP174_48_S1" TargetConnector="SL1" />

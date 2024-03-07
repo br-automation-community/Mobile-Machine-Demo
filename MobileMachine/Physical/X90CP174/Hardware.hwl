@@ -2,10 +2,13 @@
 <?AutomationStudio FileVersion="4.9"?>
 <BR.AS.HardwareTopology>
   <TimeStamps>
-    <TimeStamp LogicalPath="X90CP174.Hardware.hw" LastWriteTime="03/07/2024 11:39:23" />
+    <TimeStamp LogicalPath="X90CP174.Hardware.hw" LastWriteTime="03/07/2024 12:49:08" />
   </TimeStamps>
   <Modules>
     <Module Name="X90CP174_48_S1" Type="X90CP174.48-S1" X="100" Y="100" />
+    <Module Name="X90PO210.08-00" Type="X90PO210.08-00" X="318" Y="232" />
+    <Module Name="X90DI110.10-00" Type="X90DI110.10-00" X="318" Y="209" />
+    <Module Name="X90IF730.04-00" Type="X90IF730.04-00" X="318" Y="156" />
     <Module Name="X1" Type="X1" X="318" Y="133" />
     <Module Name="X90SL104.48-S1" Type="X90SL104.48-S1" X="318" Y="110" />
   </Modules>
