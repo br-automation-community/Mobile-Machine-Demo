@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio FileVersion="4.9"?>
+<Package SubType="mappViewSymbolLibPackage" PackageType="mappViewSymbolLibPackage" xmlns="http://br-automation.co.at/AS/Package">
+  <Objects>
+    <Object Type="Package">Notification</Object>
+    <Object Type="Package">Options</Object>
+    <Object Type="Package">Units</Object>
+  </Objects>
+</Package>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   fill="#000000"
+   height="800px"
+   width="800px"
+   version="1.1"
+   id="Layer_1"
+   viewBox="0 0 512.017 512.017"
+   xml:space="preserve"
+   sodipodi:docname="chassis.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+   id="defs2" /><sodipodi:namedview
+   id="namedview2"
+   pagecolor="#ffffff"
+   bordercolor="#000000"
+   borderopacity="0.25"
+   inkscape:showpageshadow="2"
+   inkscape:pageopacity="0.0"
+   inkscape:pagecheckerboard="0"
+   inkscape:deskcolor="#d1d1d1"
+   inkscape:zoom="0.98375"
+   inkscape:cx="399.49174"
+   inkscape:cy="400"
+   inkscape:window-width="1920"
+   inkscape:window-height="1001"
+   inkscape:window-x="-9"
+   inkscape:window-y="-9"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Layer_1" />
+<g
+   id="g2"
+   style="fill:#ffffff">
+	<g
+   id="g1"
+   style="fill:#ffffff">
+		<path
+   d="M490.678,384.002h-42.667v-55.168l57.749-57.749c8.341-8.341,8.341-21.824,0-30.165l-57.749-57.749v-55.168h42.667    c11.797,0,21.333-9.557,21.333-21.333v-64c0-11.776-9.536-21.333-21.333-21.333h-128c-11.797,0-21.333,9.557-21.333,21.333v64    c0,11.776,9.536,21.333,21.333,21.333h42.667v55.168l-51.499,51.499H158.177l-51.499-51.499v-45.525l25.984,10.219    c2.517,0.981,5.163,1.472,7.808,1.472c2.901,0,5.803-0.597,8.512-1.771c5.205-2.261,9.28-6.485,11.349-11.755l23.403-59.563    c4.309-10.965-1.067-23.36-12.032-27.669L52.577,1.751C47.308-0.318,41.42-0.211,36.236,2.029    c-5.184,2.261-9.259,6.485-11.328,11.755L1.484,73.346c-4.309,10.965,1.088,23.339,12.053,27.648l50.475,19.861v62.315    L6.262,240.919c-8.341,8.341-8.341,21.824,0,30.165l57.749,57.749v39.808l-11.435-4.501c-5.269-2.048-11.157-1.941-16.341,0.299    c-5.184,2.261-9.259,6.485-11.328,11.755L1.484,435.757c-4.309,10.965,1.088,23.36,12.053,27.669l119.125,46.827    c2.517,1.003,5.163,1.493,7.808,1.493c2.901,0,5.803-0.597,8.512-1.771c5.205-2.261,9.28-6.485,11.349-11.755l23.403-59.563    c4.309-10.965-1.067-23.339-12.032-27.648l-65.024-25.579v-56.597l51.499-51.499h195.669l51.499,51.499v55.168h-42.667    c-11.797,0-21.333,9.557-21.333,21.333v64c0,11.776,9.536,21.333,21.333,21.333h128c11.797,0,21.333-9.557,21.333-21.333v-64    C512.012,393.559,502.476,384.002,490.678,384.002z"
+   id="path1"
+   style="fill:#ffffff" />
+	</g>
+</g>
+</svg>

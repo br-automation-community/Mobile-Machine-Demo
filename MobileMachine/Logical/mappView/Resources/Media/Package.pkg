@@ -5,5 +5,12 @@
     <Object Type="Package">SymbolLib</Object>
     <Object Type="File">BnR_Logo_Tagline_left.svg</Object>
     <Object Type="File">Handbreak.png</Object>
+    <Object Type="Package">SymbolLibSkyline</Object>
+    <Object Type="File">petrol.svg</Object>
+    <Object Type="File">chassis.svg</Object>
+    <Object Type="File">battery-.svg</Object>
+    <Object Type="File">temperature.svg</Object>
+    <Object Type="File">oil.svg</Object>
+    <Object Type="File">petrolWhite.svg</Object>
   </Objects>
 </Package>

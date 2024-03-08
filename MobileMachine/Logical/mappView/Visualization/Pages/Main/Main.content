@@ -1,15 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Content id="Main" height="380" width="800" xmlns="http://www.br-automation.com/iat2015/contentDefinition/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Widgets>
-    <Widget xsi:type="widgets.brease.Ellipse" id="Ellipse1" top="40" left="450" width="200" height="180" zIndex="0" />
-    <Widget xsi:type="widgets.brease.Rectangle" id="Rectangle2" top="160" left="460" width="180" height="80" zIndex="1" cornerRadius="10px" backColor="rgba(255, 255, 255, 1)" />
-    <Widget xsi:type="widgets.brease.Ellipse" id="Ellipse2" top="40" left="130" width="200" height="180" zIndex="2" />
-    <Widget xsi:type="widgets.brease.Rectangle" id="Rectangle1" top="160" left="140" width="180" height="80" zIndex="3" cornerRadius="10px" backColor="rgba(255, 255, 255, 1)" />
-    <Widget xsi:type="widgets.brease.NumericOutput" id="NumericOutputSpeed" top="80" left="180" width="120" height="70" zIndex="4" format="{'metric':{'decimalPlaces':0,'minimumIntegerDigits':1},'imperial':{'decimalPlaces':1,'minimumIntegerDigits':1},'imperial-us':{'decimalPlaces':1,'minimumIntegerDigits':1}}" fontSize="50px" />
-    <Widget xsi:type="widgets.brease.NumericOutput" id="NumericOutputSpeed1" top="80" left="500" width="120" height="70" zIndex="5" format="{'metric':{'decimalPlaces':0,'minimumIntegerDigits':1},'imperial':{'decimalPlaces':1,'minimumIntegerDigits':1},'imperial-us':{'decimalPlaces':1,'minimumIntegerDigits':1}}" fontSize="50px" />
-    <Widget xsi:type="widgets.brease.Image" id="ImageEngine" top="280" left="100" width="40" height="40" zIndex="6" image="Media/SymbolLib/Symbols/Engine.svg" imageColor="rgba(255, 255, 255, 1)" />
-    <Widget xsi:type="widgets.brease.Image" id="ImageTemperature" top="300" left="120" width="20" height="20" zIndex="7" image="Media/SymbolLib/Symbols/Temperature.svg" imageColor="rgba(255, 255, 255, 1)" />
-    <Widget xsi:type="widgets.brease.NumericOutput" id="NumericOutputTemperature" top="290" left="180" zIndex="8" unit="{'metric':'°','imperial':'°','imperial-us':'°'}" unitAlign="right" />
-    <Widget xsi:type="widgets.brease.Label" id="Label1" top="240" left="100" width="640" zIndex="9" text="Motorkontrollleuchten" textAlign="center" />
+    <Widget xsi:type="widgets.brease.Ellipse" id="Ellipse1" top="30" left="460" width="200" height="180" zIndex="0" backColor="rgba(255, 255, 255, 1)" />
+    <Widget xsi:type="widgets.brease.Rectangle" id="RectangleGray2" top="160" left="470" width="180" height="50" zIndex="1" borderStyle="none" cornerRadius="0px" backColor="rgba(128, 128, 128, 1)" />
+    <Widget xsi:type="widgets.brease.Ellipse" id="Ellipse2" top="30" left="120" width="200" height="180" zIndex="2" borderStyle="solid" backColor="rgba(255, 255, 255, 1)" />
+    <Widget xsi:type="widgets.brease.Rectangle" id="RectangleGray1" top="160" left="130" width="180" height="50" zIndex="3" borderStyle="none" cornerRadius="0px" backColor="rgba(128, 128, 128, 1)" />
+    <Widget xsi:type="widgets.brease.NumericOutput" id="NumericOutputEngineSpeed" top="60" left="160" width="120" height="100" zIndex="4" format="{'metric':{'decimalPlaces':0,'minimumIntegerDigits':1},'imperial':{'decimalPlaces':1,'minimumIntegerDigits':1},'imperial-us':{'decimalPlaces':1,'minimumIntegerDigits':1}}" unit="{'metric':'M46','imperial':'M46','imperial-us':'M46'}" unitAlign="bottom" fontSize="50px" />
+    <Widget xsi:type="widgets.brease.NumericOutput" id="NumericOutputSpeed" top="60" left="500" width="120" height="100" zIndex="5" format="{'metric':{'decimalPlaces':0,'minimumIntegerDigits':1},'imperial':{'decimalPlaces':1,'minimumIntegerDigits':1},'imperial-us':{'decimalPlaces':1,'minimumIntegerDigits':1}}" unit="{'metric':'KMH','imperial':'HM','imperial-us':'HM'}" unitAlign="bottom" fontSize="50px" />
+    <Widget xsi:type="widgets.brease.Image" id="ImageEngine" top="270" left="100" width="40" height="40" zIndex="6" image="Media/SymbolLib/Symbols/Engine.svg" imageColor="rgba(255, 255, 255, 1)" />
+    <Widget xsi:type="widgets.brease.Image" id="ImageTemperature" top="290" left="120" width="20" height="20" zIndex="7" image="Media/SymbolLib/Symbols/Temperature.svg" imageColor="rgba(0, 0, 0, 1)" />
+    <Widget xsi:type="widgets.brease.NumericOutput" id="NumericOutputTemperature" top="275" left="140" zIndex="8" unit="{'metric':'CEL','imperial':'FAH','imperial-us':'FAH'}" unitAlign="right" textColor="rgba(255, 255, 255, 1)" fontSize="18px" />
+    <Widget xsi:type="widgets.brease.Line" id="Line2" zIndex="9" x1="470" x2="650" y1="160" y2="160" />
+    <Widget xsi:type="widgets.brease.Line" id="Line1" zIndex="10" x1="130" x2="310" y1="160" y2="160" />
+    <Widget xsi:type="widgets.brease.Rectangle" id="RectangleWhite2" top="165" left="490" width="140" height="60" zIndex="11" cornerRadius="10px" backColor="rgba(255, 255, 255, 1)" />
+    <Widget xsi:type="widgets.brease.Rectangle" id="RectangleWhite1" top="165" left="150" width="140" height="60" zIndex="12" cornerRadius="10px" backColor="rgba(255, 255, 255, 1)" />
+    <Widget xsi:type="widgets.brease.Image" id="ImageWorkingHours" top="175" left="500" width="40" height="40" zIndex="13" image="Media/SymbolLib/DateTime/Clock.svg" />
+    <Widget xsi:type="widgets.brease.Image" id="ImageAmbientTemperature" top="175" left="160" width="40" height="40" zIndex="14" image="Media/SymbolLib/Symbols/Temperature.svg" />
+    <Widget xsi:type="widgets.brease.NumericOutput" id="NumericOutputAmbientTemperature" top="185" left="170" width="120" height="25" zIndex="15" maxValue="70" unit="{'metric':'CEL','imperial':'FAH','imperial-us':'FAH'}" unitAlign="right" fontSize="18px" />
+    <Widget xsi:type="widgets.brease.NumericOutput" id="NumericOutputWorkingHours" top="185" left="530" height="25" zIndex="16" format="{'metric':{'decimalPlaces':0,'minimumIntegerDigits':1},'imperial':{'decimalPlaces':1,'minimumIntegerDigits':1},'imperial-us':{'decimalPlaces':1,'minimumIntegerDigits':1}}" maxValue="150000" unit="{'metric':'HUR','imperial':'HUR','imperial-us':'HUR'}" unitAlign="right" fontSize="18px" />
+    <Widget xsi:type="widgets.brease.Image" id="ImagePetrolLow" top="60" left="340" width="40" height="40" zIndex="17" image="Media/petrol.svg" />
+    <Widget xsi:type="widgets.brease.Image" id="ImageOil" top="60" left="400" width="40" height="40" zIndex="18" image="Media/oil.svg" />
+    <Widget xsi:type="widgets.brease.Image" id="ImageTemperatureHigh" top="120" left="340" width="40" height="40" zIndex="19" image="Media/temperature.svg" />
+    <Widget xsi:type="widgets.brease.Image" id="ImageBattery" top="120" left="400" width="40" height="40" zIndex="20" image="Media/battery-.svg" />
+    <Widget xsi:type="widgets.brease.Image" id="Image4" top="180" left="340" width="40" height="40" zIndex="21" />
+    <Widget xsi:type="widgets.brease.Image" id="ImageChassis" top="180" left="400" width="40" height="40" zIndex="22" image="Media/chassis.svg" />
+    <Widget xsi:type="widgets.brease.Image" id="ImagePetrol" top="320" left="100" width="40" height="40" zIndex="23" image="Media/petrolWhite.svg" />
+    <Widget xsi:type="widgets.brease.NumericOutput" id="NumericOutputPetrol" top="325" left="140" zIndex="24" unit="{'metric':'LTR','imperial':'GLL','imperial-us':'GLL'}" unitAlign="right" textColor="rgba(255, 255, 255, 1)" fontSize="18px" />
   </Widgets>
 </Content>

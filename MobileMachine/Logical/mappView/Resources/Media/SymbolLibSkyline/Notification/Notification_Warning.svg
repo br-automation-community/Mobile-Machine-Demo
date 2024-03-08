@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 20.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   x="0px"
+   y="0px"
+   viewBox="0 0 32 32"
+   style="enable-background:new 0 0 32 32;"
+   xml:space="preserve"
+   width="32px"
+   height="32px"
+   class="br-symbol-library"
+   id="svg5"
+   sodipodi:docname="Notification_ Warning.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"><metadata
+   id="metadata11"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
+   id="defs9" /><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1920"
+   inkscape:window-height="1121"
+   id="namedview7"
+   showgrid="false"
+   inkscape:zoom="20.85965"
+   inkscape:cx="10.917842"
+   inkscape:cy="18.901585"
+   inkscape:window-x="1911"
+   inkscape:window-y="-9"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="svg5" />
+<g
+   id="Information">
+	<path
+   id="Information_3_"
+   d="M 16,0 C 7.165,0 0,7.163 0,16 0,24.838 7.165,32 16,32 24.835,32 32,24.838 32,16 32,7.163 24.835,0 16,0 Z"
+   inkscape:connector-curvature="0"
+   sodipodi:nodetypes="sssss" />
+</g>
+<g
+   id="Ebene_1">
+</g>
+<g
+   id="g827"
+   transform="matrix(0.65225972,0,0,0.65225972,5.7704596,3.9723109)"
+   style="fill:#ffffff;fill-opacity:1"><g
+     id="Alarm"
+     style="fill:#ffffff;fill-opacity:1">
+	<path
+   d="m 17.90648,4.0910392 h -5.194907 c -0.708396,0 -1.248127,0.5622193 -1.248127,1.2706156 v 4.8688192 c 0,0.535232 0.06297,1.446028 0.168666,1.967767 l 1.772115,8.838086 c 0.10796,0.523989 0.629687,1.045728 1.169417,1.045728 h 1.524738 c 0.532985,0 1.090707,-0.521739 1.198652,-1.045728 l 1.78111,-8.883063 c 0.107948,-0.52399 0.258622,-1.387558 0.258622,-1.92279 V 5.3616548 C 19.334518,4.6532585 18.614875,4.0910392 17.90648,4.0910392 Z M 18.363001,24.893152 H 12.43721 c -0.53973,0 -0.973764,0.434033 -0.973764,0.973763 v 5.925792 c 0,0.535233 0.434034,0.971515 0.973764,0.971515 h 5.925791 c 0.535234,0 0.971517,-0.43853 0.971517,-0.971515 v -5.925792 c 0,-0.541979 -0.438532,-0.973763 -0.971517,-0.973763 z m 0,0 H 12.43721 c -0.53973,0 -0.973764,0.434033 -0.973764,0.973763 v 5.925792 c 0,0.535233 0.434034,0.971515 0.973764,0.971515 h 5.925791 c 0.535234,0 0.971517,-0.43853 0.971517,-0.971515 v -5.925792 c 0,-0.541979 -0.438532,-0.973763 -0.971517,-0.973763 z M 17.90648,4.0910392 h -5.194907 c -0.708396,0 -1.248127,0.5622193 -1.248127,1.2706156 v 4.8688192 c 0,0.535232 0.06297,1.446028 0.168666,1.967767 l 1.772115,8.838086 c 0.10796,0.523989 0.629687,1.045728 1.169417,1.045728 h 1.524738 c 0.532985,0 1.090707,-0.521739 1.198652,-1.045728 l 1.78111,-8.883063 c 0.107948,-0.52399 0.258622,-1.387558 0.258622,-1.92279 V 5.3616548 C 19.334518,4.6532585 18.614875,4.0910392 17.90648,4.0910392 Z M 18.363001,24.893152 H 12.43721 c -0.53973,0 -0.973764,0.434033 -0.973764,0.973763 v 5.925792 c 0,0.535233 0.434034,0.971515 0.973764,0.971515 h 5.925791 c 0.535234,0 0.971517,-0.43853 0.971517,-0.971515 v -5.925792 c 0,-0.541979 -0.438532,-0.973763 -0.971517,-0.973763 z M 11.463446,5.3594058 v 4.8688192 c 0,0.535232 0.06297,1.446028 0.168666,1.967768 l 1.772115,8.838086 c 0.10796,0.523989 0.629687,1.045727 1.169417,1.045727 h 1.524738 c 0.532985,0 1.090707,-0.521738 1.198652,-1.045727 l 1.78111,-8.883064 c 0.107948,-0.523989 0.258622,-1.387558 0.258622,-1.92279 V 5.3594058 c 0,-0.7083962 -0.719641,-1.2706155 -1.428037,-1.2706155 h -5.194907 c -0.710645,0.00225 -1.250376,0.5644682 -1.250376,1.2706155 z"
+   id="Alarm_3_"
+   inkscape:connector-curvature="0"
+   style="fill:#ffffff;fill-opacity:1;stroke-width:2.24887729"
+   sodipodi:nodetypes="ssssccssccscsssssssssssssssssssssssccssccscssssssssssssccssccssscs" />
+</g><g
+     id="Ebene_1_1_"
+     style="fill:#ffffff;fill-opacity:1">
+</g></g></svg>
