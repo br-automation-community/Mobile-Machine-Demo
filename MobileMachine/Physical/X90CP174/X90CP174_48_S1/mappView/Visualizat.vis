@@ -6,27 +6,33 @@
     <Page refId="SDM" />
     <Page refId="Cockpit" />
     <Page refId="Alarm" />
+    <Page refId="EthCamera" />
   </Pages>
   <Navigations />
   <BindingsSets>
     <BindingsSet refId="Alarm_binding" />
+    <BindingsSet refId="Main_binding" />
   </BindingsSets>
-  <EventBindingsSets />
+  <EventBindingsSets>
+    <EventBindingsSet refId="Main_eventbinding" />
+    <EventBindingsSet refId="Alarm_eventbinding" />
+  </EventBindingsSets>
   <Dialogs />
   <Contents>
-    <Content refId="Header" />
+    <Content refId="Top" />
     <Content refId="Bottom" />
-    <Content refId="Main" />
     <Content refId="SDM" />
     <Content refId="Cockpit" />
     <Content refId="Alarm" />
+    <Content refId="EthCamera" />
+    <Content refId="Main" />
   </Contents>
   <SnippetsSets />
   <VariablesSets />
   <ExpressionsSets />
-  <StartTheme themeRefId="BuRThemeMobileGray" />
+  <StartTheme themeRefId="BuR_Theme_ABB_Dark" />
   <Themes>
-    <Theme refId="BuRThemeMobileGray" />
+    <Theme refId="BuR_Theme_ABB_Dark" />
   </Themes>
   <Configurations>
     <Configuration key="activityCount" value="false" />

@@ -6,5 +6,7 @@
     <Object Type="Package" Description="Snippets">Snippets</Object>
     <Object Type="Package" Description="Themes">Themes</Object>
     <Object Type="Package" Description="Media">Media</Object>
+    <Object Type="File">.git</Object>
+    <Object Type="Package" Description="Fonts">Fonts</Object>
   </Objects>
 </Package>

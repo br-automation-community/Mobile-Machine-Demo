@@ -11,7 +11,8 @@
       </Group>
     </Group>
     <Group ID="TargetFiles">
-      <Property ID="TargetFile[1]" Value="mappView.Resources.Texts.LocalizableTexts.tmx" />
+      <Property ID="TargetFile[1]" Value="mappView.Resources.Texts.MappView.tmx" />
+      <Property ID="TargetFile[2]" Value="mappView.Resources.Texts.AlarmManagement.tmx" />
     </Group>
   </Element>
 </Configuration>

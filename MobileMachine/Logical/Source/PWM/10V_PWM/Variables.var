@@ -1,0 +1,7 @@
+VAR
+	SupplyVoltage : INT;
+	MTBasicsPWM_0 : MTBasicsPWM;
+	DutyCycle : UINT;
+	Period : UINT;
+	i : BOOL;
+END_VAR

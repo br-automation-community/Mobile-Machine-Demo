@@ -1,0 +1,15 @@
+VAR
+	Alarm : BOOL;
+	EngineRevolution : INT;
+	EngineTemperature : INT;
+	WorkingHours : INT;
+	MpAlarmXCore_0 : MpAlarmXCore;
+	RevolutionWidget : REAL;
+	Alarm1 : BOOL;
+	TirePressure : USINT := 26;
+	Velocity : USINT;
+	Tank : USINT;
+	AmbientTemperature : USINT;
+	MusicVolume : USINT(0..10) ;
+	AirConditioner : USINT(0..10) ;
+END_VAR

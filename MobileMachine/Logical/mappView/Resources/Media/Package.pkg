@@ -11,6 +11,21 @@
     <Object Type="File">battery-.svg</Object>
     <Object Type="File">temperature.svg</Object>
     <Object Type="File">oil.svg</Object>
-    <Object Type="File">petrolWhite.svg</Object>
+    <Object Type="File">VolumeHigh.svg</Object>
+    <Object Type="File">VolumeLow.svg</Object>
+    <Object Type="File">bluetooth.svg</Object>
+    <Object Type="File">fan.svg</Object>
+    <Object Type="File">plus.svg</Object>
+    <Object Type="File">minus.svg</Object>
+    <Object Type="File">TestSet.svg</Object>
+    <Object Type="File">rabbit.svg</Object>
+    <Object Type="File">turtle.svg</Object>
+    <Object Type="File">snail.svg</Object>
+    <Object Type="File">car-lights1.svg</Object>
+    <Object Type="File">car-lights2.svg</Object>
+    <Object Type="File">saw.svg</Object>
+    <Object Type="File">EngineTemperature.svg</Object>
+    <Object Type="File">NavigationPic1.png</Object>
+    <Object Type="File">tire-pressure.svg</Object>
   </Objects>
 </Package>

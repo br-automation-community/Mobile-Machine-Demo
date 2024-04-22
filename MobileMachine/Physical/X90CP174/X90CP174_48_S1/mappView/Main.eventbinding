@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EventBindingSet id="Main_eventbinding" xmlns="http://www.br-automation.com/iat2014/eventbinding/v2" xmlns:types="http://www.br-automation.com/iat2015/widgetTypes/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Bindings>
+    <EventBinding id="EventBinding_1">
+      <Source xsi:type="opcUa.Event" refId="::Visu:Tank" event="ValueChanged" />
+      <EventHandler condition="newValue &lt; 20">
+        <Sequence>
+          <Step order="0">
+            <Action>
+              <Target xsi:type="widgets.brease.ProgressBar.Action" contentRefId="Main" widgetRefId="ProgressBarPetrol">
+                <Method xsi:type="widgets.brease.ProgressBar.Action.SetStyle" value="red" />
+              </Target>
+            </Action>
+          </Step>
+          <Step order="1">
+            <Action>
+              <Target xsi:type="widgets.brease.Image.Action" contentRefId="Main" widgetRefId="ImagePetrolLow">
+                <Method xsi:type="widgets.brease.Image.Action.SetVisible" value="true" />
+              </Target>
+            </Action>
+          </Step>
+        </Sequence>
+      </EventHandler>
+      <EventHandler condition="newValue &gt; 20">
+        <Sequence>
+          <Step order="0">
+            <Action>
+              <Target xsi:type="widgets.brease.ProgressBar.Action" contentRefId="Main" widgetRefId="ProgressBarPetrol">
+                <Method xsi:type="widgets.brease.ProgressBar.Action.SetStyle" value="gray" />
+              </Target>
+            </Action>
+          </Step>
+          <Step order="1">
+            <Action>
+              <Target xsi:type="widgets.brease.Image.Action" contentRefId="Main" widgetRefId="ImagePetrolLow">
+                <Method xsi:type="widgets.brease.Image.Action.SetVisible" value="false" />
+              </Target>
+            </Action>
+          </Step>
+        </Sequence>
+      </EventHandler>
+    </EventBinding>
+    <EventBinding id="EventBinding_2">
+      <Source xsi:type="opcUa.Event" refId="::Visu:EngineTemperature" event="ValueChanged" />
+      <EventHandler condition="newValue &lt; 230">
+        <Sequence>
+          <Step order="0">
+            <Action>
+              <Target xsi:type="widgets.brease.ProgressBar.Action" contentRefId="Main" widgetRefId="ProgressBarEngineTemp">
+                <Method xsi:type="widgets.brease.ProgressBar.Action.SetStyle" value="gray" />
+              </Target>
+            </Action>
+          </Step>
+          <Step order="1">
+            <Action>
+              <Target xsi:type="widgets.brease.Image.Action" contentRefId="Main" widgetRefId="ImageTemperatureHigh">
+                <Method xsi:type="widgets.brease.Image.Action.SetVisible" value="true" />
+              </Target>
+            </Action>
+          </Step>
+        </Sequence>
+      </EventHandler>
+      <EventHandler condition="newValue &gt; 230">
+        <Sequence>
+          <Step order="0">
+            <Action>
+              <Target xsi:type="widgets.brease.ProgressBar.Action" contentRefId="Main" widgetRefId="ProgressBarEngineTemp">
+                <Method xsi:type="widgets.brease.ProgressBar.Action.SetStyle" value="red" />
+              </Target>
+            </Action>
+          </Step>
+          <Step order="1">
+            <Action>
+              <Target xsi:type="widgets.brease.Image.Action" contentRefId="Main" widgetRefId="ImageTemperatureHigh">
+                <Method xsi:type="widgets.brease.Image.Action.SetVisible" value="true" />
+              </Target>
+            </Action>
+          </Step>
+        </Sequence>
+      </EventHandler>
+    </EventBinding>
+  </Bindings>
+</EventBindingSet>

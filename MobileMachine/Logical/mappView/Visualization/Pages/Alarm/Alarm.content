@@ -1,28 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Content id="Alarm" height="380" width="800" xmlns="http://www.br-automation.com/iat2015/contentDefinition/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Content id="Alarm" height="600" width="1280" xmlns="http://www.br-automation.com/iat2015/contentDefinition/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Widgets>
-    <Widget xsi:type="widgets.brease.TabControl" id="TabControl" top="0" left="0" width="800" height="380" zIndex="0" tabPosition="bottom">
+    <Widget xsi:type="widgets.brease.TabControl" id="TabControl" top="20" left="20" width="1240" height="560" zIndex="0">
       <Widgets>
-        <Widget xsi:type="widgets.brease.TabItem" id="TabItem1" left="0" zIndex="0" image="Media/SymbolLib/Alarm/Alarm.svg" imageHeight="25" activeBackColor="rgba(255, 136, 0, 1)">
+        <Widget xsi:type="widgets.brease.TabItem" id="TabItem1" left="0" width="120" height="50" zIndex="0" image="Media/SymbolLib/Alarm/Alarm.svg" imageHeight="50" imageWidth="50">
           <Widgets>
-            <Widget xsi:type="widgets.brease.AlarmList" id="AlarmList" top="10" left="0" width="800" height="330" zIndex="0" headerBackColor="rgba(255, 136, 0, 1)">
+            <Widget xsi:type="widgets.brease.AlarmList" id="AlarmList1" top="20" left="20" width="1200" height="420" zIndex="0">
               <Widgets>
-                <Widget xsi:type="widgets.brease.AlarmListItem" id="AlarmListName" zIndex="0" columnType="name" text="AlarmListItem1" />
-                <Widget xsi:type="widgets.brease.AlarmListItem" id="AlarmListMessage" width="220" zIndex="1" text="AlarmListItem2" />
-                <Widget xsi:type="widgets.brease.AlarmListItem" id="AlarmListTimestamp" width="280" zIndex="2" columnType="timestamp" text="AlarmListItem3" />
-                <Widget xsi:type="widgets.brease.AlarmListItem" id="AlarmListState" width="100" zIndex="3" columnType="state" text="AlarmListItem4" />
+                <Widget xsi:type="widgets.brease.AlarmListItem" id="AlarmListItemName" width="320" zIndex="0" columnType="name" text="$IAT/Name" />
+                <Widget xsi:type="widgets.brease.AlarmListItem" id="AlarmListItemMessage" width="480" zIndex="1" text="$IAT/Message" />
+                <Widget xsi:type="widgets.brease.AlarmListItem" id="AlarmListItemTimestamp" width="320" zIndex="2" columnType="timestamp" text="$IAT/Timestamp" />
+                <Widget xsi:type="widgets.brease.AlarmListItem" id="AlarmListItemState" width="80" zIndex="3" columnType="state" text="$IAT/State" />
               </Widgets>
             </Widget>
+            <Widget xsi:type="widgets.brease.MomentaryPushButton" id="MomentaryPushButtonAcknowladge" top="450" left="20" width="160" height="50" zIndex="1" text="$IAT/Acknowledge" />
+            <Widget xsi:type="widgets.brease.MomentaryPushButton" id="MomentaryPushButtonAcknowladgeAll" top="450" left="200" width="160" height="50" zIndex="2" text="$IAT/AcknowledgeAll" />
           </Widgets>
         </Widget>
-        <Widget xsi:type="widgets.brease.TabItem" id="TabItem2" left="0" zIndex="1" image="Media/SymbolLib/Alarm/AlarmHistory.svg" activeBackColor="rgba(255, 136, 0, 1)">
+        <Widget xsi:type="widgets.brease.TabItem" id="TabItem2" left="0" width="120" height="50" zIndex="1" image="Media/SymbolLib/Alarm/AlarmHistory.svg" imageHeight="60" imageWidth="60">
           <Widgets>
-            <Widget xsi:type="widgets.brease.AlarmHistory" id="AlarmHistory" top="10" left="0" width="800" height="330" zIndex="0" headerBackColor="rgba(255, 136, 0, 1)">
+            <Widget xsi:type="widgets.brease.AlarmHistory" id="AlarmHistory1" top="20" left="20" width="1200" height="420" zIndex="0">
               <Widgets>
-                <Widget xsi:type="widgets.brease.AlarmHistoryItem" id="AlarmHistoryName" zIndex="0" columnType="name" text="AlarmHistoryItem1" />
-                <Widget xsi:type="widgets.brease.AlarmHistoryItem" id="AlarmHistoryMessage" width="240" zIndex="1" text="AlarmHistoryItem2" />
-                <Widget xsi:type="widgets.brease.AlarmHistoryItem" id="AlarmHistoryTimestamp" width="280" zIndex="2" columnType="timestamp" text="AlarmHistoryItem3" />
-                <Widget xsi:type="widgets.brease.AlarmHistoryItem" id="AlarmHistoryState" width="80" zIndex="3" columnType="new state" text="AlarmHistoryItem4" />
+                <Widget xsi:type="widgets.brease.AlarmHistoryItem" id="AlarmHistoryItemName" width="320" zIndex="0" columnType="name" text="$IAT/Name" />
+                <Widget xsi:type="widgets.brease.AlarmHistoryItem" id="AlarmHistoryItemMessage" width="480" zIndex="1" text="$IAT/Message" />
+                <Widget xsi:type="widgets.brease.AlarmHistoryItem" id="AlarmHistoryItemTimestamp" width="320" zIndex="2" columnType="timestamp" text="$IAT/Timestamp" />
+                <Widget xsi:type="widgets.brease.AlarmHistoryItem" id="AlarmHistoryItemState" width="80" zIndex="3" columnType="new state" text="$IAT/State" />
               </Widgets>
             </Widget>
           </Widgets>

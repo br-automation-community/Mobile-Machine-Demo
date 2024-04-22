@@ -1,5 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?AutomationStudio FileVersion="4.9"?>
 <Configuration>
-  <Element ID="gAlarmXCore" Type="mpalarmxcore" />
+  <Element ID="gAlarmXCore" Type="mpalarmxcore">
+    <Group ID="mapp.AlarmX.Core.Configuration">
+      <Group ID="[0]">
+        <Property ID="Name" Value="Tire Pressure" />
+        <Property ID="Message" Value="{$AlarmManagement/TirePressure}" />
+        <Property ID="Code" Value="10" />
+        <Selector ID="Behavior" Value="PersistentAlarm" />
+      </Group>
+      <Group ID="[1]">
+        <Property ID="Name" Value="Tank Level Low" />
+        <Property ID="Message" Value="{$AlarmManagement/TankLevelLow}" />
+        <Property ID="Code" Value="11" />
+        <Selector ID="Behavior" Value="PersistentAlarm" />
+      </Group>
+      <Group ID="[2]">
+        <Property ID="Name" Value="Engine Temperature" />
+        <Property ID="Message" Value="{$AlarmManagement/EngineTemperature}" />
+        <Property ID="Code" Value="12" />
+        <Selector ID="Behavior" Value="PersistentAlarm" />
+      </Group>
+    </Group>
+    <Group ID="mapp.AlarmX.Core.Snippets">
+      <Group ID="[0]">
+        <Property ID="Key" Value="EngineTemperature" />
+        <Selector ID="Value">
+          <Property ID="PV" Value="::Visu:EngineTemperature" />
+        </Selector>
+      </Group>
+      <Group ID="[1]">
+        <Property ID="Key" Value="TankLevel" />
+        <Selector ID="Value">
+          <Property ID="PV" Value="::Visu:Tank" />
+        </Selector>
+      </Group>
+      <Group ID="[2]">
+        <Property ID="Key" Value="TirePressure" />
+        <Selector ID="Value">
+          <Property ID="PV" Value="::Visu:TirePressure" />
+        </Selector>
+      </Group>
+    </Group>
+  </Element>
 </Configuration>
