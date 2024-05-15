@@ -3,7 +3,7 @@ PROGRAM _INIT
 	Tank := 5;
 	Velocity := 0;
 	EngineRevolution := 0;
-	EngineTemperature := 194;
+	EngineTemperature := 92;
 	AmbientTemperature := 23;
 	WorkingHours := 524;
 	MusicVolume := 6;
@@ -14,7 +14,7 @@ PROGRAM _INIT
 END_PROGRAM
 
 PROGRAM _CYCLIC
-	(*
+	
 	Tank := Tank - 1;
 	WorkingHours := WorkingHours + 1;
 	
@@ -32,7 +32,7 @@ PROGRAM _CYCLIC
 	END_IF
 	
 	RevolutionWidget := (INT_TO_REAL (EngineRevolution)) / 1000;
-	*)
+	
 	IF Alarm THEN
 		MpAlarmXSet(gAlarmXCore, 'Tire Pressure');
 	ELSIF Alarm1 THEN

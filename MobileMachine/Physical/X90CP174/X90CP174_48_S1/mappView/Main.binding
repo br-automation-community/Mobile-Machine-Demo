@@ -1,24 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BindingsSet id="Main_binding" xmlns="http://www.br-automation.com/iat2015/binding/engineering/v2" xmlns:bt="http://www.br-automation.com/iat2015/bindingListTypes/engineering/v2" xmlns:be="http://www.br-automation.com/iat2015/bindingListEmbedded/engineering/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Bindings>
-<Binding mode="twoWay">
-<Source xsi:type="opcUa" refId="::Visu:Velocity" attribute="value" />
-<Target xsi:type="brease" contentRefId="Main" widgetRefId="NumericOutputVelocity" attribute="value" />
-</Binding>
-<Binding mode="twoWay">
-<Source xsi:type="opcUa" refId="::Visu:WorkingHours" attribute="value" />
-<Target xsi:type="brease" contentRefId="Main" widgetRefId="NumericOutputWorkingHours" attribute="value" />
-</Binding>
 
 
-<Binding mode="twoWay">
-<Source xsi:type="opcUa" refId="::Visu:AmbientTemperature" attribute="value" />
-<Target xsi:type="brease" contentRefId="Main" widgetRefId="NumericOutputAmbientTemperature" attribute="value" />
-</Binding>
-<Binding mode="twoWay">
-<Source xsi:type="opcUa" refId="::Visu:Tank" attribute="value" />
-<Target xsi:type="brease" contentRefId="Main" widgetRefId="NumericOutputPetrol" attribute="value" />
-</Binding>
+
+
+
+
 		<Binding mode="twoWay">
 <Source xsi:type="opcUa" refId="::Visu:Tank" attribute="value" />
 <Target xsi:type="brease" contentRefId="Main" widgetRefId="ProgressBarPetrol" attribute="value" />
@@ -27,22 +15,13 @@
 <Source xsi:type="opcUa" refId="::Visu:EngineTemperature" attribute="value" />
 <Target xsi:type="brease" contentRefId="Main" widgetRefId="ProgressBarEngineTemp" attribute="value" />
 </Binding>
-<Binding mode="twoWay">
-<Source xsi:type="opcUa" refId="::Visu:EngineRevolution" attribute="value" />
-<Target xsi:type="brease" contentRefId="Main" widgetRefId="NumericOutputEngineSpeed" attribute="value" />
-</Binding>
-<Binding mode="twoWay">
-<Source xsi:type="opcUa" refId="::Visu:EngineTemperature" attribute="value" />
-<Target xsi:type="brease" contentRefId="Main" widgetRefId="NumericOutputEngineTemp" attribute="value" />
-</Binding>
+
+
 <Binding mode="twoWay">
 <Source xsi:type="opcUa" refId="::Visu:RevolutionWidget" attribute="value" />
 <Target xsi:type="brease" contentRefId="Main" widgetRefId="RadialGauge1" attribute="value" />
 </Binding>
-<Binding mode="twoWay">
-<Source xsi:type="opcUa" refId="::Visu:Velocity" attribute="value" />
-<Target xsi:type="brease" contentRefId="Main" widgetRefId="RadialGauge2" attribute="value" />
-</Binding>
+
 <Binding mode="twoWay">
 <Source xsi:type="opcUa" refId="::Visu:MusicVolume" attribute="value" />
 <Target xsi:type="brease" contentRefId="Main" widgetRefId="BasicSliderMusicVolume" attribute="value" />
@@ -50,6 +29,37 @@
 <Binding mode="twoWay">
 <Source xsi:type="opcUa" refId="::Visu:AirConditioner" attribute="value" />
 <Target xsi:type="brease" contentRefId="Main" widgetRefId="BasicSliderAirConditioning" attribute="value" />
+</Binding>
+<Binding mode="twoWay">
+<Source xsi:type="opcUa" refId="::Visu:Tank" attribute="node" />
+<Target xsi:type="brease" contentRefId="Main" widgetRefId="NumericOutputPetrol" attribute="node" />
+</Binding>
+<Binding mode="twoWay">
+<Source xsi:type="opcUa" refId="::Visu:AmbientTemperature" attribute="node" />
+<Target xsi:type="brease" contentRefId="Main" widgetRefId="NumericOutputAmbientTemperature" attribute="node" />
+</Binding>
+<Binding mode="twoWay">
+<Source xsi:type="opcUa" refId="::Visu:WorkingHours" attribute="node" />
+<Target xsi:type="brease" contentRefId="Main" widgetRefId="NumericOutputWorkingHours" attribute="node" />
+</Binding>
+<Binding mode="twoWay">
+<Source xsi:type="opcUa" refId="::Visu:EngineTemperature" attribute="node" />
+<Target xsi:type="brease" contentRefId="Main" widgetRefId="NumericOutputEngineTemp" attribute="node" />
+</Binding>
+<Binding mode="twoWay">
+<Source xsi:type="opcUa" refId="::Visu:EngineRevolution" attribute="node" />
+<Target xsi:type="brease" contentRefId="Main" widgetRefId="NumericOutputEngineSpeed" attribute="node" />
+</Binding>
+<Binding mode="twoWay">
+<Source xsi:type="opcUa" refId="::Visu:Velocity" attribute="node" />
+<Target xsi:type="brease" contentRefId="Main" widgetRefId="NumericOutputVelocity" attribute="node" />
+</Binding>
+
+
+
+<Binding mode="twoWay">
+<Source xsi:type="opcUa" refId="::Visu:Velocity" attribute="value" />
+<Target xsi:type="brease" contentRefId="Main" widgetRefId="RadialGauge2" attribute="value" />
 </Binding>
 </Bindings>
 </BindingsSet>

@@ -1,0 +1,14 @@
+VAR
+	ArEcoPlcShutdown_0 : ArEcoPlcShutdown;
+	WakeupTriggers : ARRAY[0..0] OF ArEcoWakeupTriggerType;
+	GoSleep : BOOL;
+	DTGetTime_0 : DTGetTime;
+	TimestampString : STRING[80];
+	TimeStampHourString : STRING[80];
+	TimeStampMinuteString : STRING[80];
+	TimeStampMinute : USINT;
+	TimeStampHour : USINT;
+	Timestamp : DATE_AND_TIME;
+	PowerSupplyT50 : BOOL;
+	DigitalInput09 : BOOL;
+END_VAR

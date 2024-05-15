@@ -5,18 +5,24 @@
     <ACLAliases />
     <EURangeViolationAliases />
     <EURangesAliases />
-    <EngineeringUnitAliases />
+    <EngineeringUnitAliases>
+      <EngineeringUnit Id="1" UnitId="4740434" NameSpaceUri="http://www.opcfoundation.org/UA/units/un/cefact" Name="hour" Symbol="h" />
+      <EngineeringUnit Id="3" UnitId="5002322" NameSpaceUri="http://www.opcfoundation.org/UA/units/un/cefact" Name="litre" Symbol="l" />
+      <EngineeringUnit Id="4" UnitId="5059638" NameSpaceUri="http://www.opcfoundation.org/UA/units/un/cefact" Name="revolution per minute" Symbol="rev/min" />
+      <EngineeringUnit Id="5" UnitId="4408652" NameSpaceUri="http://www.opcfoundation.org/UA/units/un/cefact" Name="degree Celsius" Symbol="°C" />
+      <EngineeringUnit Id="6" UnitId="4934984" NameSpaceUri="http://www.opcfoundation.org/UA/units/un/cefact" Name="kilometre per hour" Symbol="km/h" />
+    </EngineeringUnitAliases>
   </Aliases>
   <DefaultView>
     <Module Name="&lt;Default&gt;">
       <Task Name="Visu">
-        <Variable Name="AmbientTemperature" />
-        <Variable Name="EngineRevolution" />
-        <Variable Name="EngineTemperature" />
-        <Variable Name="Tank" />
-        <Variable Name="Velocity" />
-        <Variable Name="WorkingHours" />
-        <Variable Name="RevolutionWidget" />
+        <Variable Name="AmbientTemperature" EngineeringUnitId="5" />
+        <Variable Name="EngineRevolution" EngineeringUnitId="4" />
+        <Variable Name="EngineTemperature" EngineeringUnitId="5" />
+        <Variable Name="Tank" EngineeringUnitId="3" />
+        <Variable Name="Velocity" EngineeringUnitId="6" />
+        <Variable Name="WorkingHours" EngineeringUnitId="1" />
+        <Variable Name="RevolutionWidget" EngineeringUnitId="4" />
         <Variable Name="AirConditioner" />
         <Variable Name="MusicVolume" />
       </Task>

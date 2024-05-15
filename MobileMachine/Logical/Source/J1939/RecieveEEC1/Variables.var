@@ -1,0 +1,7 @@
+VAR
+	DataEEC1 : USINT;
+	RawDataEEC1 : ARRAY[0..7] OF USINT;
+	MpJ1939Receive_EEC1 : MpJ1939Receive;
+	TON_50ms : TON;
+	EEC1_Data : MpJ1939EEC1Type;
+END_VAR

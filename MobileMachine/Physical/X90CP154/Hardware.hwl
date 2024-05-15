@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?AutomationStudio FileVersion="4.9"?>
+<BR.AS.HardwareTopology>
+  <TimeStamps>
+    <TimeStamp LogicalPath="X90CP154.Hardware.hw" LastWriteTime="05/03/2024 08:28:43" />
+  </TimeStamps>
+  <Modules>
+    <Module Name="X90CP154_60_00" Type="X90CP154.60-00" X="100" Y="100" />
+    <Module Name="X1" Type="X1" X="318" Y="110" />
+  </Modules>
+  <Links />
+  <InfoElements />
+</BR.AS.HardwareTopology>

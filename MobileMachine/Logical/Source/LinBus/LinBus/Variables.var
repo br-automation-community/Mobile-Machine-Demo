@@ -1,0 +1,18 @@
+VAR
+	nbReceivedFrames : UDINT; (*number of received frames*)
+	CpLinScheduler_0 : CpLinScheduler;
+	Schedule : ARRAY[0..4] OF CpLinScheduleItemType; (*Schedule*)
+	nbErrors : UDINT; (*error counter*)
+	lastErrorID : DINT; (*last error number*)
+	lpb_001_a : BOOL; (*1 = top switch closed*)
+	lpb_001_b : BOOL; (*1 = bottom switch closed*)
+	nbErrorFlags : UDINT; (*counter of error frames*)
+	lastErrorFlag : CpLinErrorFlagsEnum; (*error flag of last error frame*)
+	lpb_001_led_b_green_brightness : USINT; (*bottom green LED brightness*)
+	lpb_001_led_b_red_brightness : USINT; (*bottom red LED brightness*)
+	lpb_001_led_a_green_brightness : USINT; (*top green LED brightness*)
+	lpb_001_led_a_red_brightness : USINT; (*top red LED brightness*)
+	lpb_001_led_b_blue_brightness : USINT; (*botom blue LED brightness*)
+	lpb_001_led_a_blue_brightness : USINT; (*top blue LED brightness*)
+	lpb_background_lighting : USINT; (*background lighting*)
+END_VAR

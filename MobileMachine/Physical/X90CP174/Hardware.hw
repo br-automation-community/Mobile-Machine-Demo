@@ -44,23 +44,25 @@
     </Connector>
     <Connector Name="IF7">
       <Parameter ID="Baudrate" Value="125000" />
+      <Parameter ID="ActivateCANIO" Value="0" />
       <Parameter ID="ActivateCanOpen" Value="1" />
       <Parameter ID="procPriority" Value="197" />
     </Connector>
     <Connector Name="IF8">
+      <Parameter ID="Baudrate" Value="250000" />
       <Parameter ID="IdentifierLength" Value="1" />
       <Parameter ID="ActivateCANIO" Value="0" />
       <Parameter ID="ActivateCanOpen" Value="1" />
-      <Parameter ID="pcannodeid" Value="17" />
-      <Parameter ID="procPriority" Value="199" />
+      <Parameter ID="procPriority" Value="229" />
       <Parameter ID="pheartbeat_producertime" Value="100" />
     </Connector>
     <Connector Name="IF9">
+      <Parameter ID="Baudrate" Value="250000" />
       <Parameter ID="IdentifierLength" Value="1" />
       <Parameter ID="ActivateCANIO" Value="0" />
       <Parameter ID="ActivateCanOpen" Value="1" />
-      <Parameter ID="pcannodeid" Value="16" />
-      <Parameter ID="procPriority" Value="199" />
+      <Parameter ID="pcannodeid" Value="2" />
+      <Parameter ID="procPriority" Value="229" />
     </Connector>
     <Parameter ID="ConfigurationID" Value="MobileMachine_X90CP174" />
     <Parameter ID="EnableUsbRemoteInstall" Value="1" />
@@ -97,6 +99,9 @@
     </Connector>
     <Connector Name="IF2">
       <Parameter ID="ActivateDevice" Value="1" />
+    </Connector>
+    <Connector Name="IF4">
+      <Parameter ID="ActivateDevice" Value="off" />
     </Connector>
   </Module>
   <Module Name="X90PO210.08-00" Type="X90PO210.08-00" Version="1.4.0.0">
