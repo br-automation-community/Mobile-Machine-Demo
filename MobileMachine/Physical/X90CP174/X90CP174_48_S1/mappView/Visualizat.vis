@@ -18,15 +18,15 @@
     <EventBindingsSet refId="Alarm_eventbinding" />
   </EventBindingsSets>
   <Dialogs />
-  <Contents>
+  <Contents preCache="all">
     <Content refId="Top" />
     <Content refId="Bottom" />
     <Content refId="SDM" />
     <Content refId="Cockpit" />
     <Content refId="Alarm" />
     <Content refId="EthCamera" />
-    <Content refId="Main" />
-  </Contents>
+	<Content refId="Main" />
+	</Contents>
   <SnippetsSets />
   <VariablesSets />
   <ExpressionsSets />
@@ -44,5 +44,5 @@
     <VirtualKeyboards>
       <!--<InputProcessing onKeyDown="true" />-->
     </VirtualKeyboards>
-  </Configurations>
+	</Configurations>
 </vdef:Visualization>

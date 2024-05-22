@@ -36,7 +36,7 @@ PROGRAM _CYCLIC
 	END_IF
 	
 	//Power on T50 mobile
-//	PowerSupplyT50 := TRUE;
+	PowerSupplyT50 := TRUE;
 	
 	ArEcoPlcShutdown_0(Execute := GoSleep);
 	

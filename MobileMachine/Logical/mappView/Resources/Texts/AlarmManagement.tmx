@@ -7,26 +7,26 @@
   <body>
     <tu tuid="EngineTemperature">
       <tuv xml:lang="de">
-        <seg>Die Motortemperatur ist zu hoch: {&amp;EngineTemperature} °F</seg>
+        <seg>Die Motortemperatur ist zu hoch: {#::Visu:MobileMachine.Parameter.EngineTemperature} °F</seg>
       </tuv>
       <tuv xml:lang="en">
-        <seg>The engine temperatur is too high: {&amp;EngineTemperature} °F</seg>
+        <seg>The engine temperatur is too high: {#::Visu:MobileMachine.Parameter.EngineTemperature} °F</seg>
       </tuv>
     </tu>
     <tu tuid="TankLevelLow">
       <tuv xml:lang="de">
-        <seg>Der Tankfüllstand ist niedrig: {&amp;TankLevel} l</seg>
+        <seg>Der Tankfüllstand ist niedrig: {#::Visu:MobileMachine.Parameter.TankLevel} l</seg>
       </tuv>
       <tuv xml:lang="en">
-        <seg>The tank level is low: {&amp;TankLevel} gal</seg>
+        <seg>The tank level is low: {#::Visu:MobileMachine.Parameter.TankLevel} gal</seg>
       </tuv>
     </tu>
     <tu tuid="TirePressure">
       <tuv xml:lang="de">
-        <seg>Der Reifendruck ist niedrig: {&amp;TirePressure} PSI</seg>
+        <seg>Der Reifendruck ist niedrig: {&amp;TirePressure|.2f} {&amp;TirePressure[UNIT=%s]}</seg>
       </tuv>
       <tuv xml:lang="en">
-        <seg>The tire pressure is low: {&amp;TirePressure} PSI</seg>
+        <seg>The tire pressure is low: {&amp;TirePressure|.2f} {&amp;TirePressure[UNIT=%s]}</seg>
       </tuv>
     </tu>
   </body>

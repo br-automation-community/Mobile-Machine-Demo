@@ -2,7 +2,7 @@
 <?AutomationStudio Version=4.12.5.95 FileVersion="4.9"?>
 <Hardware xmlns="http://br-automation.co.at/AS/Hardware">
   <Module Name="6PMT50.101E-19B" Type="6PMT50.101E-19B" Version="1.0.1.0" Disabled="true">
-    <Connection Connector="ETH1" TargetModule="X90CP154_60_00" TargetConnector="IF2">
+    <Connection Connector="ETH1" TargetModule="X90CP154_60_00" TargetConnector="IF3">
       <Cable Type="PowerlinkCable" Length="10" Version="1.0.0.3" />
     </Connection>
     <Parameter ID="Terminal" Value="true" />
@@ -36,6 +36,7 @@
     </Connector>
     <Connector Name="IF3">
       <Parameter ID="Operation" Value="EthOnly" />
+      <Parameter ID="Baudrate" Value="100" />
       <Parameter ID="EthernetMode" Value="Manual" />
       <Parameter ID="InternetAddress" Value="192.168.0.50" />
       <Parameter ID="SubnetMask" Value="255.255.255.0" />
@@ -45,6 +46,9 @@
     </Connector>
     <Connector Name="IF7">
       <Parameter ID="ActivateCanOpen" Value="1" />
+    </Connector>
+    <Connector Name="IF8">
+      <Parameter ID="ActivateCANIO" Value="0" />
     </Connector>
     <Connector Name="IF9">
       <Parameter ID="Baudrate" Value="125000" />

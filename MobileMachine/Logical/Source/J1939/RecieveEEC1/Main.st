@@ -25,32 +25,32 @@ PROGRAM _CYCLIC
 	//EEC1 - EngTorqueMode   /   Startbit: 0   /   Length: 4   /   Factor: 1   /   Offset: 0   /   Minimum: 0   /   Maximum: 15
 	DataEEC1 := 0;
 	IF RawDataEEC1[0].0 THEN
-		DataEEC1 := DataEEC1 + 1;
+		DataEEC1 := DataEEC1 + BIT_VALUE[0];
 	END_IF
 	IF RawDataEEC1[0].1 THEN
-		DataEEC1 := DataEEC1 + 2;
+		DataEEC1 := DataEEC1 + BIT_VALUE[1];
 	END_IF
 	IF RawDataEEC1[0].2 THEN
-		DataEEC1 := DataEEC1 + 4;
+		DataEEC1 := DataEEC1 + BIT_VALUE[2];
 	END_IF
 	IF RawDataEEC1[0].3 THEN
-		DataEEC1 := DataEEC1 + 8;
+		DataEEC1 := DataEEC1 + BIT_VALUE[3];
 	END_IF
 	EEC1_Data.EngTorqueMode := DataEEC1;
 	
 	//EEC1 - ActlEngPrcntTorqueHighResolution   /   Startbit: 4   /   Length: 4   /   Factor: 0.125   /   Offset: 0   /   Minimum: 0.0   /   Maximum: 0.875
 	DataEEC1 := 0;
 	IF RawDataEEC1[0].4 THEN
-		DataEEC1 := DataEEC1 + 1;
+		DataEEC1 := DataEEC1 + BIT_VALUE[0];
 	END_IF
 	IF RawDataEEC1[0].5 THEN
-		DataEEC1 := DataEEC1 + 2;
+		DataEEC1 := DataEEC1 + BIT_VALUE[1];
 	END_IF
 	IF RawDataEEC1[0].6 THEN
-		DataEEC1 := DataEEC1 + 4;
+		DataEEC1 := DataEEC1 + BIT_VALUE[2];
 	END_IF
 	IF RawDataEEC1[0].7 THEN
-		DataEEC1 := DataEEC1 + 8;
+		DataEEC1 := DataEEC1 + BIT_VALUE[3];
 	END_IF
 	EEC1_Data.ActlEngPrcntTorqueHighResolution := 0.125 * DataEEC1;
 	
@@ -69,16 +69,16 @@ PROGRAM _CYCLIC
 	//EEC1 - EngStarterMode   /   Startbit: 48   /   Length: 4   /   Factor: 1   /   Offset: 0   /   Minimum: 0   /   Maximum: 15
 	DataEEC1 := 0;
 	IF RawDataEEC1[6].0 THEN
-		DataEEC1 := DataEEC1 + 1;
+		DataEEC1 := DataEEC1 + BIT_VALUE[0];
 	END_IF
 	IF RawDataEEC1[6].1 THEN
-		DataEEC1 := DataEEC1 + 2;
+		DataEEC1 := DataEEC1 + BIT_VALUE[1];
 	END_IF
 	IF RawDataEEC1[6].2 THEN
-		DataEEC1 := DataEEC1 + 4;
+		DataEEC1 := DataEEC1 + BIT_VALUE[2];
 	END_IF
 	IF RawDataEEC1[6].3 THEN
-		DataEEC1 := DataEEC1 + 8;
+		DataEEC1 := DataEEC1 + BIT_VALUE[3];
 	END_IF
 	EEC1_Data.EngStarterMode := DataEEC1;
 	

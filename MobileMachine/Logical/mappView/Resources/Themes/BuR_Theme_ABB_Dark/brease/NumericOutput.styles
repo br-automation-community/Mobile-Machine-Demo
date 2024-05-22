@@ -37,8 +37,8 @@
 	borderStyle="none" />
 	
 	<Style id="Header3" xsi:type="widgets.brease.NumericOutput" 
-		fontName="${theme_FontMain}" fontSize="20px" 
-		unitFontSize="18px"
+		fontName="${theme_FontMain}" fontSize="18px" 
+		unitFontSize="16px"
 		bold="false" 
 		textAlign="center" 
 		textColor="${theme_TextColorNormal}" 

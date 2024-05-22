@@ -7,6 +7,6 @@
     <Object Type="Package">DeepSleep</Object>
     <Object Type="Package">LinBus</Object>
     <Object Type="Package">PWM</Object>
-    <Object Type="Package">Visu</Object>
+    <Object Type="Package">Visualization</Object>
   </Objects>
 </Package>

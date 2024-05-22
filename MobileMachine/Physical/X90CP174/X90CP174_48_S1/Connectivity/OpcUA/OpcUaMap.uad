@@ -4,27 +4,44 @@
   <Aliases>
     <ACLAliases />
     <EURangeViolationAliases />
-    <EURangesAliases />
+    <EURangesAliases>
+      <EURanges Id="1">
+        <EURange>
+          <Low ValueProvider="Const">0</Low>
+          <High ValueProvider="Const">40</High>
+        </EURange>
+      </EURanges>
+    </EURangesAliases>
     <EngineeringUnitAliases>
-      <EngineeringUnit Id="1" UnitId="4740434" NameSpaceUri="http://www.opcfoundation.org/UA/units/un/cefact" Name="hour" Symbol="h" />
-      <EngineeringUnit Id="3" UnitId="5002322" NameSpaceUri="http://www.opcfoundation.org/UA/units/un/cefact" Name="litre" Symbol="l" />
       <EngineeringUnit Id="4" UnitId="5059638" NameSpaceUri="http://www.opcfoundation.org/UA/units/un/cefact" Name="revolution per minute" Symbol="rev/min" />
       <EngineeringUnit Id="5" UnitId="4408652" NameSpaceUri="http://www.opcfoundation.org/UA/units/un/cefact" Name="degree Celsius" Symbol="°C" />
       <EngineeringUnit Id="6" UnitId="4934984" NameSpaceUri="http://www.opcfoundation.org/UA/units/un/cefact" Name="kilometre per hour" Symbol="km/h" />
+      <EngineeringUnit Id="7" UnitId="4740434" NameSpaceUri="http://www.opcfoundation.org/UA/units/un/cefact" Name="hour" Symbol="h" />
+      <EngineeringUnit Id="9" UnitId="5002322" NameSpaceUri="http://www.opcfoundation.org/UA/units/un/cefact" Name="litre" Symbol="l" />
+      <EngineeringUnit Id="10" UnitId="4342098" NameSpaceUri="http://www.opcfoundation.org/UA/units/un/cefact" Name="bar [unit of pressure]" Symbol="bar" />
     </EngineeringUnitAliases>
   </Aliases>
   <DefaultView>
     <Module Name="&lt;Default&gt;">
       <Task Name="Visu">
         <Variable Name="AmbientTemperature" EngineeringUnitId="5" />
-        <Variable Name="EngineRevolution" EngineeringUnitId="4" />
-        <Variable Name="EngineTemperature" EngineeringUnitId="5" />
-        <Variable Name="Tank" EngineeringUnitId="3" />
-        <Variable Name="Velocity" EngineeringUnitId="6" />
-        <Variable Name="WorkingHours" EngineeringUnitId="1" />
         <Variable Name="RevolutionWidget" EngineeringUnitId="4" />
-        <Variable Name="AirConditioner" />
-        <Variable Name="MusicVolume" />
+        <Variable Name="MobileMachine">
+          <Variable Name="LightMode" />
+          <Variable Name="Parameter" RecursiveEnable="2">
+            <Variable Name="EngineRevolution" EngineeringUnitId="4" />
+            <Variable Name="EngineTemperature" EngineeringUnitId="5" />
+            <Variable Name="Velocity" EURangesId="1" EngineeringUnitId="6" />
+            <Variable Name="WorkingHours" EngineeringUnitId="7" />
+            <Variable Name="TankLevel" EngineeringUnitId="9" />
+            <Variable Name="TirePressure" EngineeringUnitId="10" />
+          </Variable>
+          <Variable Name="VelocityMode" />
+        </Variable>
+        <Variable Name="CheckAlarmImage" />
+        <Variable Name="CuttingImage" />
+        <Variable Name="TirePressureImage" />
+        <Variable Name="BrakeImage" />
       </Task>
     </Module>
   </DefaultView>

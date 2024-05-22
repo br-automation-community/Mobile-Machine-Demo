@@ -5,7 +5,7 @@
       <Source xsi:type="widgets.brease.MomentaryPushButton.Event" contentRefId="Alarm" widgetRefId="MomentaryPushButtonAcknowladge" event="Click" />
       <EventHandler>
         <Action>
-          <Target xsi:type="widgets.brease.AlarmList.Action" contentRefId="Alarm" widgetRefId="AlarmList1">
+          <Target xsi:type="widgets.brease.AlarmList.Action" contentRefId="Alarm" widgetRefId="AlarmList">
             <Method xsi:type="widgets.brease.AlarmList.Action.Acknowledge" />
           </Target>
         </Action>
@@ -15,7 +15,7 @@
       <Source xsi:type="widgets.brease.MomentaryPushButton.Event" contentRefId="Alarm" widgetRefId="MomentaryPushButtonAcknowladgeAll" event="Click" />
       <EventHandler>
         <Action>
-          <Target xsi:type="widgets.brease.AlarmList.Action" contentRefId="Alarm" widgetRefId="AlarmList1">
+          <Target xsi:type="widgets.brease.AlarmList.Action" contentRefId="Alarm" widgetRefId="AlarmList">
             <Method xsi:type="widgets.brease.AlarmList.Action.AcknowledgeAll" />
           </Target>
         </Action>

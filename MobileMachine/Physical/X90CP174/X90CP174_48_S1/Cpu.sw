@@ -15,7 +15,7 @@
   <TaskClass Name="Cyclic#5" />
   <TaskClass Name="Cyclic#6" />
   <TaskClass Name="Cyclic#7">
-    <Task Name="Visu" Source="Source.Visu.Visu.prg" Memory="UserROM" Language="IEC" Debugging="true" />
+    <Task Name="Visu" Source="Source.Visualization.Visu.prg" Memory="UserROM" Language="IEC" Debugging="true" />
   </TaskClass>
   <TaskClass Name="Cyclic#8" />
   <Binaries>

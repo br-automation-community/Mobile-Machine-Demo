@@ -27,5 +27,6 @@
     <Object Type="File">EngineTemperature.svg</Object>
     <Object Type="File">NavigationPic1.png</Object>
     <Object Type="File">tire-pressure.svg</Object>
+    <Object Type="File">brake.svg</Object>
   </Objects>
 </Package>

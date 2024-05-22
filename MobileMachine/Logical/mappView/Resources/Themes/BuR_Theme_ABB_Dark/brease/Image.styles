@@ -31,4 +31,8 @@
 		backColor="transparent"
 		imageColor="${theme_WidgetBlueStrokeColor}"
 	/>
+	
+	<Style id="transparent" xsi:type="widgets.brease.Image" 
+		backColor="transparent"
+	/>
 </Styles>

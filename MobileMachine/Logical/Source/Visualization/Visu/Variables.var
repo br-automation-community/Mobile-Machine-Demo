@@ -1,0 +1,16 @@
+VAR
+	MachineState : MachineStateType;
+	RevolutionWidget : REAL;
+	AmbientTemperature : USINT;
+	MpAlarmXCore_0 : MpAlarmXCore;
+	MpAlarmXHistory_0 : MpAlarmXHistory;
+	TON_10s : TON;
+	TON_5s : TON;
+	TON_20s : TON;
+	CheckAlarmImage : BOOL;
+	TankOld : BOOL;
+	MobileMachine : MobileMachineType;
+	CuttingImage : BOOL;
+	TirePressureImage : BOOL;
+	BrakeImage : BOOL;
+END_VAR

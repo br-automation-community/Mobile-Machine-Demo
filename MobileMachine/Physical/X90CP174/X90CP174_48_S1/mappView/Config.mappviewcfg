@@ -32,10 +32,10 @@
     <Group ID="Timer" />
     <Group ID="Client">
       <Group ID="ContentCaching">
-        <Property ID="cachingSlots" Value="200" />
+        <Property ID="cachingSlots" Value="100" />
         <Property ID="preserveOldValues" Value="TRUE" />
       </Group>
-      <Property ID="defaultVisu" Value="" />
+      <Property ID="defaultVisu" Value="MobileMachine" />
       <Group ID="Widget">
         <Selector ID="renderingPolicy" Value="1" />
         <Selector ID="securityPolicy" Value="1" />
