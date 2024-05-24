@@ -2,8 +2,8 @@
 <?AutomationStudio FileVersion="4.9"?>
 <SwConfiguration CpuAddress="SL1" xmlns="http://br-automation.co.at/AS/SwConfiguration">
   <TaskClass Name="Cyclic#1">
-    <Task Name="GenericJ19" Source="Source.J1939.GenericJ1939.prg" Memory="UserROM" Language="IEC" Debugging="true" />
-    <Task Name="RecieveEEC" Source="Source.J1939.RecieveEEC1.prg" Memory="UserROM" Language="IEC" Debugging="true" />
+    <Task Name="Generic1" Source="Source.J1939.Generic.prg" Memory="UserROM" Language="IEC" Debugging="true" />
+    <Task Name="Recieve1" Source="Source.J1939.Recieve.prg" Memory="UserROM" Language="IEC" Debugging="true" />
   </TaskClass>
   <TaskClass Name="Cyclic#2" />
   <TaskClass Name="Cyclic#3" />
@@ -78,5 +78,6 @@
     <LibraryObject Name="astcp" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="asiotime" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="AsBrStr" Source="Libraries.AsBrStr.lby" Memory="UserROM" Language="binary" Debugging="true" />
+    <LibraryObject Name="MpBackup" Source="Libraries.MpBackup.lby" Memory="UserROM" Language="Binary" Debugging="true" />
   </Libraries>
 </SwConfiguration>

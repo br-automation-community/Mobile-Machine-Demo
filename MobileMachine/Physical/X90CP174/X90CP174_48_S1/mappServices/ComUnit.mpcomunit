@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio FileVersion="4.9"?>
+<Configuration>
+  <Element ID="gGroupUnit" Type="mpcomunit">
+    <Group ID="Display">
+      <Group ID="Groups">
+        <Group ID="0">
+          <Property ID="Id" Value="Pressure" />
+          <Group ID="DisplayUnits">
+            <Group ID="Metric">
+              <Property ID="Code" Value="BAR" />
+            </Group>
+            <Group ID="Imperial">
+              <Property ID="Code" Value="PS" />
+            </Group>
+            <Group ID="ImperialUS">
+              <Property ID="Code" Value="PS" />
+            </Group>
+          </Group>
+        </Group>
+      </Group>
+      <Group ID="Datapoints">
+        <Group ID="0">
+          <Property ID="Id" Value="::Visu:MobileMachine.Parameter.TirePressure" />
+          <Selector ID="DisplayUnits" Value="UnitGroup">
+            <Property ID="Unitgroup" Value="Pressure" />
+          </Selector>
+        </Group>
+      </Group>
+    </Group>
+  </Element>
+</Configuration>

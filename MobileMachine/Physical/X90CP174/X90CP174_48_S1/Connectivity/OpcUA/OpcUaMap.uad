@@ -27,7 +27,6 @@
         <Variable Name="AmbientTemperature" EngineeringUnitId="5" />
         <Variable Name="RevolutionWidget" EngineeringUnitId="4" />
         <Variable Name="MobileMachine">
-          <Variable Name="LightMode" />
           <Variable Name="Parameter" RecursiveEnable="2">
             <Variable Name="EngineRevolution" EngineeringUnitId="4" />
             <Variable Name="EngineTemperature" EngineeringUnitId="5" />
@@ -36,7 +35,6 @@
             <Variable Name="TankLevel" EngineeringUnitId="9" />
             <Variable Name="TirePressure" EngineeringUnitId="10" />
           </Variable>
-          <Variable Name="VelocityMode" />
         </Variable>
         <Variable Name="CheckAlarmImage" />
         <Variable Name="CuttingImage" />

@@ -14,7 +14,7 @@
 		fontName="${theme_FontMain}" fontSize="20px" 
 		bold="true" 
 		textAlign="center" 
-		textColor="${theme_TextColorBody}" 
+		textColor="${theme_TextColorNormal}" 
 		backColor="transparent"  
 		borderStyle="none" />
 

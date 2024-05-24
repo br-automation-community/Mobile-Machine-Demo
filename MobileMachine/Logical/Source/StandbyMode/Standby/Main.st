@@ -31,7 +31,7 @@ PROGRAM _CYCLIC
 	TimeStampHour := STRING_TO_USINT(TimeStampHourString);
 	
 	//Deep sleep at TimeStampHour:TimeStampMinute
-	IF TimeStampHour = 9 AND TimeStampMinute = 21 THEN
+	IF TimeStampHour = 21 AND TimeStampMinute = 21 THEN
 		GoSleep := TRUE;
 	END_IF
 	

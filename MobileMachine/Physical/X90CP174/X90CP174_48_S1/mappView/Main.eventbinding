@@ -80,7 +80,7 @@
       </EventHandler>
     </EventBinding>
     <EventBinding id="EventBinding_3">
-      <Source xsi:type="opcUa.Event" refId="::Visu:MobileMachine.VelocityMode" event="ValueChanged" />
+      <Source xsi:type="opcUa.Event" refId="::Visu:MobileMachine.Parameter.VelocityMode" event="ValueChanged" />
       <EventHandler condition="newValue = 0">
         <Sequence>
           <Step order="0">
@@ -158,7 +158,7 @@
       </EventHandler>
     </EventBinding>
     <EventBinding id="EventBinding_4">
-      <Source xsi:type="opcUa.Event" refId="::Visu:MobileMachine.LightMode" event="ValueChanged" />
+      <Source xsi:type="opcUa.Event" refId="::Visu:MobileMachine.Parameter.LightMode" event="ValueChanged" />
       <EventHandler condition="newValue = 0">
         <Sequence>
           <Step order="1">

@@ -1,12 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?AutomationStudio FileVersion="4.9"?>
 <Package SubType="mappViewControl" PackageType="mappViewControl" xmlns="http://br-automation.co.at/AS/Package">
-  <Objects>
-    <Object Type="File" Reference="true">\Physical\X90CP174\X90CP174_48_S1\mappView\Alarm.binding</Object>
-    <Object Type="File" Reference="true">\Physical\X90CP174\X90CP174_48_S1\mappView\Alarm.eventbinding</Object>
-    <Object Type="File" Reference="true">\Physical\X90CP174\X90CP174_48_S1\mappView\Config.mappviewcfg</Object>
-    <Object Type="File" Reference="true">\Physical\X90CP174\X90CP174_48_S1\mappView\Main.binding</Object>
-    <Object Type="File" Reference="true">\Physical\X90CP174\X90CP174_48_S1\mappView\Main.eventbinding</Object>
-    <Object Type="File" Reference="true">\Physical\X90CP174\X90CP174_48_S1\mappView\Visualizat.vis</Object>
-  </Objects>
+  <Objects />
 </Package>

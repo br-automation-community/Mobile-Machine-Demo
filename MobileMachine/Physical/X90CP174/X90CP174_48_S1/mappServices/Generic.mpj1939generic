@@ -4,7 +4,7 @@
   <Element ID="gJ1939Generic" Type="mpj1939generic">
     <Group ID="GeneralSettings">
       <Property ID="OwnDeviceAddress" Value="1" />
-      <Property ID="CANInterface" Value="IF8" />
+      <Property ID="CANInterface" Value="IF2" />
     </Group>
     <Group ID="CyclicPGNsSettings">
       <Group ID="GenericMotor">

@@ -14,7 +14,8 @@ PROGRAM _INIT
 	TON_10s(PT := T#10s);
 	TON_5s(PT := T#5s);
 	
-	MachineState := Off;
+	//Assign initial values
+	MachineState := OFF;
 	MobileMachine.Parameter.WorkingHours := 524;
 	MobileMachine.Parameter.EngineTemperature := 15;
 	MobileMachine.Parameter.MusicVolume := 6;
@@ -26,7 +27,7 @@ PROGRAM _INIT
 END_PROGRAM
 
 PROGRAM _CYCLIC
-
+	
 	IF TON_10s.Q AND MobileMachine.Parameter.EngineTemperature > 0 THEN
 		MobileMachine.Parameter.WorkingHours := MobileMachine.Parameter.WorkingHours + 1;
 		MobileMachine.Parameter.TankLevel := MobileMachine.Parameter.TankLevel - 7;
@@ -36,13 +37,14 @@ PROGRAM _CYCLIC
 	END_IF
 	
 	IF MobileMachine.Parameter.TankLevel < 15 AND NOT TankOld THEN
-		MachineState := Decelerate;
+		MachineState := DECELERATE;
 		TankOld := TRUE;
 	END_IF
 	
+	//Simulation of machine state
 	CASE MachineState OF
-		Off:
-			MobileMachine.LightMode := LightsOff;
+		OFF:
+			MobileMachine.Parameter.LightMode := LightsOff;
 			MobileMachine.Parameter.EngineRevolution := 0;
 			MobileMachine.Parameter.Velocity := 0;
 			
@@ -58,38 +60,41 @@ PROGRAM _CYCLIC
 			IF TON_5s.Q THEN
 				TON_5s.IN := FALSE;
 				CheckAlarmImage := FALSE;
-				MachineState := PowerOn;
+				MachineState := POWER_ON;
 			END_IF
 			
-		PowerOn:
-			MobileMachine.LightMode := LightsOff;
+		POWER_ON:
+			MobileMachine.Parameter.LightMode := LightsOff;
 			BrakeImage := TRUE;
 						
 			TON_5s.IN := TRUE;
 			IF TON_5s.Q THEN
 				TON_5s.IN := FALSE;
-				MachineState := StartEngine;
+				MachineState := START_ENGINE;
 			END_IF
 		
-		StartEngine:
-			MobileMachine.LightMode := DimmedHeadlights;
+		START_ENGINE:
+			MobileMachine.Parameter.LightMode := DimmedHeadlights;
 			IF MobileMachine.Parameter.EngineTemperature < 95 THEN
 				MobileMachine.Parameter.EngineTemperature := MobileMachine.Parameter.EngineTemperature + 1;
 			END_IF
+			
+			MobileMachine.Parameter.EngineRevolution := 1650;
+			(*
 			IF MobileMachine.Parameter.EngineRevolution < 1650 THEN
 				MobileMachine.Parameter.EngineRevolution := MobileMachine.Parameter.EngineRevolution + 825;
 			END_IF
-			
+			*)
 			TON_5s.IN := TRUE;
 			IF TON_5s.Q THEN
 				TON_5s.IN := FALSE;
 				MpAlarmXSet(gAlarmXCore, 'Tire pressure');
 				BrakeImage := FALSE;
-				MachineState := Accelerate;
+				MachineState := ACCELERATE;
 			END_IF
 		
-		Accelerate:
-			MobileMachine.LightMode := DimmedHeadlights;
+		ACCELERATE:
+			MobileMachine.Parameter.LightMode := DimmedHeadlights;
 			IF MobileMachine.Parameter.EngineTemperature < 95 THEN
 				MobileMachine.Parameter.EngineTemperature := MobileMachine.Parameter.EngineTemperature + 1;
 			END_IF
@@ -101,11 +106,11 @@ PROGRAM _CYCLIC
 			TON_5s.IN := TRUE;
 			IF TON_5s.Q THEN
 				TON_5s.IN := FALSE;
-				MachineState := Driving;
+				MachineState := DRIVING;
 			END_IF
 		
-		Driving:
-			MobileMachine.LightMode := HighBeam;
+		DRIVING:
+			MobileMachine.Parameter.LightMode := HighBeam;
 			IF MobileMachine.Parameter.EngineTemperature < 95 THEN
 				MobileMachine.Parameter.EngineTemperature := MobileMachine.Parameter.EngineTemperature + 1;
 			END_IF
@@ -117,12 +122,12 @@ PROGRAM _CYCLIC
 			TON_20s.IN := TRUE;
 			IF TON_20s.Q THEN
 				TON_20s.IN := FALSE;
-				MachineState := Decelerate;
+				MachineState := DECELERATE;
 			END_IF
 		
-		Decelerate:
+		DECELERATE:
 			TON_20s.IN := FALSE;
-			MobileMachine.LightMode := DimmedHeadlights;
+			MobileMachine.Parameter.LightMode := DimmedHeadlights;
 			
 			IF MobileMachine.Parameter.EngineRevolution > 1560 THEN
 				MobileMachine.Parameter.EngineRevolution := MobileMachine.Parameter.EngineRevolution - 80;
@@ -137,22 +142,23 @@ PROGRAM _CYCLIC
 			TON_5s.IN := TRUE;
 			IF TON_5s.Q THEN
 				TON_5s.IN := FALSE;
-				MachineState := Cutting;
+				MachineState := CUTTING;
 			END_IF
 		
-		Cutting:
-			MobileMachine.LightMode := HighBeam;
+		CUTTING:
+			MobileMachine.Parameter.LightMode := HighBeam;
 			CuttingImage := TRUE;
 			
 			TON_5s.IN := TRUE;
 			IF TON_5s.Q THEN
 				TON_5s.IN := FALSE;
 				CuttingImage := FALSE;
-				MachineState := Off;
+				MachineState := OFF;
 			END_IF
 
 	END_CASE;
 	
+	//Set alarm image tire pressure
 	IF MpAlarmXCheckState(gAlarmXCore, 'Tire pressure', mpALARMX_STATE_UNACKNOWLEDGED) THEN
 		TirePressureImage := TRUE;
 	ELSE
@@ -162,12 +168,13 @@ PROGRAM _CYCLIC
 	
 	RevolutionWidget := (INT_TO_REAL (MobileMachine.Parameter.EngineRevolution)) / 1000;
 	
+	//Set velocity mode image
 	IF MobileMachine.Parameter.Velocity > 25 THEN
-		MobileMachine.VelocityMode := Rabbit;
+		MobileMachine.Parameter.VelocityMode := Rabbit;
 	ELSIF MobileMachine.Parameter.Velocity > 10 THEN
-		MobileMachine.VelocityMode := Turtle;
+		MobileMachine.Parameter.VelocityMode := Turtle;
 	ELSE
-		MobileMachine.VelocityMode := Snail;
+		MobileMachine.Parameter.VelocityMode := Snail;
 	END_IF
 
 	MpAlarmXCore_0();

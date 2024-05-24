@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?AutomationStudio Version=4.12.5.95 FileVersion="4.9"?>
 <Hardware xmlns="http://br-automation.co.at/AS/Hardware">
-  <Module Name="6PMT50.101E-19B" Type="6PMT50.101E-19B" Version="1.0.1.0" Disabled="true">
+  <Module Name="6PMT50.101E-19B" Type="6PMT50.101E-19B" Version="1.0.1.0">
     <Connection Connector="ETH1" TargetModule="X90CP154_60_00" TargetConnector="IF3">
       <Cable Type="PowerlinkCable" Length="10" Version="1.0.0.3" />
     </Connection>
@@ -75,8 +75,8 @@
     <Parameter ID="Cyclic8Duration" Value="10000" />
     <Parameter ID="Cyclic8Tolerance" Value="30000000" />
     <Group ID="FileDevice1" />
-    <Parameter ID="FileDeviceName1" Value="USER" />
-    <Parameter ID="FileDevicePath1" Value="USER_PATH" />
+    <Parameter ID="FileDeviceName1" Value="UsbStick" />
+    <Parameter ID="FileDevicePath1" Value="F:\" />
     <Parameter ID="ActivateOpcUa" Value="1" />
     <Parameter ID="OpcUaInformationModels_PV_Version" Value="1" />
   </Module>

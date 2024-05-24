@@ -1,8 +1,18 @@
 
 TYPE
 	MobileMachineType : 	STRUCT 
-		LightMode : LightModeType;
 		Parameter : MachineParameterType;
+	END_STRUCT;
+	MachineParameterType : 	STRUCT 
+		EngineRevolution : INT;
+		EngineTemperature : INT;
+		Velocity : USINT;
+		WorkingHours : INT;
+		TirePressure : REAL;
+		TankLevel : USINT;
+		MusicVolume : USINT(0..10) ;
+		AirConditioner : USINT(0..10) ;
+		LightMode : LightModeType;
 		VelocityMode : VelocityModeType;
 	END_STRUCT;
 	VelocityModeType : 
@@ -17,24 +27,14 @@ TYPE
 		DimmedHeadlights,
 		HighBeam
 		);
-	MachineParameterType : 	STRUCT 
-		EngineRevolution : INT;
-		EngineTemperature : INT;
-		Velocity : USINT;
-		WorkingHours : INT;
-		TirePressure : REAL;
-		TankLevel : USINT;
-		MusicVolume : USINT(0..10) ;
-		AirConditioner : USINT(0..10) ;
-	END_STRUCT;
 	MachineStateType : 
 		(
-		Off,
-		PowerOn,
-		StartEngine,
-		Driving,
-		Decelerate,
-		Accelerate,
-		Cutting
+		OFF,
+		POWER_ON,
+		START_ENGINE,
+		DRIVING,
+		DECELERATE,
+		ACCELERATE,
+		CUTTING
 		);
 END_TYPE

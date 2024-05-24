@@ -6,5 +6,7 @@
     <Object Type="File">History.mpalarmxhistory</Object>
     <Object Type="File">Generic.mpj1939generic</Object>
     <Object Type="File">Recieve.mpj1939receive</Object>
+    <Object Type="File">ComUnit.mpcomunit</Object>
+    <Object Type="File">Backup.mpbackupcore</Object>
   </Objects>
 </Package>

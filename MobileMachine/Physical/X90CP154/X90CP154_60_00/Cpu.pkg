@@ -11,10 +11,10 @@
     <Object Type="Package">UnitSystem</Object>
     <Object Type="Package">AccessAndSecurity</Object>
     <Object Type="Package">mappControl</Object>
-    <Object Type="Package">mappMotion</Object>
-    <Object Type="Package">mappServices</Object>
+    <Object Type="Package" Reference="true">\Physical\X90CP174\X90CP174_48_S1\mappMotion</Object>
+    <Object Type="Package" Reference="true">\Physical\X90CP174\X90CP174_48_S1\mappServices</Object>
     <Object Type="Package">mappSafety</Object>
-    <Object Type="Package">mappView</Object>
+    <Object Type="Package" Reference="true">\Physical\X90CP174\X90CP174_48_S1\mappView</Object>
     <Object Type="Package">mappVision</Object>
     <Object Type="Package">mappCockpit</Object>
     <Object Type="Package">ExternalHardware</Object>
