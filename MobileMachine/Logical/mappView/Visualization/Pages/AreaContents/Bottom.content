@@ -4,10 +4,10 @@
     <Widget xsi:type="widgets.brease.NavigationBar" id="NavigationBar1" top="0" left="280" width="720" height="100" zIndex="0">
       <Widgets>
         <Widget xsi:type="widgets.brease.NavigationButton" id="NavigationButtonMain" top="5" left="10" width="120" height="70" zIndex="0" image="Media/SymbolLib/Symbols/Engine.svg" pageId="Main" imageHeight="50" imageWidth="50" style="appButton" />
-        <Widget xsi:type="widgets.brease.NavigationButton" id="NavigationButtonSDM" top="5" left="290" width="120" height="70" zIndex="1" image="Media/SymbolLib/Diagnostic/Diagnostics.svg" imageAlign="top" pageId="SDM" imageHeight="50" imageWidth="50" style="appButton" />
-        <Widget xsi:type="widgets.brease.NavigationButton" id="NavigationButtonCockpit" top="5" left="430" width="120" height="70" zIndex="2" image="Media/SymbolLib/Symbols/Tool.svg" pageId="Cockpit" imageHeight="50" imageWidth="50" style="appButton" />
+        <Widget xsi:type="widgets.brease.NavigationButton" id="NavigationButtonSDM" top="5" left="150" width="120" height="70" zIndex="1" image="Media/SymbolLib/Diagnostic/Diagnostics.svg" imageAlign="top" pageId="SDM" imageHeight="50" imageWidth="50" style="appButton" />
+        <Widget xsi:type="widgets.brease.NavigationButton" id="NavigationButtonCockpit" top="5" left="290" width="120" height="70" zIndex="2" image="Media/SymbolLib/Symbols/Tool.svg" pageId="Cockpit" imageHeight="50" imageWidth="50" style="appButton" />
         <Widget xsi:type="widgets.brease.NavigationButton" id="NavigationButtonAlarm" top="5" left="570" width="120" height="70" zIndex="3" image="Media/SymbolLib/Alarm/Alarm.svg" pageId="Alarm" imageHeight="50" imageWidth="50" style="appButton" />
-        <Widget xsi:type="widgets.brease.NavigationButton" id="NavigationButtonEthCamera" top="5" left="150" width="120" height="70" zIndex="4" image="Media/SymbolLib/Symbols/Webcam.svg" pageId="EthCamera" imageHeight="50" imageWidth="50" enable="false" style="appButton" />
+        <Widget xsi:type="widgets.brease.NavigationButton" id="NavigationButtonSimulation" top="5" left="430" width="120" height="70" zIndex="4" image="Media/joystick2.svg" pageId="Simulation" imageHeight="50" imageWidth="50" style="appButton" />
       </Widgets>
     </Widget>
     <Widget xsi:type="widgets.brease.DateTimeOutput" id="DateTimeOutput" top="20" left="1140" width="120" height="40" zIndex="1" format="HH:mm" style="central_big" />

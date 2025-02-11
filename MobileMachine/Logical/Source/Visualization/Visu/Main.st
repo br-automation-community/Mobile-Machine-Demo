@@ -2,8 +2,8 @@
 * Copyright: B&R Industrial Automation GmbH
 * Author: B&R
 * Date: 17/05/2024
- * Description: Used for simulation of visualization
-				 
+* Description: 	Used for simulation of generel visualization
+				Can be adapted for your usecase
  ***********************************************************************************************************************)
 PROGRAM _INIT
 	
@@ -20,7 +20,7 @@ PROGRAM _INIT
 	MobileMachine.Parameter.EngineTemperature := 15;
 	MobileMachine.Parameter.MusicVolume := 6;
 	MobileMachine.Parameter.AirConditioner := 2;
-	MobileMachine.Parameter.TankLevel := 98;
+	MobileMachine.Parameter.TankLevel := TANK_FULL;
 	MobileMachine.Parameter.TirePressure := 0.92;
 	AmbientTemperature := 12;
 	 
@@ -36,7 +36,7 @@ PROGRAM _CYCLIC
 		TON_10s.IN := TRUE;
 	END_IF
 	
-	IF MobileMachine.Parameter.TankLevel < 15 AND NOT TankOld THEN
+	IF MobileMachine.Parameter.TankLevel < TANK_LEVEL_LOW AND NOT TankOld THEN
 		MachineState := DECELERATE;
 		TankOld := TRUE;
 	END_IF
@@ -52,8 +52,8 @@ PROGRAM _CYCLIC
 			CheckAlarmImage := TRUE;
 			
 			TankOld := FALSE;
-			IF MobileMachine.Parameter.TankLevel < 15 THEN
-				MobileMachine.Parameter.TankLevel := 98;
+			IF MobileMachine.Parameter.TankLevel < TANK_LEVEL_LOW THEN
+				MobileMachine.Parameter.TankLevel := TANK_FULL;
 			END_IF
 			
 			TON_5s.IN := TRUE;
@@ -75,16 +75,12 @@ PROGRAM _CYCLIC
 		
 		START_ENGINE:
 			MobileMachine.Parameter.LightMode := DimmedHeadlights;
-			IF MobileMachine.Parameter.EngineTemperature < 95 THEN
+			IF MobileMachine.Parameter.EngineTemperature < ENGINE_TEMPERATURE_MIN THEN
 				MobileMachine.Parameter.EngineTemperature := MobileMachine.Parameter.EngineTemperature + 1;
 			END_IF
 			
-			MobileMachine.Parameter.EngineRevolution := 1650;
-			(*
-			IF MobileMachine.Parameter.EngineRevolution < 1650 THEN
-				MobileMachine.Parameter.EngineRevolution := MobileMachine.Parameter.EngineRevolution + 825;
-			END_IF
-			*)
+			MobileMachine.Parameter.EngineRevolution := ENGINE_REVOLUTION_STANDSTILL;
+
 			TON_5s.IN := TRUE;
 			IF TON_5s.Q THEN
 				TON_5s.IN := FALSE;
@@ -95,10 +91,10 @@ PROGRAM _CYCLIC
 		
 		ACCELERATE:
 			MobileMachine.Parameter.LightMode := DimmedHeadlights;
-			IF MobileMachine.Parameter.EngineTemperature < 95 THEN
+			IF MobileMachine.Parameter.EngineTemperature < ENGINE_TEMPERATURE_MIN THEN
 				MobileMachine.Parameter.EngineTemperature := MobileMachine.Parameter.EngineTemperature + 1;
 			END_IF
-			IF MobileMachine.Parameter.EngineRevolution < 1890 THEN
+			IF MobileMachine.Parameter.EngineRevolution < ENGINE_REVOLUTION_STEP1 THEN
 				MobileMachine.Parameter.EngineRevolution := MobileMachine.Parameter.EngineRevolution + 40;
 				MobileMachine.Parameter.Velocity := MobileMachine.Parameter.Velocity + 2;
 			END_IF
@@ -111,10 +107,10 @@ PROGRAM _CYCLIC
 		
 		DRIVING:
 			MobileMachine.Parameter.LightMode := HighBeam;
-			IF MobileMachine.Parameter.EngineTemperature < 95 THEN
+			IF MobileMachine.Parameter.EngineTemperature < ENGINE_TEMPERATURE_MIN THEN
 				MobileMachine.Parameter.EngineTemperature := MobileMachine.Parameter.EngineTemperature + 1;
 			END_IF
-			IF MobileMachine.Parameter.EngineRevolution < 2290 AND MobileMachine.Parameter.Velocity < 32 THEN
+			IF MobileMachine.Parameter.EngineRevolution < ENGINE_REVOLUTION_STEP2 AND MobileMachine.Parameter.Velocity < 32 THEN
 				MobileMachine.Parameter.EngineRevolution := MobileMachine.Parameter.EngineRevolution + 20;
 				MobileMachine.Parameter.Velocity := MobileMachine.Parameter.Velocity + 1;
 			END_IF
@@ -129,7 +125,7 @@ PROGRAM _CYCLIC
 			TON_20s.IN := FALSE;
 			MobileMachine.Parameter.LightMode := DimmedHeadlights;
 			
-			IF MobileMachine.Parameter.EngineRevolution > 1560 THEN
+			IF MobileMachine.Parameter.EngineRevolution > ENGINE_REVOLUTION_STANDSTILL THEN
 				MobileMachine.Parameter.EngineRevolution := MobileMachine.Parameter.EngineRevolution - 80;
 			END_IF
 			IF MobileMachine.Parameter.Velocity > 0 THEN
@@ -169,9 +165,9 @@ PROGRAM _CYCLIC
 	RevolutionWidget := (INT_TO_REAL (MobileMachine.Parameter.EngineRevolution)) / 1000;
 	
 	//Set velocity mode image
-	IF MobileMachine.Parameter.Velocity > 25 THEN
+	IF MobileMachine.Parameter.Velocity > VELOCITY_RABBIT THEN
 		MobileMachine.Parameter.VelocityMode := Rabbit;
-	ELSIF MobileMachine.Parameter.Velocity > 10 THEN
+	ELSIF MobileMachine.Parameter.Velocity > VELOCITY_TURTLE THEN
 		MobileMachine.Parameter.VelocityMode := Turtle;
 	ELSE
 		MobileMachine.Parameter.VelocityMode := Snail;

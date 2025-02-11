@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio FileVersion="4.9"?>
+<Configuration>
+  <Element ID="gJ1939Receive" Type="mpj1939receive">
+    <Group ID="GeneralSettings">
+      <Property ID="OwnDeviceAddress" Value="2" />
+      <Property ID="CounterpartAddress" Value="1" />
+      <Property ID="CANInterface" Value="IF8" />
+    </Group>
+  </Element>
+</Configuration>

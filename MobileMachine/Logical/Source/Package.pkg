@@ -6,7 +6,7 @@
     <Object Type="Package">J1939</Object>
     <Object Type="Package">StandbyMode</Object>
     <Object Type="Package">LinBus</Object>
-    <Object Type="Package">PWM</Object>
     <Object Type="Package">Visualization</Object>
+    <Object Type="Package">Simulation</Object>
   </Objects>
 </Package>

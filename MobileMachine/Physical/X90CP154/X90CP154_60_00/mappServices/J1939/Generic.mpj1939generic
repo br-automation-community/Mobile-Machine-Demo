@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio FileVersion="4.9"?>
+<Configuration>
+  <Element ID="gJ1939Generic" Type="mpj1939generic">
+    <Group ID="GeneralSettings">
+      <Property ID="OwnDeviceAddress" Value="1" />
+      <Property ID="CANInterface" Value="IF7" />
+    </Group>
+    <Group ID="CyclicPGNsSettings">
+      <Group ID="GenericMotor">
+        <Property ID="Device" Value="2" />
+        <Selector ID="EEC1" Value="Send">
+          <Property ID="PV" Value="::GenericJ19:EEC1_Data" />
+        </Selector>
+      </Group>
+      <Group ID="ExhaustTreatment">
+        <Property ID="Device" Value="2" />
+      </Group>
+    </Group>
+  </Element>
+</Configuration>

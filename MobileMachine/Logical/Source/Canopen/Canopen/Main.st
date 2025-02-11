@@ -2,7 +2,7 @@
 * Copyright: B&R Industrial Automation GmbH
 * Author: B&R
 * Date: 22/04/2024
-* Description: 	Used for the communication of Blink keypad
+* Description: 	Used for the communication of Blink keypad: blinkmarine.com/products/pkp-2300-si
 				When button pressed (Keypad[0]) switch red led status (Keypad[1])
 				Find datasheet in the documentation
 ***********************************************************************************************************************)

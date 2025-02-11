@@ -2,12 +2,46 @@
 <?AutomationStudio FileVersion="4.9"?>
 <BR.AS.HardwareTopology>
   <TimeStamps>
-    <TimeStamp LogicalPath="X90CP154.Hardware.hw" LastWriteTime="05/03/2024 08:28:43" />
+    <TimeStamp LogicalPath="X90CP154.Hardware.hw" LastWriteTime="07/02/2024 08:22:19" />
   </TimeStamps>
   <Modules>
-    <Module Name="X90CP154_60_00" Type="X90CP154.60-00" X="100" Y="100" />
-    <Module Name="X1" Type="X1" X="318" Y="110" />
+    <Module Name="X90CP154_60_00" Type="X90CP154.60-00" X="519" Y="13" />
+    <Module Name="X1" Type="X1" X="737" Y="23" />
+    <Module Name="6PMT50.101E-19B" Type="6PMT50.101E-19B" X="257" Y="32" />
+    <Module Name="PKP2300" Type="FBC.0x000003E2.211018_PKP2300_CANeds_V4" X="666" Y="341" />
+    <Module Name="X90BC124.32-00" Type="FBC.0x0100006C.62015.0000006C_X90BC124.32-00_1" X="539.4" Y="341" />
   </Modules>
-  <Links />
+  <Links>
+    <Link From="6PMT50.101E-19B" To="X90CP154_60_00" FromPort="ETH1" ToPort="IF2" IsRoutedByUser="False">
+      <Point X="352.2" Y="169" />
+      <Point X="352.2" Y="169" />
+      <Point X="352.2" Y="174" />
+      <Point X="352.2" Y="255" />
+      <Point X="614" Y="255" />
+      <Point X="614" Y="248" />
+      <Point X="614" Y="243" />
+      <Point X="614" Y="243" />
+    </Link>
+    <Link From="PKP2300" To="X90CP154_60_00" FromPort="CAN1" ToPort="IF9" IsRoutedByUser="False">
+      <Point X="685" Y="360" />
+      <Point X="685" Y="360" />
+      <Point X="685" Y="340" />
+      <Point X="686" Y="340" />
+      <Point X="686" Y="248" />
+      <Point X="686" Y="243" />
+      <Point X="686" Y="243" />
+    </Link>
+    <Link From="PKP2300" To="X90BC124.32-00" FromPort="CAN2" ToPort="CAN1" IsRoutedByUser="False">
+      <Point X="685" Y="370" />
+      <Point X="685" Y="370" />
+      <Point X="665" Y="370" />
+      <Point X="655" Y="370" />
+      <Point X="655" Y="335" />
+      <Point X="558.4" Y="335" />
+      <Point X="558.4" Y="340" />
+      <Point X="558.4" Y="360" />
+      <Point X="558.4" Y="360" />
+    </Link>
+  </Links>
   <InfoElements />
 </BR.AS.HardwareTopology>

@@ -1,5 +1,4 @@
 VAR_CONFIG
 	::Canopen:Keypad[0] AT %IB."PKP2300".KeyState_2000sub1;
 	::Canopen:Keypad[1] AT %QB."PKP2300".LedStateRed_2001sub1;
-	::DeepSleep:DigitalInput09 AT %IX."X1".DigitalInput09;
 END_VAR

@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Content id="EthCamera" height="600" width="1280" xmlns="http://www.br-automation.com/iat2015/contentDefinition/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Widgets>
-    <Widget xsi:type="widgets.brease.WebViewer" id="WebViewerCamera" top="28" left="160" width="960" height="544" zIndex="0" host="192.168.0.76" path="" port="81" />
-  </Widgets>
-</Content>

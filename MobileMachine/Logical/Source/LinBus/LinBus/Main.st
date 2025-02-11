@@ -2,7 +2,7 @@
 * Copyright: B&R Industrial Automation GmbH
 * Author: B&R
 * Date: 13/05/2024
-* Description: Marquardt Rocker Switch Series 3270 example
+* Description:  Marquardt Rocker Switch Series 3270 example
 				Example from the AS help, no simulation of the lin communication possibe
  ***********************************************************************************************************************)
 PROGRAM _INIT
@@ -26,7 +26,6 @@ PROGRAM _INIT
 
 
 PROGRAM _CYCLIC
-	
 	CpLinScheduler_0.Schedule := ADR(Schedule);
 	CpLinScheduler_0.ScheduleLength := SIZEOF(Schedule)/SIZEOF(Schedule[0]);
 	CpLinScheduler_0();
@@ -72,7 +71,6 @@ PROGRAM _CYCLIC
 		nbErrors := nbErrors + 1;
 		lastErrorID := CpLinScheduler_0.ErrorID;
 	END_IF
-
  END_PROGRAM
 
 

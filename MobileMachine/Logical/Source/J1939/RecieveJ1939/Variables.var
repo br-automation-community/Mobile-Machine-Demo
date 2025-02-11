@@ -1,0 +1,10 @@
+VAR
+	DataEEC1 : USINT;
+	RawDataEEC1 : ARRAY[0..7] OF USINT;
+	MpJ1939Receive_EEC1 : MpJ1939Receive;
+	TON_50ms : TON; (*Timer for cyclic data recieving*)
+	EEC1_Data : MpJ1939EEC1Type;
+END_VAR
+VAR CONSTANT
+	BIT_VALUE : ARRAY[0..5] OF USINT := [1,2,4,8,16,32]; (*Constants for button values*)
+END_VAR
