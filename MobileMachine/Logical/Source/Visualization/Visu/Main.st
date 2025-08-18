@@ -10,6 +10,8 @@ PROGRAM _INIT
 	MpAlarmXCore_0(MpLink := ADR(gAlarmXCore), Enable := TRUE);
 	MpAlarmXHistory_0(MpLink := ADR(gAlarmXHistory), Enable := TRUE);
 	
+	DTGetTime_0.enable := TRUE;
+	
 	TON_20s(PT := T#20s);
 	TON_10s(PT := T#10s);
 	TON_5s(PT := T#5s);
@@ -179,6 +181,7 @@ PROGRAM _CYCLIC
 	TON_20s();
 	TON_5s();
 	TON_10s();
+	DTGetTime_0();
 	 
 END_PROGRAM
 

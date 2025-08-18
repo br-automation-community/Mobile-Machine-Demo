@@ -1,0 +1,45 @@
+// Output from vt-designer (ISO 11783 mask designer, version 2.1.2, (C) 2008-2024 OSB connagtive GmbH, Hans-Fischer-Strasse 12, 80339 Munich, Germany)
+// Do not change!
+
+#define btn_6000                          6000
+#define btn_6001                          6001
+#define btn_6002                          6002
+#define btn_6003                          6003
+#define btn_6000_2                        6004
+#define btn_6001_2                        6005
+#define btn_6001_3                        6006
+#define btn_6003_2                        6007
+#define btn_6002_2                        6008
+#define InputField                        9000
+#define TimeOutput                       11000
+#define DateOutput                       11001
+#define TimeOutput_2                     11002
+#define DateOutput_2                     11003
+#define HeaderOutputData                 11004
+#define TransportedWeightOutput          11005
+#define OutputField                      12000
+#define TransportetWeightVar             12001
+#define rct_14000                        14000
+#define rct_14000_2                      14001
+#define rct_14000_3                      14002
+#define rct_14000_3_2                    14003
+#define rct_14000_3_2_2                  14004
+#define pic_20000                        20000
+#define pic_20001                        20001
+#define pic_20002                        20002
+#define pic_20003                        20003
+#define wsDesc6x8                        23000
+#define FontBig                          23001
+#define lna_24000                        24000
+#define fla_25000                        25000
+#define StdWorkingSet                        0
+#define SwitchToDataPage                     1
+#define SwitchToStartPage                    2
+#define StdActiveDataMask                 1000
+#define Data                              1001
+#define InputVar                         21000
+#define OutputVar                        21001
+#define TransportedWeightVar             21002
+#define Time_2                           22000
+#define Normal                           23002
+#define DescriptionWS                    40000

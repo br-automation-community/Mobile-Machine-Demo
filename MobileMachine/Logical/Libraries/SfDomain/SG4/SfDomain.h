@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* SfDomain 5.24.0 */
+/* SfDomain 5.24.2 */
 
 #ifndef _SFDOMAIN_
 #define _SFDOMAIN_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _SfDomain_VERSION
-#define _SfDomain_VERSION 5.24.0
+#define _SfDomain_VERSION 5.24.2
 #endif
 
 #include <bur/plctypes.h>

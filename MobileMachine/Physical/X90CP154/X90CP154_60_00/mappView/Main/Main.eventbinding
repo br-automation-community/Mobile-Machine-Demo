@@ -214,5 +214,35 @@
         </Sequence>
       </EventHandler>
     </EventBinding>
+    <EventBinding id="EventBinding_5">
+      <Source xsi:type="session.Event" refId="::SYSTEM:clientInfo.activityCount" event="ValueChanged" />
+      <EventHandler>
+        <Action>
+          <Target xsi:type="session.TimerAction" refId="ScreenSaverTimer">
+            <Method xsi:type="session.TimerAction.Start" />
+          </Target>
+        </Action>
+      </EventHandler>
+    </EventBinding>
+    <EventBinding id="EventBinding_6">
+      <Source xsi:type="session.Timer.Event" refId="ScreenSaverTimer" event="Elapsed" />
+      <EventHandler>
+        <Action>
+          <Target xsi:type="clientSystem.Action">
+            <Method xsi:type="clientSystem.Action.Navigate" pageId="Screensaver" />
+          </Target>
+        </Action>
+      </EventHandler>
+    </EventBinding>
+    <EventBinding id="EventBinding_7">
+      <Source xsi:type="widgets.brease.Image.Event" contentRefId="Screensaver" widgetRefId="ImageScreensaver" event="Click" />
+      <EventHandler>
+        <Action>
+          <Target xsi:type="clientSystem.Action">
+            <Method xsi:type="clientSystem.Action.Navigate" pageId="Main" />
+          </Target>
+        </Action>
+      </EventHandler>
+    </EventBinding>
   </Bindings>
 </EventBindingSet>

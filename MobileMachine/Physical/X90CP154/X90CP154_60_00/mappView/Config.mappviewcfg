@@ -29,10 +29,16 @@
       </Group>
       <Property ID="InitValueChangedEvents" Value="TRUE" />
     </Group>
-    <Group ID="Timer" />
+    <Group ID="Timer">
+      <Group ID="Timer[1]">
+        <Property ID="TimerId" Value="ScreenSaverTimer" />
+        <Property ID="TimerInterval" Value="45000" />
+        <Selector ID="TimerModus" Value="TimerModeSingleShot" />
+      </Group>
+    </Group>
     <Group ID="Client">
       <Group ID="ContentCaching">
-        <Property ID="cachingSlots" Value="200" />
+        <Property ID="cachingSlots" Value="300" />
         <Property ID="preserveOldValues" Value="TRUE" />
       </Group>
       <Property ID="defaultVisu" Value="MobileMachine" />

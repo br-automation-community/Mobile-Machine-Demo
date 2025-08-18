@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Content id="Top" height="100" width="1280" xmlns="http://www.br-automation.com/iat2015/contentDefinition/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Content id="Top" height="100" width="1333" xmlns="http://www.br-automation.com/iat2015/contentDefinition/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Widgets>
-    <Widget xsi:type="widgets.brease.Image" id="BRLogo" top="-20" left="960" width="340" height="140" zIndex="0" image="Media/BnR_Logo_Tagline_left.svg" />
+    <Widget xsi:type="widgets.brease.Image" id="BRLogo" top="-20" left="1000" width="340" height="140" zIndex="0" image="Media/BnR_Logo_Tagline_left.svg" />
   </Widgets>
 </Content>

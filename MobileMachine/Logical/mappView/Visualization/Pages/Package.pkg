@@ -8,5 +8,6 @@
     <Object Type="Package">Cockpit</Object>
     <Object Type="Package">Alarm</Object>
     <Object Type="Package">Simulation</Object>
+    <Object Type="Package">Screensaver</Object>
   </Objects>
 </Package>

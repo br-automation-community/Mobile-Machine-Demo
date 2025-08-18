@@ -7,13 +7,14 @@
     <Page refId="Cockpit" />
     <Page refId="Alarm" />
     <Page refId="Simulation" />
+    <Page refId="Screensaver" />
   </Pages>
   <Navigations />
   <BindingsSets>
     <BindingsSet refId="Alarm_binding" />
     <BindingsSet refId="Main_binding" />
     <BindingsSet refId="Simulation_binding" />
-  </BindingsSets>
+	</BindingsSets>
   <EventBindingsSets>
     <EventBindingsSet refId="Main_eventbinding" />
     <EventBindingsSet refId="Alarm_eventbinding" />
@@ -27,6 +28,7 @@
     <Content refId="Alarm" />
     <Content refId="Main" />
     <Content refId="Simulation" />
+    <Content refId="Screensaver" />
   </Contents>
   <SnippetsSets />
   <VariablesSets />
@@ -36,7 +38,7 @@
     <Theme refId="BuR_Theme_ABB_Dark" />
   </Themes>
   <Configurations>
-    <Configuration key="activityCount" value="false" />
+    <Configuration key="activityCount" value="true" />
     <Gestures>
       <!--<SystemGesture1 touchPoints="2" />
 		  <SystemGesture2 touchPoints="2" />

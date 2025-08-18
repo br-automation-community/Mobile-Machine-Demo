@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* MpBackup 5.24.1 */
+/* MpBackup 5.24.2 */
 
 #ifndef _MPBACKUP_
 #define _MPBACKUP_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _MpBackup_VERSION
-#define _MpBackup_VERSION 5.24.1
+#define _MpBackup_VERSION 5.24.2
 #endif
 
 #include <bur/plctypes.h>

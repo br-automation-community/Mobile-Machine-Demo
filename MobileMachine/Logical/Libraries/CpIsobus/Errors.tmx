@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tmx version="1.4">
+  <header creationtool="B&amp;R Automation Studio" creationtoolversion="4.2" datatype="unknown" segtype="sentence" adminlang="en" srclang="en" o-tmf="TMX">
+    <note>Do not change anything in this file, else the tmx-file will not be recognized as a valid system text anymore</note>
+    <prop type="x-BR-TS:Namespace">BR/EventLog</prop>
+    <prop type="x-BR-TS:systemtextsig">UoO8TdnLJnqfa/ogLZU2YvL93lLLywNKNw335FcIjgT/dQ7bDp3G46pxXt/5B1m53oSZ/0oSKEY7bcLKArFHuGn4zhM69+3CvwT9MYoz9Vc4KXDRzKqWiy4f12tFePeY/Bx2TU0YybtZ6abuIG2Yttyj7qbjXK0tPwPBAR9+E3A=</prop>
+  </header>
+  <body>
+    <tu tuid="-1070582396">
+      <tuv xml:lang="en">
+        <seg>TEST_ASSERT failed</seg>
+      </tuv>
+    </tu>
+    <tu tuid="-2144324220">
+      <tuv xml:lang="en">
+        <seg>ISOBUS terminated</seg>
+      </tuv>
+    </tu>
+    <tu tuid="-2144324219">
+      <tuv xml:lang="en">
+        <seg>Safety notification</seg>
+      </tuv>
+    </tu>
+    <tu tuid="3159428">
+      <tuv xml:lang="en">
+        <seg>ISOBUS started</seg>
+      </tuv>
+    </tu>
+    <tu tuid="1076901252">
+      <tuv xml:lang="en">
+        <seg>Generic information</seg>
+      </tuv>
+    </tu>
+    <tu tuid="1076901253">
+      <tuv xml:lang="en">
+        <seg>DEBUG_INFO</seg>
+      </tuv>
+    </tu>
+  </body>
+</tmx>

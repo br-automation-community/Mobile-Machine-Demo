@@ -1,0 +1,9 @@
+VAR
+	actTemp : UDINT := 20;
+	actTempOld : UDINT;
+	ClientConnected : BOOL;
+	setTemp : UDINT := 20;
+	setTempOld : UDINT;
+	InputVarAS : UDINT;
+	OutputVarAS : UDINT;
+END_VAR

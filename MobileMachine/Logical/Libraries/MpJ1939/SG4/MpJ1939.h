@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* MpJ1939 5.24.1 */
+/* MpJ1939 5.24.2 */
 
 #ifndef _MPJ1939_
 #define _MPJ1939_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _MpJ1939_VERSION
-#define _MpJ1939_VERSION 5.24.1
+#define _MpJ1939_VERSION 5.24.2
 #endif
 
 #include <bur/plctypes.h>

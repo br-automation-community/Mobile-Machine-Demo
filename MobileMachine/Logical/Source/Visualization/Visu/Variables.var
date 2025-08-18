@@ -7,6 +7,7 @@ VAR
 	TON_10s : TON;
 	TON_5s : TON;
 	TON_20s : TON;
+	TON_Screensaver : TON;
 	CheckAlarmImage : BOOL;
 	TankOld : BOOL;
 	MobileMachine : MobileMachineType;
@@ -24,4 +25,7 @@ VAR CONSTANT
 	ENGINE_REVOLUTION_STANDSTILL : INT := 1650;
 	ENGINE_REVOLUTION_STEP1 : INT := 1890;
 	ENGINE_REVOLUTION_STEP2 : INT := 2290;
+END_VAR
+VAR
+	DTGetTime_0 : DTGetTime;
 END_VAR
