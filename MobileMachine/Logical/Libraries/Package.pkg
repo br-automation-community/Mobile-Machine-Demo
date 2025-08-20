@@ -34,5 +34,6 @@
     <Object Type="Library" Language="Binary" Description="mapp Backup Library">MpBackup</Object>
     <Object Type="Library" Language="Binary" Description="SAE J1939">MpJ1939</Object>
     <Object Type="Library" Language="Binary" Description="ISO 11783/ISOBUS Protocol Stack Implementation developed under ISO 25119 Functional Safety.">CpIsobus</Object>
+    <Object Type="Library" Language="Binary" Description="This library provides the basic function blocks for implementing LIN bus communication with LIN slave devices.">CpLin</Object>
   </Objects>
 </Package>

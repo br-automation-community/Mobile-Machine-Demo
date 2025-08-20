@@ -11,22 +11,22 @@
     <Parameter ID="InternetAddress" Value="192.168.0.71" />
     <Parameter ID="Subnetmask" Value="255.255.255.0" />
     <Parameter ID="ActivateNtpClient" Value="1" />
-    <Parameter ID="NtpServer1" Value="192.168.0.75" />
+    <Parameter ID="NtpServer1" Value="192.168.0.80" />
     <Parameter ID="TimeZone" Value="140" />
     <Parameter ID="Displaybrightness" Value="70" />
     <Parameter ID="PasswordVNC" Value="" />
-    <Parameter ID="SelectedFavoriteWeb" Value="192.168.0.75:81" />
+    <Parameter ID="SelectedFavoriteWeb" Value="192.168.0.80:81" />
     <Parameter ID="PasswordCIFS" Value="" />
     <Parameter ID="PasswordService" Value="" />
     <Parameter ID="ActivateOpcUaServer" Value="1" />
   </Module>
-  <Module Name="80VD100PD.C000-01" Type="80VD100PD.C000-01" Version="2.5.0.0" Disabled="true">
+  <Module Name="80VD100PD.C000-01" Type="80VD100PD.C000-01" Version="2.5.0.0">
     <Connection Connector="PLK1" TargetModule="X90CP154_60_00" TargetConnector="IF3" NodeNumber="1">
       <Cable Type="PowerlinkCable" Length="10" Version="1.0.0.3" />
     </Connection>
     <Connection Connector="MT2" TargetModule="8JSA24.E8080D000-0a" TargetConnector="MT" />
     <Parameter ID="McAcoposTypeID" Location="DriveConfiguration/Module" Value="AcoposMicroDConfig" />
-    <Parameter ID="ActivateACOPOSSimulationOnPLC" Location="DriveConfiguration/Module" Value="1" />
+    <Parameter ID="ActivateACOPOSSimulationOnPLC" Location="DriveConfiguration/Module" Value="0" />
     <Parameter ID="AxisReference" Location="DriveConfiguration/Channel[1]/RealAxis" Value="gAxis_1" />
     <Parameter ID="MechanicalElementsIsInvisible" Location="DriveConfiguration/Channel[1]/RealAxis" Value="0" />
     <Parameter ID="InputIsReadOnly" Location="DriveConfiguration/Channel[1]/RealAxis/MechanicalElements/Gearbox" Value="0" />
@@ -136,19 +136,15 @@
     <Parameter ID="SimulationModeOnPLC" Location="DriveConfiguration/Channel[2]/RealAxis/Simulation" Value="SetValueGeneration" />
     <Parameter ID="SimulationModeOnACOPOS" Location="DriveConfiguration/Channel[2]/RealAxis/Simulation" Value="NotUsed" />
   </Module>
-  <Module Name="8JSA24.E8080D000-0" Type="8JSA24.E8080D000-0" Version="1.0.6.30" Disabled="true">
+  <Module Name="8JSA24.E8080D000-0" Type="8JSA24.E8080D000-0" Version="1.0.6.30">
     <Connection Connector="MT" TargetModule="80VD100PD.C000-01" TargetConnector="MT1" />
   </Module>
-  <Module Name="8JSA24.E8080D000-0a" Type="8JSA24.E8080D000-0" Version="1.0.6.30" Disabled="true">
+  <Module Name="8JSA24.E8080D000-0a" Type="8JSA24.E8080D000-0" Version="1.0.6.30">
     <Connection Connector="MT" TargetModule="80VD100PD.C000-01" TargetConnector="MT2" />
   </Module>
-  <Module Name="PKP2300" Type="FBC.0x000003E2.211018_PKP2300_CANeds_V4" Version="4.1" Disabled="true" OrderNumber="PKP2300">
+  <Module Name="PKP2300" Type="FBC.0x000003E2.211018_PKP2300_CANeds_V4" Version="4.1" OrderNumber="PKP2300">
     <Connection Connector="CAN1" TargetModule="X90CP154_60_00" TargetConnector="IF9" NodeNumber="21" />
-    <Parameter ID="pheartbeat_producertime" Value="100" />
-  </Module>
-  <Module Name="X90BC124.32-00" Type="FBC.0x0100006C.62015.0000006C_X90BC124.32-00_1" Version="1.1" Disabled="true" OrderNumber="X90BC124.32-00">
-    <Connection Connector="CAN1" TargetModule="PKP2300" TargetConnector="CAN2" NodeNumber="17" />
-    <Parameter ID="pheartbeat_producertime" Value="500" />
+    <Parameter ID="pheartbeat_producertime" Value="200" />
   </Module>
   <Module Name="X90CP154_60_00" Type="X90CP154.60-00" Version="1.0.2.0">
     <Module Name="X1" Type="X1" Virtual="true" Version="1.0.2.0">
@@ -161,7 +157,7 @@
     <Connector Name="IF2">
       <Parameter ID="ActivateDevice" Value="1" />
       <Parameter ID="Mode" Value="Manual" />
-      <Parameter ID="InternetAddress" Value="192.168.0.75" />
+      <Parameter ID="InternetAddress" Value="192.168.0.80" />
       <Parameter ID="SubnetMask" Value="255.255.255.0" />
       <Parameter ID="ActivateSnmp" Value="2" />
     </Connector>
@@ -184,13 +180,17 @@
       <Parameter ID="ActivateCanOpen" Value="1" />
     </Connector>
     <Connector Name="IF9">
-      <Parameter ID="Baudrate" Value="125000" />
+      <Parameter ID="Baudrate" Value="250000" Description="required for isobus" />
+      <Parameter ID="IdentifierLength" Description="required for isobus" />
       <Parameter ID="ActivateCANIO" Value="0" />
       <Parameter ID="ActivateCanOpen" Value="1" />
       <Parameter ID="procPriority" Value="199" />
     </Connector>
     <Parameter ID="ConfigurationID" Value="MobileMachine_X90CP154" />
     <Parameter ID="EnableUsbRemoteInstall" Value="1" />
+    <Parameter ID="TimerDeviceType" Value="EPLX2X" />
+    <Parameter ID="TimerDevice" Value="X90CP154_60_00.IF3" />
+    <Parameter ID="TaskClassIdleTime" Value="2000" />
     <Parameter ID="Cyclic1Duration" Value="10000" />
     <Parameter ID="Cyclic1Tolerance" Value="10000" />
     <Parameter ID="Cyclic2Duration" Value="20000" />

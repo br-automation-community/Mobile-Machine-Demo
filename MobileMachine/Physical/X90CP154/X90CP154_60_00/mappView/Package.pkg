@@ -6,6 +6,6 @@
     <Object Type="File">Config.mappviewcfg</Object>
     <Object Type="Package">Main</Object>
     <Object Type="Package">Alarm</Object>
-    <Object Type="File">Simulation.binding</Object>
+    <Object Type="Package">Simulation</Object>
   </Objects>
 </Package>

@@ -3,11 +3,10 @@
 * Author: B&R
 * Date: 22/04/2024
 * Description: 	Used for J1939 communication
-				Two Can interfaces required to test, possible in simulation
+				Two Can interfaces required to test (IF7 & IF8), possible in simulation
 				Data handling of NOT predefined PGNs
 ***********************************************************************************************************************)
 PROGRAM _INIT
-	 
 END_PROGRAM
 
 PROGRAM _CYCLIC
@@ -89,6 +88,5 @@ PROGRAM _CYCLIC
 END_PROGRAM
 
 PROGRAM _EXIT
-	 
 END_PROGRAM
 

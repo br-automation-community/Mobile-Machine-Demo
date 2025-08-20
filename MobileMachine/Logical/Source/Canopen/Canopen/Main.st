@@ -4,7 +4,7 @@
 * Date: 22/04/2024
 * Description: 	Used for the communication of Blink keypad: blinkmarine.com/products/pkp-2300-si
 				When button pressed (Keypad[0]) switch red led status (Keypad[1])
-				Find datasheet in the documentation
+				Find datasheet in the documentation package
 ***********************************************************************************************************************)
 PROGRAM _INIT
 END_PROGRAM
@@ -51,7 +51,7 @@ PROGRAM _CYCLIC
 		END_IF
 	END_IF
 	
-	//update KeypadOld
+	//update KeypadOld, prevent multitouch
 	IF Keypad[0] > 0 THEN
 		KeypadOld := TRUE;
 	ELSE

@@ -32,7 +32,7 @@
     <Group ID="Timer">
       <Group ID="Timer[1]">
         <Property ID="TimerId" Value="ScreenSaverTimer" />
-        <Property ID="TimerInterval" Value="45000" />
+        <Property ID="TimerInterval" Value="120000" />
         <Selector ID="TimerModus" Value="TimerModeSingleShot" />
       </Group>
     </Group>

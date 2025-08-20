@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Content id="Cockpit" height="600" width="1333" xmlns="http://www.br-automation.com/iat2015/contentDefinition/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Content id="Cockpit" height="600" width="1280" xmlns="http://www.br-automation.com/iat2015/contentDefinition/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Widgets>
-    <Widget xsi:type="widgets.brease.WebViewer" id="WebViewer1Cockpit" top="0" left="0" width="1333" height="600" zIndex="0" path="mappCockpit" port="8084" />
+    <Widget xsi:type="widgets.brease.WebViewer" id="WebViewer1Cockpit" top="0" left="0" width="1280" height="600" zIndex="0" path="mappCockpit" port="8084" />
   </Widgets>
 </Content>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ExternalHardware>
+  <Modules>
+    <Module ModuleID="FBC.0x000003E2.211018_PKP2300_CANeds_V4" Version="4.1" OrderNumber="PKP2300">
+      <SourceFile OriginalFile="211018_PKP2300SI_CANeds_V4.eds" TranslationFile="CTN82POA.ext" />
+    </Module>
+  </Modules>
+</ExternalHardware>

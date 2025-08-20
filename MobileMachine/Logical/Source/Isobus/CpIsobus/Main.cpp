@@ -1,8 +1,9 @@
 //***********************************************************************
 // Copyright: B&R Industrial Automation GmbH
 // Author: B&R
-// Created: 2023
-// Description: Main task
+// Created: 2025
+// Description: First version of a isobus visualization
+//				Not possible to be built in simluation
 //***********************************************************************
 
 //***********************************************************************

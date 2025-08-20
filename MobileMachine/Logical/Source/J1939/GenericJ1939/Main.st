@@ -3,10 +3,9 @@
 * Author: B&R
 * Date: 22/04/2024
 * Description: 	Used for J1939 generic communication
-				Two Can interfaces required to test
+				Two Can interfaces required to test (IF7 & IF8)
 ***********************************************************************************************************************)
 PROGRAM _INIT
-	 
 END_PROGRAM
 
 PROGRAM _CYCLIC
@@ -16,12 +15,9 @@ PROGRAM _CYCLIC
 	
 	//Data sended
 	EEC1_Data;
-	//Data recieved
-	EEC2_Data;
 
 END_PROGRAM
 
 PROGRAM _EXIT
-	 
 END_PROGRAM
 

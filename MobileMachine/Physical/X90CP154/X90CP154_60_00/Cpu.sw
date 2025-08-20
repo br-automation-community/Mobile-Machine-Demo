@@ -2,24 +2,25 @@
 <?AutomationStudio FileVersion="4.9"?>
 <SwConfiguration CpuAddress="SL1" xmlns="http://br-automation.co.at/AS/SwConfiguration">
   <TaskClass Name="Cyclic#1">
-    <Task Name="LinBus" Source="Source.LinBus.LinBus.prg" Memory="UserROM" Language="IEC" Debugging="true" Disabled="true" />
+    <Task Name="LinBus" Source="Source.LinBus.LinBus.prg" Memory="UserROM" Description="Lin bus sample from AS help" Language="IEC" Debugging="true" />
   </TaskClass>
-  <TaskClass Name="Cyclic#2" />
+  <TaskClass Name="Cyclic#2">
+    <Task Name="CpIsobus3" Source="Source.Isobus.LibCpIsobus3_C.CpIsobus3.prg" Memory="UserROM" Description="Sales demo, not possible to be built in simluation" Language="ANSIC" AdditionalLibraryDirectories="\Logical\Libraries\CpIsobus\SG4\Arm\" AdditionalLibraries="AR ISOAgLibSE" Debugging="true" Disabled="true" />
+    <Task Name="CpIsobus1" Source="Source.Isobus.CpIsobus.prg" Memory="UserROM" Description="Getting started, not possible to be built in simluation" Language="ANSIC" AdditionalLibraryDirectories="\Logical\Libraries\CpIsobus\SG4\Arm\" AdditionalLibraries="AR ISOAgLibSE" Debugging="true" Disabled="true" />
+  </TaskClass>
   <TaskClass Name="Cyclic#3">
-    <Task Name="GenericJ19" Source="Source.J1939.GenericJ1939.prg" Memory="UserROM" Language="IEC" Debugging="true" Disabled="true" />
-    <Task Name="RecieveJ19" Source="Source.J1939.RecieveJ1939.prg" Memory="UserROM" Language="IEC" Debugging="true" Disabled="true" />
+    <Task Name="Canopen" Source="Source.Canopen.Canopen.prg" Memory="UserROM" Description="Can open sample with blink keyboard" Language="IEC" Debugging="true" />
+    <Task Name="GenericJ19" Source="Source.J1939.GenericJ1939.prg" Memory="UserROM" Description="J1939 generic send" Language="IEC" Debugging="true" />
+    <Task Name="RecieveJ19" Source="Source.J1939.RecieveJ1939.prg" Memory="UserROM" Description="J1939 receive no predfined PGN" Language="IEC" Debugging="true" />
   </TaskClass>
   <TaskClass Name="Cyclic#4">
-    <Task Name="Canopen" Source="Source.Canopen.Canopen.prg" Memory="UserROM" Language="IEC" Debugging="true" />
-    <Task Name="Simulation" Source="Simulation.Simulation.prg" Memory="UserROM" Language="IEC" Debugging="true" />
+    <Task Name="Simulation" Source="Simulation.Simulation.prg" Memory="UserROM" Description="Connction to robot studio" Language="IEC" Debugging="true" />
+    <Task Name="Visu" Source="Source.Visualization.Visu.prg" Memory="UserROM" Description="Visualzation step machine" Language="IEC" Debugging="true" />
   </TaskClass>
   <TaskClass Name="Cyclic#5">
-    <Task Name="CpIsobus1" Source="Source.Isobus.CpIsobus.prg" Memory="UserROM" Language="ANSIC" Debugging="true" Disabled="true" />
-    <Task Name="Standby" Source="Source.StandbyMode.Standby.prg" Memory="UserROM" Language="IEC" Debugging="true" Disabled="true" />
+    <Task Name="Standby" Source="Source.StandbyMode.Standby.prg" Memory="UserROM" Description="Example for standby mode, only CP154" Language="IEC" Debugging="true" />
   </TaskClass>
-  <TaskClass Name="Cyclic#6">
-    <Task Name="Visu" Source="Source.Visualization.Visu.prg" Memory="UserROM" Language="IEC" Debugging="true" />
-  </TaskClass>
+  <TaskClass Name="Cyclic#6" />
   <TaskClass Name="Cyclic#7" />
   <TaskClass Name="Cyclic#8" />
   <NcDataObjects>
@@ -74,7 +75,8 @@
     <LibraryObject Name="brsystem" Source="Libraries.brsystem.lby" Memory="UserROM" Language="binary" Debugging="true" />
     <LibraryObject Name="ArCan" Source="Libraries.ArCan.lby" Memory="UserROM" Language="binary" Debugging="true" />
     <LibraryObject Name="AsMem" Source="Libraries.AsMem.lby" Memory="UserROM" Language="binary" Debugging="true" />
-    <LibraryObject Name="CpIsobus" Source="Libraries.CpIsobus.lby" Memory="UserROM" Language="Binary" Debugging="true" Disabled="true" />
+    <LibraryObject Name="CpIsobus" Source="Libraries.CpIsobus.lby" Memory="None" Language="Binary" Debugging="true" Disabled="true" />
+    <LibraryObject Name="CpLin" Source="Libraries.CpLin.lby" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="astcp" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="asusb" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="fileio" Source="" Memory="UserROM" Language="Binary" Debugging="true" />

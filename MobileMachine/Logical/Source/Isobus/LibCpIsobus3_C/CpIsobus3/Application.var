@@ -1,0 +1,16 @@
+VAR
+	ClientConnected : BOOL;
+	actBales : UDINT := 24;
+	actBalesOld : UDINT;
+	balerRunning : BOOL;
+	balerRunningOld : BOOL;
+	cpuTemp : UDINT;
+	cpuTempOld : UDINT;
+	DTGetTime_0 : DTGetTime;
+	dtStructure : DTStructure;
+	fieldHours : STRING[80];
+	minuteOld : USINT;
+	setDensity : UDINT := 15;
+	setDensityOld : UDINT;
+	cpuTempRaw : INT;
+END_VAR

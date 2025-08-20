@@ -3,13 +3,7 @@
   <Bindings>
 
 
-<Binding mode="twoWay">
-<Source xsi:type="opcUa" refId="::Visu:DTGetTime_0.DT1" attribute="value" />
-<Target xsi:type="brease" contentRefId="Bottom" widgetRefId="DateTimeOutput" attribute="value" />
-</Binding>
-<Binding mode="twoWay">
-<Source xsi:type="opcUa" refId="::Visu:DTGetTime_0.DT1" attribute="value" />
-<Target xsi:type="brease" contentRefId="Bottom" widgetRefId="DateTimeOutput1" attribute="value" />
-</Binding>
+
+
 </Bindings>
 </BindingsSet>

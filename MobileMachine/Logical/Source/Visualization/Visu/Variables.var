@@ -7,7 +7,6 @@ VAR
 	TON_10s : TON;
 	TON_5s : TON;
 	TON_20s : TON;
-	TON_Screensaver : TON;
 	CheckAlarmImage : BOOL;
 	TankOld : BOOL;
 	MobileMachine : MobileMachineType;

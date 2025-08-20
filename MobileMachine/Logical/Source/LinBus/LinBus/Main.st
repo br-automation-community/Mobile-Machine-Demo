@@ -6,6 +6,7 @@
 				Example from the AS help, no simulation of the lin communication possibe
  ***********************************************************************************************************************)
 PROGRAM _INIT
+	
 	CpLinScheduler_0.Enable := TRUE;
 	CpLinScheduler_0.Run := cpLIN_RUN_CYCLIC;
 	CpLinScheduler_0.DeviceName := 'IF5';
@@ -22,10 +23,11 @@ PROGRAM _INIT
 	Schedule[2].Duration := 10;
 	Schedule[2].Frame.FrameId := 59;
 	Schedule[2].Frame.Length := 2;
+	
  END_PROGRAM
 
-
 PROGRAM _CYCLIC
+	
 	CpLinScheduler_0.Schedule := ADR(Schedule);
 	CpLinScheduler_0.ScheduleLength := SIZEOF(Schedule)/SIZEOF(Schedule[0]);
 	CpLinScheduler_0();
@@ -71,9 +73,8 @@ PROGRAM _CYCLIC
 		nbErrors := nbErrors + 1;
 		lastErrorID := CpLinScheduler_0.ErrorID;
 	END_IF
+	
  END_PROGRAM
 
-
 PROGRAM _EXIT
-	 
 END_PROGRAM

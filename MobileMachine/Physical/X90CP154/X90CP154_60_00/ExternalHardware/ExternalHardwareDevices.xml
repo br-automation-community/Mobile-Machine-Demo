@@ -4,8 +4,5 @@
     <Module ModuleID="FBC.0x000003E2.211018_PKP2300_CANeds_V4" Version="4.1" OrderNumber="PKP2300">
       <SourceFile OriginalFile="211018_PKP2300SI_CANeds_V4.eds" TranslationFile="TCR4S5BS.ext" />
     </Module>
-    <Module ModuleID="FBC.0x0100006C.62015.0000006C_X90BC124.32-00_1" Version="1.1" OrderNumber="X90BC124.32-00">
-      <SourceFile OriginalFile="0000006C_X90BC124.32-00_1.eds" TranslationFile="5CIAQ2M2.ext" />
-    </Module>
   </Modules>
 </ExternalHardware>

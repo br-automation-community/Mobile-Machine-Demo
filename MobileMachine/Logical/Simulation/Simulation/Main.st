@@ -6,7 +6,6 @@
 				To enable live demonstartion activate simulation in AS and start simulation in robot studio
 ***********************************************************************************************************************)
 PROGRAM _INIT
-
 END_PROGRAM
 
 PROGRAM _CYCLIC
@@ -34,11 +33,9 @@ PROGRAM _CYCLIC
 	ELSE
 		JointPosition.J5 := JointPosition.J5 - (Joystick.J5/ScalingFactor.J5);
 	END_IF
-	
 	 
 END_PROGRAM
 
 PROGRAM _EXIT
-
 END_PROGRAM
 

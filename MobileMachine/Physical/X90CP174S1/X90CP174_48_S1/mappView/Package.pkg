@@ -6,7 +6,7 @@
     <Object Type="File" Reference="true">\Physical\X90CP154\X90CP154_60_00\mappView\Config.mappviewcfg</Object>
     <Object Type="Package">Main</Object>
     <Object Type="Package">Alarm</Object>
-    <Object Type="File" Reference="true">\Physical\X90CP154\X90CP154_60_00\mappView\Simulation.binding</Object>
+    <Object Type="Package">Simulation</Object>
     <Object Type="File">Bottom.binding</Object>
   </Objects>
 </Package>

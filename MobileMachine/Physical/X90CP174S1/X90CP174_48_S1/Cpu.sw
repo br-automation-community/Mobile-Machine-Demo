@@ -1,14 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?AutomationStudio FileVersion="4.9"?>
 <SwConfiguration CpuAddress="SL1" xmlns="http://br-automation.co.at/AS/SwConfiguration">
-  <TaskClass Name="Cyclic#1" />
-  <TaskClass Name="Cyclic#2" />
-  <TaskClass Name="Cyclic#3" />
-  <TaskClass Name="Cyclic#4">
-    <Task Name="Visu" Source="Source.Visualization.Visu.prg" Memory="UserROM" Language="IEC" Debugging="true" />
-    <Task Name="Simulation" Source="Simulation.Simulation.prg" Memory="UserROM" Language="IEC" Debugging="true" />
+  <TaskClass Name="Cyclic#1">
+    <Task Name="LinBus" Source="Source.LinBus.LinBus.prg" Memory="UserROM" Language="IEC" Debugging="true" />
   </TaskClass>
-  <TaskClass Name="Cyclic#5" />
+  <TaskClass Name="Cyclic#2">
+    <Task Name="CpIsobus3" Source="Source.Isobus.LibCpIsobus3_C.CpIsobus3.prg" Memory="UserROM" Description="Sales demo, not possible to be built in simluation" Language="ANSIC" AdditionalLibraryDirectories="\Logical\Libraries\CpIsobus\SG4\Arm\" AdditionalLibraries="AR ISOAgLibSE" Debugging="true" Disabled="true" />
+    <Task Name="CpIsobus1" Source="Source.Isobus.CpIsobus.prg" Memory="UserROM" Description="Getting started, not possible to be built in simluation" Language="ANSIC" AdditionalLibraryDirectories="\Logical\Libraries\CpIsobus\SG4\Arm\" AdditionalLibraries="AR ISOAgLibSE" Debugging="true" Disabled="true" />
+  </TaskClass>
+  <TaskClass Name="Cyclic#3">
+    <Task Name="Canopen" Source="Source.Canopen.Canopen.prg" Memory="UserROM" Language="IEC" Debugging="true" />
+    <Task Name="GenericJ19" Source="Source.J1939.GenericJ1939.prg" Memory="UserROM" Language="IEC" Debugging="true" />
+    <Task Name="RecieveJ19" Source="Source.J1939.RecieveJ1939.prg" Memory="UserROM" Language="IEC" Debugging="true" />
+  </TaskClass>
+  <TaskClass Name="Cyclic#4">
+    <Task Name="Simulation" Source="Simulation.Simulation.prg" Memory="UserROM" Language="IEC" Debugging="true" />
+    <Task Name="Visu" Source="Source.Visualization.Visu.prg" Memory="UserROM" Language="IEC" Debugging="true" />
+  </TaskClass>
+  <TaskClass Name="Cyclic#5">
+    <Task Name="Standby" Source="Source.StandbyMode.Standby.prg" Memory="UserROM" Description="Only CP154" Language="IEC" Debugging="true" Disabled="true" />
+  </TaskClass>
   <TaskClass Name="Cyclic#6" />
   <TaskClass Name="Cyclic#7" />
   <TaskClass Name="Cyclic#8" />
@@ -76,6 +87,8 @@
     <LibraryObject Name="MpBase" Source="Libraries.MpBase.lby" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="astime" Source="Libraries.astime.lby" Memory="UserROM" Language="binary" Debugging="true" />
     <LibraryObject Name="runtime" Source="Libraries.runtime.lby" Memory="UserROM" Language="binary" Debugging="true" />
+    <LibraryObject Name="CpIsobus" Source="Libraries.CpIsobus.lby" Memory="None" Language="Binary" Debugging="true" Disabled="true" />
+    <LibraryObject Name="CpLin" Source="Libraries.CpLin.lby" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="SfDomVis" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="SfDomDrv" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="MpSfDomMgr" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
