@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?AutomationStudio Version=4.12.5.95 FileVersion="4.9"?>
 <Hardware xmlns="http://br-automation.co.at/AS/Hardware">
-  <Module Name="6PMT50.0702-19B" Type="6PMT50.0702-19B" Version="1.1.3.0">
+  <Module Name="6PMT50.101E-19B" Type="6PMT50.101E-19B" Version="1.1.0.0">
     <Connection Connector="ETH1" TargetModule="X90CP174_48_S1" TargetConnector="IF2">
       <Cable Type="PowerlinkCable" Length="10" Version="1.0.0.3" />
     </Connection>
@@ -26,7 +26,7 @@
     </Connection>
     <Connection Connector="MT2" TargetModule="8JSA24.E8080D000-0" TargetConnector="MT" />
     <Parameter ID="McAcoposTypeID" Location="DriveConfiguration/Module" Value="AcoposMicroDConfig" />
-    <Parameter ID="ActivateACOPOSSimulationOnPLC" Location="DriveConfiguration/Module" Value="0" />
+    <Parameter ID="ActivateACOPOSSimulationOnPLC" Location="DriveConfiguration/Module" Value="1" />
     <Parameter ID="AxisReference" Location="DriveConfiguration/Channel[1]/RealAxis" Value="gAxis_1" />
     <Parameter ID="MechanicalElementsIsInvisible" Location="DriveConfiguration/Channel[1]/RealAxis" Value="0" />
     <Parameter ID="InputIsReadOnly" Location="DriveConfiguration/Channel[1]/RealAxis/MechanicalElements/Gearbox" Value="0" />
@@ -142,9 +142,12 @@
   <Module Name="8JSA24.E8080D000-0a" Type="8JSA24.E8080D000-0" Version="1.0.6.30">
     <Connection Connector="MT" TargetModule="80VD100PD.C000-01" TargetConnector="MT1" />
   </Module>
-  <Module Name="PKP2300" Type="FBC.0x000003E2.211018_PKP2300_CANeds_V4" Version="4.1" OrderNumber="PKP2300">
+  <Module Name="PKP2300" Type="FBC.0x000003E2.211018_PKP2300_CANeds_V4" Version="4.1" Disabled="true" OrderNumber="PKP2300">
     <Connection Connector="CAN1" TargetModule="X90CP174_48_S1" TargetConnector="IF9" NodeNumber="17" />
     <Parameter ID="pheartbeat_producertime" Value="200" />
+  </Module>
+  <Module Name="X90AT910.04-00" Type="X90AT910.04-00" Version="1.0.2.0">
+    <Connection Connector="ST" TargetModule="X90CP174_48_S1" TargetConnector="ST1" />
   </Module>
   <Module Name="X90CP174_48_S1" Type="X90CP174.48-S1" Version="1.5.1.0">
     <Module Name="X1" Type="X1" Virtual="true" Version="1.5.1.0">
@@ -177,8 +180,8 @@
     <Parameter ID="EnableUsbRemoteInstall" Value="1" />
     <Parameter ID="TimerDeviceType" Value="EPLX2X" />
     <Parameter ID="TimerDevice" Value="X90CP174_48_S1.IF3" />
-    <Parameter ID="Cyclic1Duration" Value="10000" />
-    <Parameter ID="Cyclic1Tolerance" Value="10000" />
+    <Parameter ID="Cyclic1Duration" Value="2000" />
+    <Parameter ID="Cyclic1Tolerance" Value="0" />
     <Parameter ID="Cyclic2Duration" Value="20000" />
     <Parameter ID="Cyclic2Tolerance" Value="20000" />
     <Parameter ID="Cyclic3Duration" Value="50000" />
@@ -196,6 +199,7 @@
     <Group ID="FileDevice1" />
     <Parameter ID="FileDeviceName1" Value="USER" />
     <Parameter ID="FileDevicePath1" Value="USER_PATH" />
+    <Parameter ID="TimeZone" Value="140" />
     <Parameter ID="ActivateSntpServer" Value="1" />
     <Group ID="FtpUser1" />
     <Parameter ID="FtpUsername1" Value="w" />

@@ -151,6 +151,12 @@
       <Connection Connector="SL" TargetModule="X90CP154_60_00" TargetConnector="X1" />
     <Parameter ID="ChannelConfig31" Value="1" />
     <Parameter ID="ChannelConfig32" Value="1" />
+    <Parameter ID="ChannelConfig39" Value="12" />
+    <Parameter ID="Dither39" Value="on" />
+    <Parameter ID="DitherAmplitude39" Value="40" />
+    <Parameter ID="DitherPeriod39" Value="500" />
+    <Parameter ID="PWMSource39" Value="1" />
+    <Parameter ID="CurrentSync39" Value="1" />
     <Parameter ID="LINSupply" Value="8" />
   </Module>
     <Connection Connector="X1" TargetModule="X1" TargetConnector="SL" />
@@ -191,8 +197,8 @@
     <Parameter ID="TimerDeviceType" Value="EPLX2X" />
     <Parameter ID="TimerDevice" Value="X90CP154_60_00.IF3" />
     <Parameter ID="TaskClassIdleTime" Value="2000" />
-    <Parameter ID="Cyclic1Duration" Value="10000" />
-    <Parameter ID="Cyclic1Tolerance" Value="10000" />
+    <Parameter ID="Cyclic1Duration" Value="2000" />
+    <Parameter ID="Cyclic1Tolerance" Value="0" />
     <Parameter ID="Cyclic2Duration" Value="20000" />
     <Parameter ID="Cyclic2Tolerance" Value="20000" />
     <Parameter ID="Cyclic3Duration" Value="50000" />

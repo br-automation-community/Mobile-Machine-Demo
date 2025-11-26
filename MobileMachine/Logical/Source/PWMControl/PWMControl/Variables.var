@@ -1,0 +1,7 @@
+VAR
+	MTBasicsPID_0 : MTBasicsPID;
+	MTPIDParameters : MTPIDParametersType;
+	OutputOn : BOOL;
+	PWMOutput39RawCurrent : INT;
+	PWMOutput39Duty : INT;
+END_VAR

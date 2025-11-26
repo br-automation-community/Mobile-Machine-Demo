@@ -2,9 +2,10 @@
 <?AutomationStudio FileVersion="4.9"?>
 <SwConfiguration CpuAddress="SL1" xmlns="http://br-automation.co.at/AS/SwConfiguration">
   <TaskClass Name="Cyclic#1">
-    <Task Name="LinBus" Source="Source.LinBus.LinBus.prg" Memory="UserROM" Description="Lin bus sample from AS help" Language="IEC" Debugging="true" />
+    <Task Name="PWMControl" Source="Source.PWMControl.PWMControl.prg" Memory="UserROM" Language="IEC" Debugging="true" />
   </TaskClass>
   <TaskClass Name="Cyclic#2">
+    <Task Name="LinBus" Source="Source.LinBus.LinBus.prg" Memory="UserROM" Description="Lin bus sample from AS help" Language="IEC" Debugging="true" />
     <Task Name="CpIsobus3" Source="Source.Isobus.LibCpIsobus3_C.CpIsobus3.prg" Memory="UserROM" Description="Sales demo, not possible to be built in simluation" Language="ANSIC" AdditionalLibraryDirectories="\Logical\Libraries\CpIsobus\SG4\Arm\" AdditionalLibraries="AR ISOAgLibSE" Debugging="true" Disabled="true" />
     <Task Name="CpIsobus1" Source="Source.Isobus.CpIsobus.prg" Memory="UserROM" Description="Getting started, not possible to be built in simluation" Language="ANSIC" AdditionalLibraryDirectories="\Logical\Libraries\CpIsobus\SG4\Arm\" AdditionalLibraries="AR ISOAgLibSE" Debugging="true" Disabled="true" />
   </TaskClass>
@@ -96,6 +97,8 @@
     <LibraryObject Name="asbrstr" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="mpj1939" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="powerlnk" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
+    <LibraryObject Name="mtbasics" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
+    <LibraryObject Name="mttypes" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="mpbackup" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="arproject" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="asarcfg" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
