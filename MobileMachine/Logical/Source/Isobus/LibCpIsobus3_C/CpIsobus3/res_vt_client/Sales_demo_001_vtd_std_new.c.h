@@ -1,4 +1,4 @@
-// Output from vt-designer (ISO 11783 mask designer, version 2.0.1, (C) 2008-2023 OSB connagtive GmbH, Hans-Fischer-Strasse 12, 80339 Munich, Germany)
+// Output from vt-designer (ISO 11783 mask designer, version 2.1.2, (C) 2008-2024 OSB connagtive GmbH, Hans-Fischer-Strasse 12, 80339 Munich, Germany)
 // Do not change!
 
 // A "HalTypedef.h" include file needs to be available that defines "ISO_OP_MEMORY_CLASS" to something like "" or "__huge" or alike as appropriate.
@@ -36,35 +36,35 @@
 #define rct_14000_2_3_Offset                                739
 #define lbg_18000_Offset                                    752
 #define pic_20000_Offset                                    776
-#define pic_20002_Offset                                  34901
-#define pic_20003_Offset                                  35272
-#define pic_20003_2_Offset                                36987
-#define pic_20002_2_Offset                                39278
-#define wsDesc6x8_Offset                                  39649
-#define fta_23001_Offset                                  39657
-#define fta_23002_Offset                                  39665
-#define lna_24000_Offset                                  39673
-#define fla_25000_Offset                                  39681
-#define DescriptionWS_Offset                              39689
-#define StdWorkingSet_Offset                              39717
-#define StdActiveDataMask_Offset                          39733
-#define nv_setDensity_Offset                              39795
-#define nv_actBales_Offset                                39802
-#define nv_cpuTemp_Offset                                 39809
-#define sv_StatusText_Offset                              39816
-#define pic_20001_Offset                                  39838
+#define pic_20002_Offset                                  31981
+#define pic_20003_Offset                                  32352
+#define pic_20003_2_Offset                                34067
+#define pic_20002_2_Offset                                36358
+#define wsDesc6x8_Offset                                  36729
+#define fta_23001_Offset                                  36737
+#define fta_23002_Offset                                  36745
+#define lna_24000_Offset                                  36753
+#define fla_25000_Offset                                  36761
+#define DescriptionWS_Offset                              36769
+#define StdWorkingSet_Offset                              36797
+#define StdActiveDataMask_Offset                          36813
+#define nv_setDensity_Offset                              36875
+#define nv_actBales_Offset                                36882
+#define nv_cpuTemp_Offset                                 36889
+#define sv_StatusText_Offset                              36896
+#define pic_20001_Offset                                  36920
 
 #ifndef ISO_OP_MEMORY_CLASS
 #define ISO_OP_MEMORY_CLASS
 #endif
 
-#define ISO_OP_ObjPool_Size_vtd_std_new  53525
-extern const unsigned char ISO_OP_MEMORY_CLASS isoOP_ObjPool_vtd_std_new[];
+#define ISO_OP_ObjPool_Size_001_vtd_std_new  50607
+extern const unsigned char ISO_OP_MEMORY_CLASS isoOP_ObjPool_001_vtd_std_new[];
 
-#define ISO_OP_ObjPool_ObjectNumber_vtd_std_new  49
-extern const unsigned long ISO_OP_MEMORY_CLASS isoOP_ObjPool_Offset_vtd_std_new[];
-extern const unsigned long ISO_OP_MEMORY_CLASS isoOP_ObjPool_Offset_Id_vtd_std_new[];
-#define ISO_OP_ObjPool_Scale_Offset_vtd_std_new  39838
+#define ISO_OP_ObjPool_ObjectNumber_001_vtd_std_new  49
+extern const unsigned long ISO_OP_MEMORY_CLASS isoOP_ObjPool_Offset_001_vtd_std_new[];
+extern const unsigned long ISO_OP_MEMORY_CLASS isoOP_ObjPool_Offset_Id_001_vtd_std_new[];
+#define ISO_OP_ObjPool_Scale_Offset_001_vtd_std_new  36920
 #ifndef WTK_MG_COMMON_DEFS
 #define WTK_MG_COMMON_DEFS
 

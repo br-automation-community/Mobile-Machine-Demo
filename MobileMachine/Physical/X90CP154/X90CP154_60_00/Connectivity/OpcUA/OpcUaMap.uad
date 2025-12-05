@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?AutomationStudio FileVersion="4.9"?>
-<OpcUaSource FileVersion="9" ArVersion="O4.93">
+<OpcUaSource FileVersion="9" ArVersion="I4.93">
   <Aliases>
     <ACLAliases />
     <EURangeViolationAliases />
@@ -47,6 +47,9 @@
       <Task Name="Simulation">
         <Variable Name="JointPosition" RecursiveEnable="2" />
         <Variable Name="Joystick" RecursiveEnable="2" />
+        <Variable Name="JointPositionRad" RecursiveEnable="2" />
+        <Variable Name="Cmd" RecursiveEnable="2" />
+        <Variable Name="ViewPoint" RecursiveEnable="2" />
       </Task>
     </Module>
   </DefaultView>

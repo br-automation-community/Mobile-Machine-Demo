@@ -11,6 +11,6 @@
     </Widget>
     <Widget xsi:type="widgets.brease.DateTimeOutput" id="DateTimeOutput" top="20" left="1130" width="120" height="40" zIndex="1" format="HH:mm" style="central_big" />
     <Widget xsi:type="widgets.brease.DateTimeOutput" id="DateTimeOutput1" top="60" left="1130" width="120" zIndex="2" format="d" style="central_big" />
-    <Widget xsi:type="widgets.brease.NavigationButton" id="NavigationButtonSimulation" top="10" left="30" width="120" height="70" zIndex="3" image="Media/joystick2.svg" pageId="Simulation" imageHeight="50" imageWidth="50" style="appButton" visible="false" />
+    <Widget xsi:type="widgets.brease.NavigationButton" id="NavigationButtonSimulation" top="10" left="30" width="120" height="70" zIndex="3" image="Media/joystick2.svg" pageId="Simulation" imageHeight="50" imageWidth="50" style="appButton" />
   </Widgets>
 </Content>

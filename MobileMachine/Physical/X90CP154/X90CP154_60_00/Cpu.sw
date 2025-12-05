@@ -10,12 +10,12 @@
     <Task Name="CpIsobus1" Source="Source.Isobus.CpIsobus.prg" Memory="UserROM" Description="Getting started, not possible to be built in simluation" Language="ANSIC" AdditionalLibraryDirectories="\Logical\Libraries\CpIsobus\SG4\Arm\" AdditionalLibraries="AR ISOAgLibSE" Debugging="true" Disabled="true" />
   </TaskClass>
   <TaskClass Name="Cyclic#3">
+    <Task Name="Simulation" Source="Simulation.Simulation.prg" Memory="UserROM" Description="Connction to robot studio" Language="IEC" Debugging="true" />
     <Task Name="Canopen" Source="Source.Canopen.Canopen.prg" Memory="UserROM" Description="Can open sample with blink keyboard" Language="IEC" Debugging="true" />
     <Task Name="GenericJ19" Source="Source.J1939.GenericJ1939.prg" Memory="UserROM" Description="J1939 generic send" Language="IEC" Debugging="true" />
     <Task Name="RecieveJ19" Source="Source.J1939.RecieveJ1939.prg" Memory="UserROM" Description="J1939 receive no predfined PGN" Language="IEC" Debugging="true" />
   </TaskClass>
   <TaskClass Name="Cyclic#4">
-    <Task Name="Simulation" Source="Simulation.Simulation.prg" Memory="UserROM" Description="Connction to robot studio" Language="IEC" Debugging="true" />
     <Task Name="Visu" Source="Source.Visualization.Visu.prg" Memory="UserROM" Description="Visualzation step machine" Language="IEC" Debugging="true" />
   </TaskClass>
   <TaskClass Name="Cyclic#5">

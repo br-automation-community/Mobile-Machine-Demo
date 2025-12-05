@@ -196,7 +196,7 @@ DataType=0x0007
 AccessType=rw
 DefaultValue=0x00000000
 PDOMapping=0
-LowLimit=0x00000000
+LowLimit=0x00010000
 HighLimit=0x007FFFFF
 
 [1017]

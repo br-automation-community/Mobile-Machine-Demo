@@ -233,9 +233,9 @@ void ApplicationRun(void)
 	if (balerRunning != balerRunningOld) {
 		// send string value to visu
 		if (balerRunning) {
-			TEST_ASSERT(eIsoStackVtQChangeStringValue(E_LOCAL_CF_1, sv_StatusText, "Baler running", 0) == E_Q_COMMAND_RESULT_SUCCESS);
+			TEST_ASSERT(eIsoStackVtQChangeStringValue(E_LOCAL_CF_1, sv_StatusText, "Machine running", 0) == E_Q_COMMAND_RESULT_SUCCESS);
 		} else {
-			TEST_ASSERT(eIsoStackVtQChangeStringValue(E_LOCAL_CF_1, sv_StatusText, "Baler not running", 0) == E_Q_COMMAND_RESULT_SUCCESS);
+			TEST_ASSERT(eIsoStackVtQChangeStringValue(E_LOCAL_CF_1, sv_StatusText, "Machine not running", 0) == E_Q_COMMAND_RESULT_SUCCESS);
 		}
 		balerRunningOld = balerRunning;
 	}

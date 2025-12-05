@@ -3,4 +3,5 @@ VAR_CONFIG
 	::Canopen:Keypad[1] AT %QB."PKP2300".LedStateRed_2001sub1;
 	::PWMControl:PWMOutput39RawCurrent AT %IW."X1".Current39;
 	::PWMControl:PWMOutput39Duty AT %QW."X1".PWMOutput39;
+	::CpIsobus3:cpuTempRaw AT %IW."X90CP154_60_00".TemperatureCPU;
 END_VAR

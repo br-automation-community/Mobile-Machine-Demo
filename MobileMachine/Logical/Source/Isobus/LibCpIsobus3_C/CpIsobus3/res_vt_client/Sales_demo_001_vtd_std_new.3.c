@@ -1,9 +1,11 @@
-// Output from vt-designer (ISO 11783 mask designer, version 2.0.1, (C) 2008-2023 OSB connagtive GmbH, Hans-Fischer-Strasse 12, 80339 Munich, Germany)
+// Output from vt-designer (ISO 11783 mask designer, version 2.1.2, (C) 2008-2024 OSB connagtive GmbH, Hans-Fischer-Strasse 12, 80339 Munich, Germany)
 // Do not change!
 
-#include "Sales_demo_vtd_std_new.c.h"
+#include "Sales_demo_001_vtd_std_new.c.h"
 
-const unsigned long ISO_OP_MEMORY_CLASS isoOP_ObjPool_Offset_vtd_std_new[] = {
+const unsigned long ISO_OP_MEMORY_CLASS isoOP_ObjPool_Offset_Id_001_vtd_std_new[] = {
+	       36797,  // StdWorkingSet_Offset
+	       36813,  // StdActiveDataMask_Offset
 	           1,  // ctr_3000_Offset
 	          29,  // ctr_3000_2_Offset
 	          63,  // ctr_3000_3_Offset
@@ -36,22 +38,20 @@ const unsigned long ISO_OP_MEMORY_CLASS isoOP_ObjPool_Offset_vtd_std_new[] = {
 	         739,  // rct_14000_2_3_Offset
 	         752,  // lbg_18000_Offset
 	         776,  // pic_20000_Offset
-	       34901,  // pic_20002_Offset
-	       35272,  // pic_20003_Offset
-	       36987,  // pic_20003_2_Offset
-	       39278,  // pic_20002_2_Offset
-	       39649,  // wsDesc6x8_Offset
-	       39657,  // fta_23001_Offset
-	       39665,  // fta_23002_Offset
-	       39673,  // lna_24000_Offset
-	       39681,  // fla_25000_Offset
-	       39689,  // DescriptionWS_Offset
-	       39717,  // StdWorkingSet_Offset
-	       39733,  // StdActiveDataMask_Offset
-	       39795,  // nv_setDensity_Offset
-	       39802,  // nv_actBales_Offset
-	       39809,  // nv_cpuTemp_Offset
-	       39816,  // sv_StatusText_Offset
-	       39838,  // pic_20001_Offset
-}; // isoOP_ObjPool_Offset_vtd_std_new
+	       36920,  // pic_20001_Offset
+	       31981,  // pic_20002_Offset
+	       32352,  // pic_20003_Offset
+	       34067,  // pic_20003_2_Offset
+	       36358,  // pic_20002_2_Offset
+	       36875,  // nv_setDensity_Offset
+	       36882,  // nv_actBales_Offset
+	       36889,  // nv_cpuTemp_Offset
+	       36896,  // sv_StatusText_Offset
+	       36729,  // wsDesc6x8_Offset
+	       36737,  // fta_23001_Offset
+	       36745,  // fta_23002_Offset
+	       36753,  // lna_24000_Offset
+	       36761,  // fla_25000_Offset
+	       36769,  // DescriptionWS_Offset
+}; // isoOP_ObjPool_Offset_Id_001_vtd_std_new
 

@@ -2,14 +2,14 @@
 <?AutomationStudio FileVersion="4.9"?>
 <Package xmlns="http://br-automation.co.at/AS/Package">
   <Objects>
+    <Object Type="File">Sales_demo_001_vtd_std_new.c</Object>
+    <Object Type="File">Sales_demo_001_vtd_std_new.c.h</Object>
+    <Object Type="File">Sales_demo_001_vtd_std_new.iop</Object>
+    <Object Type="File">Sales_demo_001_vtd_std_new.iop.h</Object>
     <Object Type="File">Sales_demo.iop.h</Object>
     <Object Type="File">Sales_demo.main.c</Object>
     <Object Type="File">Sales_demo.main.h</Object>
-    <Object Type="File">Sales_demo_vtd_std_new.c</Object>
-    <Object Type="File">Sales_demo_vtd_std_new.iop.h</Object>
-    <Object Type="File">Sales_demo_vtd_std_new.c.h</Object>
-    <Object Type="File">Sales_demo_vtd_std_new.3.c</Object>
-    <Object Type="File">Sales_demo_vtd_std_new.2.c</Object>
-    <Object Type="File">Sales_demo_vtd_std_new.iop</Object>
+    <Object Type="File">Sales_demo_001_vtd_std_new.2.c</Object>
+    <Object Type="File">Sales_demo_001_vtd_std_new.3.c</Object>
   </Objects>
 </Package>
