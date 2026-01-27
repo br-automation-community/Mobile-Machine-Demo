@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio FileVersion="6.0"?>
+<OpcUaSource FileVersion="10" ArVersion="I4.93">
+  <Aliases>
+    <ACLAliases />
+    <EURangeViolationAliases />
+    <EURangesAliases>
+      <EURanges Id="1">
+        <EURange>
+          <Low ValueProvider="Const">0</Low>
+          <High ValueProvider="Const">40</High>
+        </EURange>
+      </EURanges>
+    </EURangesAliases>
+    <EngineeringUnitAliases>
+      <EngineeringUnit Id="4" UnitId="5059638" NameSpaceUri="http://www.opcfoundation.org/UA/units/un/cefact" Name="revolution per minute" Symbol="rev/min" />
+      <EngineeringUnit Id="5" UnitId="4408652" NameSpaceUri="http://www.opcfoundation.org/UA/units/un/cefact" Name="degree Celsius" Symbol="°C" />
+      <EngineeringUnit Id="6" UnitId="4934984" NameSpaceUri="http://www.opcfoundation.org/UA/units/un/cefact" Name="kilometre per hour" Symbol="km/h" />
+      <EngineeringUnit Id="7" UnitId="4740434" NameSpaceUri="http://www.opcfoundation.org/UA/units/un/cefact" Name="hour" Symbol="h" />
+      <EngineeringUnit Id="9" UnitId="5002322" NameSpaceUri="http://www.opcfoundation.org/UA/units/un/cefact" Name="litre" Symbol="l" />
+      <EngineeringUnit Id="10" UnitId="4342098" NameSpaceUri="http://www.opcfoundation.org/UA/units/un/cefact" Name="bar [unit of pressure]" Symbol="bar" />
+    </EngineeringUnitAliases>
+  </Aliases>
+  <Module Name="&lt;Default&gt;">
+    <Task Name="Visu">
+      <Variable Name="AmbientTemperature" EngineeringUnitId="5" />
+      <Variable Name="RevolutionWidget" EngineeringUnitId="4" />
+      <Variable Name="MobileMachine">
+        <Variable Name="Parameter" RecursiveEnable="2" UpdateMembersInheritProperties="1">
+          <Variable Name="EngineRevolution" EngineeringUnitId="4" />
+          <Variable Name="EngineTemperature" EngineeringUnitId="5" />
+          <Variable Name="Velocity" EURangesId="1" EngineeringUnitId="6" />
+          <Variable Name="WorkingHours" EngineeringUnitId="7" />
+          <Variable Name="TankLevel" EngineeringUnitId="9" />
+          <Variable Name="TirePressure" EngineeringUnitId="10" />
+        </Variable>
+      </Variable>
+      <Variable Name="CheckAlarmImage" />
+      <Variable Name="CuttingImage" />
+      <Variable Name="TirePressureImage" />
+      <Variable Name="BrakeImage" />
+      <Variable Name="DTGetTime_0">
+        <Variable Name="DT1" />
+      </Variable>
+    </Task>
+    <Task Name="Simulation">
+      <Variable Name="JointPosition" RecursiveEnable="2" MembersInheritProperties="True" />
+      <Variable Name="Joystick" RecursiveEnable="2" MembersInheritProperties="True" />
+      <Variable Name="JointPositionRad" RecursiveEnable="2" MembersInheritProperties="True" />
+      <Variable Name="Cmd" RecursiveEnable="2" MembersInheritProperties="True" />
+      <Variable Name="ViewPoint" RecursiveEnable="2" MembersInheritProperties="True" />
+    </Task>
+  </Module>
+</OpcUaSource>

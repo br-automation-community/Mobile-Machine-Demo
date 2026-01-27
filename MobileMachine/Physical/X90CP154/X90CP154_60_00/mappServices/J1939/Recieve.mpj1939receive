@@ -2,9 +2,9 @@
 <?AutomationStudio FileVersion="4.9"?>
 <Configuration>
   <Element ID="gJ1939Receive" Type="mpj1939receive">
-    <Group ID="GeneralSettings">
-      <Property ID="OwnDeviceAddress" Value="2" />
-      <Property ID="CounterpartAddress" Value="1" />
+    <Group ID="InterfaceSettings">
+      <Property ID="OwnDeviceAddress" Value="0" />
+      <Property ID="CounterpartAddress" Value="0" />
       <Property ID="CANInterface" Value="IF8" />
     </Group>
   </Element>

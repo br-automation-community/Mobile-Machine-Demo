@@ -29,7 +29,7 @@ FUNCTION_BLOCK MpComLoggerUI (*Get mapp logger information*) (* $GROUP=mapp Serv
 		Enable : BOOL; (*Enables/Disables the function block (mapp standard interface)*) (* *) (*#PAR#;*)
 		ErrorReset : BOOL; (*Resets all function block errors (mapp standard interface)*) (* *) (*#PAR#;*)
 		Scope : MpComConfigScopeEnum; (*Scope of configuration to export/import*) (* *) (*#PAR#;*)
-		EntryFilter : STRING[255]; (*Scope filter to define which entries will be part of the internal logger*) (* *) (*#PAR#;OPT#;*)
+		EntryFilter : REFERENCE TO STRING[255]; (*Scope filter to define which entries will be part of the internal logger*) (* *) (*#PAR#;OPT#;*)
 		BufferSize : UINT; (*Size of the internal buffer (0=default size 100)*) (* *) (*#PAR#;OPT#;*)
 		UISetup : MpComLoggerUISetupType; (*Used to configure the elements connected to the HMI application*) (* *) (*#PAR#;*)
 		UIConnect : REFERENCE TO MpComLoggerUIConnectType; (*This structure contains the parameters needed for the connection to the HMI application*) (* *) (*#CMD#;*)
@@ -46,30 +46,12 @@ FUNCTION_BLOCK MpComLoggerUI (*Get mapp logger information*) (* $GROUP=mapp Serv
 	END_VAR
 END_FUNCTION_BLOCK
 
-FUNCTION MpComLink : DINT (*Creates a hierarchy for the mapp components*) (* $GROUP=mapp Services,$CAT=mapp Link,$GROUPICON=Icon_mapp.png,$CATICON=Icon_MpCom.png *)
-	VAR_INPUT
-		ParentLink : MpComIdentType; (*Link to parent*) (* *) (*#PAR#;*)
-		MpLink : MpComIdentType; (*Link to mapp-component*) (* *) (*#PAR#;*)
-	END_VAR
-END_FUNCTION
-
-FUNCTION_BLOCK MpComLinkToParent (*Creates a hierarchy for the mapp components*) (* $GROUP=mapp Services,$CAT=mapp Link,$GROUPICON=Icon_mapp.png,$CATICON=Icon_MpCom.png *)
-	VAR_INPUT
-		ParentLink : MpComIdentType; (*Link to parent*) (* *) (*#PAR#;*)
-		MpLink : REFERENCE TO MpComIdentType; (*Link to mapp-component*) (* *) (*#PAR#;*)
-	END_VAR
-	VAR_OUTPUT
-		LinkOut : {REDUND_UNREPLICABLE} MpComIdentType; (*Outgoing component link (MpLink)*) (* *) (*#PAR#;*)
-		StatusID : DINT; (*Error output*) (* *) (*#PAR#;*)
-	END_VAR
-END_FUNCTION_BLOCK
-
 FUNCTION_BLOCK MpComDump (*Creates a mapp diagnostic dump file*) (* $GROUP=mapp Services,$CAT=mapp Link,$GROUPICON=Icon_mapp.png,$CATICON=Icon_MpCom.png *)
 	VAR_INPUT
 		Enable : BOOL; (*Enables/Disables the function block *) (* *) (*#PAR#;*)
 		Dump : BOOL; (*A positive signal on this input triggers a dump*) (* *) (*#CMD#;*)
-		DeviceName : STRING[20]; (*Name of device where file should be created*) (* *) (*#CMD#;*)
-		FileName : STRING[40]; (*Name of file to create*) (* *) (*#CMD#;*)
+		DeviceName : STRING[50]; (*Name of device where file should be created*) (* *) (*#CMD#;*)
+		FileName : STRING[255]; (*Name of file to create*) (* *) (*#CMD#;*)
 	END_VAR
 	VAR_OUTPUT
 		Active : BOOL; (*Function block is active (enabled)*) (* *) (*#PAR#;*)
@@ -96,5 +78,68 @@ FUNCTION_BLOCK MpComGetLink (*Get MpLink by component name*)
 	END_VAR
 	VAR
 		Internal : {REDUND_UNREPLICABLE} BOOL;
+	END_VAR
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK MpComConfigBasic (*Write and apply mapp-configuration*)
+	VAR_INPUT
+		MpLink : REFERENCE TO MpComIdentType; (*MpLink for the configuration to access*) (* *) (*#PAR#;*)
+		Enable : BOOL; (*Enables/Disables the function block *) (* *) (*#PAR#;*)
+		ErrorReset : BOOL; (*Resets all function block errors (mapp standard interface)*) (* *) (*#PAR#;*)
+		CmdRead : BOOL; (*Read configuration data (async, parameter: Data, DataType, ReadFrom)*) (* *) (*#CMD#;OPT#;*)
+		CmdWrite : BOOL; (*Write configuration data (async, parameter: Data, DataType, WriteMode, ApplyTo)*) (* *) (*#CMD#;OPT#;*)
+		CmdCopy : BOOL; (*Copy configuration data (input "Data" is ignored)*) (* *) (*#CMD#;OPT#;*)
+		Data : UDINT; (*Address of the structure that holds the configuration data - use structures supplied by mapp-library*) (* *) (*#CMD#;*)
+		DataType : UDINT; (*Type of connected structure - use ENUM supplied by mapp-library*) (* *) (*#CMD#;*)
+		WriteMode : MpComConfigWriteModeEnum; (*Write mode*) (* *) (*#CMD#;*)
+		ReadFrom : MpComConfigBasicSourceEnum; (*Data-Source (considered by CmdOpen)*) (* *) (*#CMD#;*)
+		ApplyTo : MpComConfigTargetEnum; (*Apply-Mode*) (* *) (*#CMD#;*)
+		Path : REFERENCE TO STRING[100]; (*Path in case a nested element should be read/written that is not uniquely defined by the type*) (* *) (*#CMD#;*)
+	END_VAR
+	VAR_OUTPUT
+		Error : BOOL; (*A error has occurred when trying to open configuration*) (* *) (*#PAR#;*)
+		Active : BOOL; (*Configuration was found and handle is valid*) (* *) (*#PAR#;*)
+		StatusID : DINT; (*Information about the error that has occurred*) (* *) (*#PAR#;*)
+		CommandBusy : BOOL; (*Function block is busy processing a command.*) (* *) (*#CMD#OPT#;*)
+		CommandDone : BOOL; (*Command has finished and was successful.*) (* *) (*#CMD#;*)
+		CurrentDataSource : MpComDataSourceEnum; (*Parameterization is active for this component.*) (* *) (*#CMD#;*)
+		Info : MpComConfigBasicInfoType; (*Additional information about the component*) (* *) (*#CMD#;*)
+	END_VAR
+	VAR
+		InternalState : USINT;
+		InternalData : ARRAY[0..21] OF UDINT;
+	END_VAR
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK MpComConfigAdvanced (*Write/Readapply mapp-configuration or -parameters*)
+	VAR_INPUT
+		MpLink : REFERENCE TO MpComIdentType; (*MpLink for the configuration to access*) (* *) (*#PAR#;*)
+		Enable : BOOL; (*Enables/Disables the function block *) (* *) (*#PAR#;*)
+		ErrorReset : BOOL; (*Resets all function block errors (mapp standard interface)*) (* *) (*#PAR#;*)
+		CmdOpen : BOOL; (*Open configuration for read/write access (parameter: ReadFrom)*) (* *) (*#CMD#;OPT#;*)
+		CmdRead : BOOL; (*Read configuration data (sync, parameter: Data, DataType)*) (* *) (*#CMD#;OPT#;*)
+		CmdWrite : BOOL; (*Write configuration data (sync, parameter: Data, DataType, WriteMode)*) (* *) (*#CMD#;OPT#;*)
+		CmdClose : BOOL; (*Close configuration and apply changes (parameter: ApplyTo)*) (* *) (*#CMD#;OPT#;*)
+		CmdCopy : BOOL; (*Copy configuration data (input "Data" is ignored)*) (* *) (*#CMD#;OPT#;*)
+		Data : UDINT; (*Address of the structure that holds the configuration data - use structures supplied by mapp-library*) (* *) (*#CMD#;*)
+		DataType : UDINT; (*Type of connected structure - use ENUM supplied by mapp-library*) (* *) (*#CMD#;*)
+		WriteMode : MpComConfigWriteModeEnum; (*Write mode*) (* *) (*#CMD#;*)
+		ReadFrom : MpComConfigAdvancedSourceEnum; (*Data-Source (considered by CmdOpen)*) (* *) (*#CMD#;*)
+		ApplyTo : MpComConfigTargetEnum; (*Apply-Mode*) (* *) (*#CMD#;*)
+		Path : REFERENCE TO STRING[100]; (*Path in case a nested element should be read/written that is not uniquely defined by the type*) (* *) (*#CMD#;*)
+	END_VAR
+	VAR_OUTPUT
+		Error : BOOL; (*A error has occurred when trying to open configuration*) (* *) (*#PAR#;*)
+		Active : BOOL; (*Configuration was found and handle is valid*) (* *) (*#PAR#;*)
+		StatusID : DINT; (*Information about the error that has occurred*) (* *) (*#PAR#;*)
+		IsOpened : BOOL; (*Configuration is opened (read/write access possible)*) (* *) (*#CMD#;*)
+		CommandBusy : BOOL; (*Function block is busy processing a command.*) (* *) (*#CMD#OPT#;*)
+		CommandDone : BOOL; (*Command has finished and was successful.*) (* *) (*#CMD#;*)
+		CurrentDataSource : MpComDataSourceEnum; (*Parameterization is active for this component.*) (* *) (*#CMD#;*)
+		Info : MpComConfigAdvancedInfoType; (*Additional information about the component*) (* *) (*#CMD#;*)
+	END_VAR
+	VAR
+		InternalState : USINT;
+		InternalData : ARRAY[0..22] OF UDINT;
 	END_VAR
 END_FUNCTION_BLOCK

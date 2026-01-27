@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* MpJ1939 5.24.2 */
+/* MpJ1939 6.5.1 */
 
 #ifndef _MPJ1939_
 #define _MPJ1939_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _MpJ1939_VERSION
-#define _MpJ1939_VERSION 5.24.2
+#define _MpJ1939_VERSION 6.5.1
 #endif
 
 #include <bur/plctypes.h>
@@ -1004,7 +1004,6 @@ typedef enum MpJ1939ErrorEnum
 typedef struct MpJ1939StatusIDType
 {	enum MpJ1939ErrorEnum ID;
 	MpComSeveritiesEnum Severity;
-	unsigned short Code;
 } MpJ1939StatusIDType;
 
 typedef struct MpJ1939DiagType
@@ -1196,10 +1195,6 @@ typedef struct MpJ1939CM1Type
 	float RequestedPercentFanSpeed;
 	enum MpJ1939PGNStatusEnum Status;
 } MpJ1939CM1Type;
-
-typedef struct MpJ1939GenericInfoType
-{	struct MpJ1939DiagType Diag;
-} MpJ1939GenericInfoType;
 
 typedef struct MpJ1939DM01Type
 {	enum MpJ1939FRSLEnum FlashRedStopLamp;
@@ -1447,23 +1442,6 @@ typedef struct MpJ1939VEP1Type
 	enum MpJ1939PGNStatusEnum Status;
 } MpJ1939VEP1Type;
 
-typedef struct MpJ1939Generic
-{
-	/* VAR_INPUT (analog) */
-	struct MpComIdentType* MpLink;
-	/* VAR_OUTPUT (analog) */
-	signed long StatusID;
-	struct MpJ1939GenericInfoType Info;
-	/* VAR (analog) */
-	struct MpComInternalDataType Internal;
-	/* VAR_INPUT (digital) */
-	plcbit Enable;
-	plcbit ErrorReset;
-	/* VAR_OUTPUT (digital) */
-	plcbit Active;
-	plcbit Error;
-} MpJ1939Generic_typ;
-
 typedef struct MpJ1939SpecificRequest
 {
 	/* VAR_INPUT (analog) */
@@ -1476,7 +1454,8 @@ typedef struct MpJ1939SpecificRequest
 	signed long StatusID;
 	struct MpJ193SpecificRequestInfoType Info;
 	/* VAR (analog) */
-	struct MpComInternalDataType Internal;
+	unsigned char InternalState;
+	unsigned long InternalData[14];
 	/* VAR_INPUT (digital) */
 	plcbit Enable;
 	plcbit ErrorReset;
@@ -1500,7 +1479,8 @@ typedef struct MpJ1939Receive
 	signed long StatusID;
 	struct MpJ1939ReceiveInfoType Info;
 	/* VAR (analog) */
-	struct MpComInternalDataType Internal;
+	unsigned char InternalState;
+	unsigned long InternalData[14];
 	/* VAR_INPUT (digital) */
 	plcbit Enable;
 	plcbit ErrorReset;
@@ -1516,15 +1496,16 @@ typedef struct MpJ1939Transmit
 {
 	/* VAR_INPUT (analog) */
 	struct MpComIdentType* MpLink;
-	unsigned char Priority;
 	unsigned long PGN;
+	unsigned char Priority;
 	unsigned long Data;
 	unsigned short DataLength;
 	/* VAR_OUTPUT (analog) */
 	signed long StatusID;
 	struct MpJ193TransmitInfoType Info;
 	/* VAR (analog) */
-	struct MpComInternalDataType Internal;
+	unsigned char InternalState;
+	unsigned long InternalData[14];
 	/* VAR_INPUT (digital) */
 	plcbit Enable;
 	plcbit ErrorReset;
@@ -1539,7 +1520,6 @@ typedef struct MpJ1939Transmit
 
 
 /* Prototyping of functions and function blocks */
-_BUR_PUBLIC void MpJ1939Generic(struct MpJ1939Generic* inst);
 _BUR_PUBLIC void MpJ1939SpecificRequest(struct MpJ1939SpecificRequest* inst);
 _BUR_PUBLIC void MpJ1939Receive(struct MpJ1939Receive* inst);
 _BUR_PUBLIC void MpJ1939Transmit(struct MpJ1939Transmit* inst);

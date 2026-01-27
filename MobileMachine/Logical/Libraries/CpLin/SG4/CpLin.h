@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* CpLin 1.01.1 */
+/* CpLin 1.1.1 */
 
 #ifndef _CPLIN_
 #define _CPLIN_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _CpLin_VERSION
-#define _CpLin_VERSION 1.01.1
+#define _CpLin_VERSION 1.1.1
 #endif
 
 #include <bur/plctypes.h>

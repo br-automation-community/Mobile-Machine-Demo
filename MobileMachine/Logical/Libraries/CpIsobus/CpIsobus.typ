@@ -16,7 +16,7 @@ TYPE
 		cpISOBUS_WRN_SAFETY_NOTIFICATION := -2144324219, (*Safety notification*)
 		cpISOBUS_SUC_STARTED := 3159428, (*ISOBUS started*)
 		cpISOBUS_INF_GENERIC := 1076901252, (*Generic information*)
-		cpISOBUS_INF_DEBUG := 1076901253 (*DEBUG_INFO*)
+		cpISOBUS_INF_DEBUG := 1076901253 (*DEBUG_INFO message*)
 		);
 	CpIsobusStateEnum : 
 		( (*Defines the state of the stack.*)

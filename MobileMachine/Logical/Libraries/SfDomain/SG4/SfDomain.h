@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* SfDomain 5.24.2 */
+/* SfDomain 6.4.1 */
 
 #ifndef _SFDOMAIN_
 #define _SFDOMAIN_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _SfDomain_VERSION
-#define _SfDomain_VERSION 5.24.2
+#define _SfDomain_VERSION 6.4.1
 #endif
 
 #include <bur/plctypes.h>
@@ -272,6 +272,13 @@ typedef struct SfDomainInternalFlags
 	plcbit ActiveDoneReached;
 } SfDomainInternalFlags;
 
+typedef struct SfDomainInternalDataType
+{	unsigned long pObject;
+	unsigned long State;
+	struct SfDomainInternalFlags Flag;
+	struct SfDomType* SfDomainInternal;
+} SfDomainInternalDataType;
+
 typedef struct SfDomInternalIfType
 {	plcdword vTable;
 } SfDomInternalIfType;
@@ -279,13 +286,6 @@ typedef struct SfDomInternalIfType
 typedef struct SfDomType
 {	struct SfDomInternalIfType* controlIf;
 } SfDomType;
-
-typedef struct SfDomainInternalDataType
-{	unsigned long pObject;
-	unsigned long State;
-	struct SfDomainInternalFlags Flag;
-	struct SfDomType* SfDomainInternal;
-} SfDomainInternalDataType;
 
 typedef struct SfDomainConnect
 {

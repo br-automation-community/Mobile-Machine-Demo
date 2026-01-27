@@ -3,7 +3,7 @@
   <header creationtool="B&amp;R Automation Studio" creationtoolversion="4.2" datatype="unknown" segtype="sentence" adminlang="en" srclang="en" o-tmf="TMX">
     <note>Do not change anything in this file, else the tmx-file will not be recognized as a valid system text anymore</note>
     <prop type="x-BR-TS:Namespace">BR/EventLog</prop>
-    <prop type="x-BR-TS:systemtextsig">UoO8TdnLJnqfa/ogLZU2YvL93lLLywNKNw335FcIjgT/dQ7bDp3G46pxXt/5B1m53oSZ/0oSKEY7bcLKArFHuGn4zhM69+3CvwT9MYoz9Vc4KXDRzKqWiy4f12tFePeY/Bx2TU0YybtZ6abuIG2Yttyj7qbjXK0tPwPBAR9+E3A=</prop>
+    <prop type="x-BR-TS:systemtextsig">E32IG/wWvv7VxA3V/PKnjSGBDUuo/MWtqEGslEUiiR7nsc4AWPM5lf7zdH7lA1vqN1XryYgbvXbvWFXUnRiCCdUNbGSfo6IgYy5KTnYl6R0BsPkbJBQxRTeeKe9WxlHonYfdvx7TKbZ7TsE20Dojg7DdTL5jkce7m9PVttn9Niw=</prop>
   </header>
   <body>
     <tu tuid="-1070582396">
@@ -33,7 +33,7 @@
     </tu>
     <tu tuid="1076901253">
       <tuv xml:lang="en">
-        <seg>DEBUG_INFO</seg>
+        <seg>DEBUG_INFO message</seg>
       </tuv>
     </tu>
   </body>

@@ -33,7 +33,8 @@ TYPE
 		mcBLENDING_LOW, (*The velocity is blended with the lowest velocity of both FBs*)
 		mcBLENDING_PREVIOUS, (*The velocity is blended with the velocity of the first FB*)
 		mcBLENDING_NEXT, (*The velocity is blended with velocity of the second FB*)
-		mcBLENDING_HIGH	(*The velocity is blended with highest velocity of both FBs*)
+		mcBLENDING_HIGH, (*The velocity is blended with highest velocity of both FBs*)
+		mcBLENDING	(*The geometry blended and split into two parts, each with its own velocity limit set by the FB*)
 	);
 
 	McBrakeCmdEnum :
@@ -60,7 +61,6 @@ TYPE
 		mcHOMING_DCM := 7,				 (*Homing using interval-encoded reference marks*)
 		mcHOMING_BLOCK_TORQUE := 9,	     (*Performs homing to mechanical limit, torque as criteria*)
 		mcHOMING_BLOCK_LAG_ERROR := 10,	 (*Performs homing to mechanical limit, lag error as criteria*)
-		mcHOMING_ABSOLUTE_INTERNAL := 11,(*Performs homing with homing offset, which is determined by drive*)
 		mcHOMING_ABSOLUTE_CORRECTION := 133,  (*Homing by setting the "Position" homing offset for an absolute encoder with counter range correction. This mode must be used if the overflow of the absolute encoder is within the axis range of movement*)
 		mcHOMING_DCM_CORRECTION := 135,	 (*Homing using distance-coded reference marks with counting range correction*)
 		mcHOMING_DEFAULT := 140,		 (*All parameters, including "Position", are taken from the initial configuration for the axis*)
@@ -97,7 +97,9 @@ TYPE
 		mcERROR_STOP_DEC_CTRL_OFF_CMD,  (*Generates an error, ends any active movement with the deceleration specified on configuration, written by the axis group or written via the function block MC_BR_CyclicDriveErrorDecel and switches off the controller*)
 		mcERROR_V_STOP_DEC_CTRL_OFF_CMD,  (*Generates an error, ends any active movement with a speed-controlled ramp with the deceleration specified on configuration, written by the axis group or written via the function block MC_BR_CyclicDriveErrorDecel and switches off the controller*)
 		mcERROR_ENCODER_CMD,  (*Generates an error, the encoder is set to error status and the configured stop reaction is carried out*)
-		mcERROR_CHANNEL_CMD  (*Generates a channel specific error and carries out the configured stop reaction*)
+		mcERROR_CHANNEL_CMD,  (*Generates a channel specific error and carries out the configured stop reaction*)
+		mcERROR_STOP_TRQ_CMD, (*Generates an error and ends an active movement torque limited*)
+		mcERROR_STOP_TRQ_JERK_CMD (*Generates an error and ends an active movement torque limited with configured Jerk Filter time*)
 	);
 
 	McEdgeEnum :
@@ -114,7 +116,9 @@ TYPE
 
 	McTransitionModeEnum :
 		( (*FB internals*)
-		mcTM_NONE (*No transition is added*)
+		mcTM_NONE, (*No transition is added*)
+		mcTM_CORNER_DISTANCE,
+		mcTM_MAX_CORNER_DEVIATION
 		);
 
 	McExecutionModeEnum:
@@ -240,13 +244,13 @@ TYPE
 		ID : UDINT; (**)
 		Check : UDINT; (**)
 		ParamHash : UDINT; (**)
+		Data : UDINT; (**)
 		State : WORD; (**)
 		Error : UINT; (**)
 		Treating : REFERENCE TO McInternalFubProcessingType; (**)
-		Memory : ARRAY[0..13] OF UDINT; (**)
-		Flags : USINT; (**)
 		ControlIf : REFERENCE TO McInternalControlIfType; (**)
 		SeqNo : DINT; (**)
+		Flags : USINT; (**)
 	END_STRUCT;
 
 	McInternalFubProcessingType : 	STRUCT  (*Partial struct type (C only)*)
@@ -317,13 +321,17 @@ TYPE
 		controlif : REFERENCE TO McInternalTrackingPathIfType; (**)
 	END_STRUCT;
 
-	McGetCoordSystemIdentParType : STRUCT
-		AxesGroup : REFERENCE TO McAxesGroupType; (*The axis group reference establishes the connection between the function block and the axis group.*)
-	END_STRUCT;
-
 	McComponentType : UDINT;
 
-	 McProcessParamAdvParType : STRUCT
+	McGetCoordSystemIdentParType : STRUCT
+		Component : McComponentType; (*Reference to the component (optional)*)
+	END_STRUCT;
+
+	McTransformPositionParType : STRUCT
+		Component : McComponentType; (*Reference to the component (optional)*)
+	END_STRUCT;
+
+	McProcessParamAdvParType : STRUCT
 		Name : STRING[250]; (*Name of the reference within the component which should be manipulated.*)
 	END_STRUCT;
 

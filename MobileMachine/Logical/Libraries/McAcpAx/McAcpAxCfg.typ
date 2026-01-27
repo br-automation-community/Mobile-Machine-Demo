@@ -892,7 +892,8 @@ TYPE
 		mcAPICEXIT_SSI := 8, (*SSI -*)
 		mcAPICEXIT_HIPERFACE_DSL := 9, (*HIPERFACE DSL -*)
 		mcAPICEXIT_TFMT := 10, (*T-Format - Tamagawa digital interface*)
-		mcAPICEXIT_RES := 11 (*Resolver -*)
+		mcAPICEXIT_RES := 11, (*Resolver -*)
+		mcAPICEXIT_ENDAT_3 := 12 (*EnDat 3 -*)
 		);
 	McAP3PICEITEnDatType : STRUCT (*Type mcAPICEXIT_ENDAT settings*)
 		LineResistance : REAL; (*Line resistance encoder supply [Ohm]*)
@@ -973,7 +974,7 @@ TYPE
 		LineResistance : McAPICEITIPS5VLinResType; (*Resistance of the encoder supply line (1line)(Calculate value is only executed correct for copper lines)*)
 		Symmetry : McAPICEITIPS5VSymType; (*Symmetry of the encoder signals*)
 		ReferencePulseDetection : McAPICEITIPS5VRefPDetectEnum; (*Reference pulse detection*)
-		LineCount : UDINT; (*Number of pulses per encoder revolution [Lines per revolution]*)
+		LineCount : UDINT; (*Number of pulses per encoder revolution [lines per revolution]*)
 		MaxExpectedOutputFrequency : UDINT; (*RS422 mode 50kHz to 6250kHz, other modes 50kHz to 200kHz [kHz]*)
 	END_STRUCT;
 	McAPICEITIPS12VLogLvlEnum :
@@ -1034,7 +1035,7 @@ TYPE
 	McAPICEITIPS12VType : STRUCT (*Type mcAPICEITIPS_PWR_SUP_12V settings*)
 		LogicLevel : McAPICEITIPS12VLogLvlType; (*Logic (level) of the encoder output signals*)
 		ReferencePulseDetection : McAPICEITIPS12VRefPDetectEnum; (*Reference pulse detection*)
-		LineCount : UDINT; (*Number of pulses per encoder revolution [Lines per revolution]*)
+		LineCount : UDINT; (*Number of pulses per encoder revolution [lines per revolution]*)
 		MaxExpectedOutputFrequency : UDINT; (*RS422 mode 50kHz to 6250kHz, other modes 50kHz to 200kHz [kHz]*)
 	END_STRUCT;
 	McAPICEITIncrPwrSupType : STRUCT (*Power supply of the encoder*)
@@ -1108,7 +1109,8 @@ TYPE
 		mcAP3SPICEIT_SSI := 8, (*SSI -*)
 		mcAP3SPICEIT_HIPERFACE_DSL := 9, (*HIPERFACE DSL -*)
 		mcAP3SPICEIT_TFMT := 10, (*T-Format - Tamagawa digital encoder*)
-		mcAP3SPICEIT_RES := 11 (*Resolver -*)
+		mcAP3SPICEIT_RES := 11, (*Resolver -*)
+		mcAP3SPICEIT_ENDAT_3 := 12 (*EnDat 3 -*)
 		);
 	McAP3SPICEITSinType : STRUCT (*Type mcAP3SPICEIT_SIN settings*)
 		LineResistance : REAL; (*Line resistance encoder supply [Ohm]*)
@@ -1221,7 +1223,7 @@ TYPE
 	McAPICIOIncrEncABREmuType : STRUCT (*Type mcAPICIODIO1T3_INCR_ENC_ABR_EMU settings*)
 		ValueSource : McAPICIOIncrEmuValSrcType; (*Value which should be output by the emulation*)
 		LinesPerEncoderRevolution : UDINT; (*Absolute number of lines of an encoder revolution*)
-		UnitsPerEncoderRevolutions : LREAL; (*Absolute number of units per encoder revolutions [Measurement units]*)
+		UnitsPerEncoderRevolutions : LREAL; (*Absolute number of units per encoder revolutions [measurement units]*)
 		UnitsPerEncoderRevolutionsParID : UDINT; (*Absolute number of units per encoder revolutions*)
 		NumberOfEncoderRevolutions : UDINT; (*Number of encoder revolutions relating to units*)
 		CountDirection : McAPICIOIncrEncABREmuCntDirEnum; (*Direction of the encoder in which the position value is increasing*)
@@ -1234,7 +1236,7 @@ TYPE
 	McAPICIOIncrEncABEmuType : STRUCT (*Type mcAPICIODIO1T3_INCR_ENC_AB_EMU settings*)
 		ValueSource : McAPICIOIncrEmuValSrcType; (*Value which should be output by the emulation*)
 		LinesPerEncoderRevolution : UDINT; (*Absolute number of lines of an encoder revolution*)
-		UnitsPerEncoderRevolutions : LREAL; (*Absolute number of units per encoder revolutions [Measurement units]*)
+		UnitsPerEncoderRevolutions : LREAL; (*Absolute number of units per encoder revolutions [measurement units]*)
 		UnitsPerEncoderRevolutionsParID : UDINT; (*Absolute number of units per encoder revolutions*)
 		NumberOfEncoderRevolutions : UDINT; (*Number of encoder revolutions relating to units*)
 		CountDirection : McAPICIOIncrEncABEmuCntDirEnum; (*Direction of the encoder in which the position value is increasing*)
@@ -1373,6 +1375,51 @@ TYPE
 		AnalogInputs : McAPICIOAnInType;
 		AnalogOutputs : McAPICIOAnOutType;
 	END_STRUCT;
+	McBRMntEnum :
+		( (*Mounting selector setting*)
+		mcBRM_VERTICAL := 0, (*Vertical - Braking resistor is mounted vertical*)
+		mcBRM_HORIZONTAL := 1 (*Horizontal - Braking resistor is mounted horizontal*)
+		);
+	McBRMntVerticalType : STRUCT (*Type mcBRM_VERTICAL settings*)
+		ThermalResistance : REAL; (*Thermal resistance [K/W]*)
+	END_STRUCT;
+	McBRMntHorizontalType : STRUCT (*Type mcBRM_HORIZONTAL settings*)
+		ThermalResistance : REAL; (*Thermal resistance [K/W]*)
+	END_STRUCT;
+	McBRMntType : STRUCT (*Mounting variant*)
+		Type : McBRMntEnum; (*Mounting selector setting*)
+		Vertical : McBRMntVerticalType; (*Type mcBRM_VERTICAL settings*)
+		Horizontal : McBRMntHorizontalType; (*Type mcBRM_HORIZONTAL settings*)
+	END_STRUCT;
+	McCfgBrkResType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_BRK_RES*)
+		Resistance : REAL; (*Electrical resistance [Ohm]*)
+		LimitTemperature : REAL; (*Maximum temperature [°C]*)
+		ThermalCapacity : REAL; (*Thermal capacity [Ws/K]*)
+		Mounting : McBRMntType; (*Mounting variant*)
+	END_STRUCT;
+	McVUTmpMdlEnum :
+		( (*Temperature model selector setting*)
+		mcVUTM_CURBASED := 1, (*Current-based -*)
+		mcVUTM_NOT_USE := 2 (*Not used -*)
+		);
+	McVUTMCurBsdType : STRUCT (*Type mcVUTM_CURBASED settings*)
+		LimitTemperature : REAL; (*Maximum permissible winding temperature [°C]*)
+		WindingCrossSection : REAL; (*Phase conductor cross section [mm²]*)
+		ThermalTimeConstant : REAL; (*Thermal time constant [s]*)
+	END_STRUCT;
+	McVUTmpMdlType : STRUCT (*Model for winding temperature monitoring*)
+		Type : McVUTmpMdlEnum; (*Temperature model selector setting*)
+		CurrentBased : McVUTMCurBsdType; (*Type mcVUTM_CURBASED settings*)
+	END_STRUCT;
+	McCfgVibrUnitType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_VIBR_UNIT*)
+		MaximumMechanicalFrequency : REAL; (*Maximum mechanical frequency of the unit [Hz]*)
+		NominalVoltage : REAL; (*Nominal voltage (RMS value, phase-phase) [V]*)
+		NominalCurrent : REAL; (*Phase current for generating the nominal torque at nominal speed (RMS value) [A]*)
+		PeakCurrent : REAL; (*Phase current for generating the peak torque (RMS value) [A]*)
+		StatorResistance : REAL; (*Stator resistance (phase-phase) [Ω]*)
+		StatorInductance : REAL; (*Stator inductance (phase-phase) [mH]*)
+		TemperatureModel : McVUTmpMdlType; (*Model for winding temperature monitoring*)
+	END_STRUCT;
 	McAMEType : STRUCT (*Parameter of hardware elements situated between motor encoder and load which influence the scaling*)
 		Gearbox : McCfgGearBoxType; (*Specifies a gearbox by defining the ratio between a gearbox input and output*)
 		RotaryToLinearTransformation : McCfgRotToLinTrfType; (*Specifies a transformation factor between the output of the gear and the actual load movement*)
@@ -1438,7 +1485,7 @@ TYPE
 		MotorEncoder : McAELTwoEncMotEncType;
 		EncoderParameterSet : McAELEncParSetEnum; (*Encoder parameter set selection*)
 		PositionEncoder : McAELTwoEncPosEncType;
-		PositionDifferenceLimit : REAL; (*Position difference limit between motor and position encoder for stopping a movement [Measurement units]*)
+		PositionDifferenceLimit : REAL; (*Position difference limit between motor and position encoder for stopping a movement [measurement units]*)
 	END_STRUCT;
 	McAELType : STRUCT
 		Type : McAELEnum; (*Encoder link selector setting*)
@@ -1450,7 +1497,8 @@ TYPE
 		mcACM_POS_CTRL := 0, (*Position controller - Automatic speed feed-forward with prediction time > 0*)
 		mcACM_POS_CTRL_TORQ_FF := 1, (*Position controller torque ff - Torque feed-forward with specified parameters*)
 		mcACM_POS_CTRL_MDL_BASED := 3, (*Position controller model based - Model based control with specified parameters*)
-		mcACM_V_FREQ_CTRL := 2 (*Voltage frequency control - Voltage/frequency control of induction motor with specified parameters*)
+		mcACM_V_FREQ_CTRL := 2, (*Voltage frequency control - Voltage/frequency control of induction motor with specified parameters*)
+		mcACM_VIB_CTRL := 4 (*Vibration control - Vibration control with specified parameters*)
 		);
 	McACPCType : STRUCT (*Position controller parameters*)
 		ProportionalGain : REAL; (*Proportional amplification [1/s]*)
@@ -1557,10 +1605,46 @@ TYPE
 	McACLFType : STRUCT (*Parameters of the loop filters*)
 		LoopFilter : ARRAY[0..2] OF McACLFSType; (*Type of the loop filter*)
 	END_STRUCT;
+	McACCTMEnum :
+		( (*Cycle time mode selector setting*)
+		mcACCTM_STD := 0, (*Standard - 400µs/200µs/200µs*)
+		mcACCTM_ADV := 1, (*Advanced - 100µs/100µs/100µs*)
+		mcACCTM_PWR := 2 (*Power - 50µs/50µs/50µs*)
+		);
+	McACCTMSgenEnum :
+		( (*Set value generation selector setting*)
+		mcACCTMSgen_STD := 0, (*Standard - Standard: 400µs*)
+		mcACCTMSgen_CYCLE_TIME_OF_CTRL := 128 (*Cycle time of controller - Position controller cycle time*)
+		);
+	McACCTMSgenType : STRUCT (*Selects if set value generation is done in the faster position controller cycle*)
+		Type : McACCTMSgenEnum; (*Set value generation selector setting*)
+	END_STRUCT;
+	McACCTMIOsEnum :
+		( (*IOs on plug-in cards selector setting*)
+		mcACCTMIOs_STD := 0, (*Standard - Standard: 400µs*)
+		mcACCTMIOs_CYCLE_TIME_OF_CTRL := 1 (*Cycle time of controller - Position controller cycle time*)
+		);
+	McACCTMIOsType : STRUCT (*Selects if DIO/AIOs on plug-in cards are handled in faster position controller cycle*)
+		Type : McACCTMIOsEnum; (*IOs on plug-in cards selector setting*)
+	END_STRUCT;
+	McACCTMAdvType : STRUCT (*Type mcACCTM_ADV settings*)
+		SetValueGeneration : McACCTMSgenType; (*Selects if set value generation is done in the faster position controller cycle*)
+		IOsOnPlugInCards : McACCTMIOsType; (*Selects if DIO/AIOs on plug-in cards are handled in faster position controller cycle*)
+	END_STRUCT;
+	McACCTMPwrType : STRUCT (*Type mcACCTM_PWR settings*)
+		SetValueGeneration : McACCTMSgenType; (*Selects if set value generation is done in the faster position controller cycle*)
+		IOsOnPlugInCards : McACCTMIOsType; (*Selects if DIO/AIOs on plug-in cards are handled in faster position controller cycle*)
+	END_STRUCT;
+	McACCTMType : STRUCT (*Controller cascade cycle time mode; Position/Speed/Current; Check documentation for limitations*)
+		Type : McACCTMEnum; (*Cycle time mode selector setting*)
+		Advanced : McACCTMAdvType; (*Type mcACCTM_ADV settings*)
+		Power : McACCTMPwrType; (*Type mcACCTM_PWR settings*)
+	END_STRUCT;
 	McACMPCType : STRUCT (*Type mcACM_POS_CTRL settings*)
 		Position : McACPCType; (*Position controller parameters*)
 		Speed : McACSCType; (*Speed controller parameters*)
 		LoopFilters : McACLFType; (*Parameters of the loop filters*)
+		CycleTimeMode : McACCTMType; (*Controller cascade cycle time mode; Position/Speed/Current; Check documentation for limitations*)
 	END_STRUCT;
 	McACPCFFType : STRUCT (*Position controller parameters*)
 		ProportionalGain : REAL; (*Proportional amplification [1/s]*)
@@ -1589,6 +1673,7 @@ TYPE
 		Speed : McACSCType; (*Speed controller parameters*)
 		FeedForward : McACMPCFFFFwdType; (*Torque feed-forward control parameters*)
 		LoopFilters : McACLFType; (*Parameters of the loop filters*)
+		CycleTimeMode : McACCTMType; (*Controller cascade cycle time mode; Position/Speed/Current; Check documentation for limitations*)
 	END_STRUCT;
 	McACMPCMBCPosType : STRUCT (*Position controller parameters*)
 		ProportionalGain : REAL; (*Proportional amplification [1/s]*)
@@ -1670,6 +1755,7 @@ TYPE
 		Feedback : McACMPCMBCFdbkType; (*Feedback control parameters*)
 		Model : McACMPCMBCMdlType; (*Load model parameters*)
 		LoopFilters : McACLFType; (*Parameters of the loop filters*)
+		CycleTimeMode : McACCTMType; (*Controller cascade cycle time mode; Position/Speed/Current; Check documentation for limitations*)
 	END_STRUCT;
 	McACMVFCVFTypEnum :
 		( (*Type of characteristic curve*)
@@ -1685,7 +1771,7 @@ TYPE
 	McACMVFCVFAutCfgNotUseType : STRUCT (*Type mcACMVFCVFAC_NOT_USE settings*)
 		BoostVoltage : REAL; (*Boost voltage [V]*)
 		RatedVoltage : REAL; (*Rated voltage [V]*)
-		RatedFrequency : REAL; (*Rated frequency [cps]*)
+		RatedFrequency : REAL; (*Rated frequency [Hz]*)
 	END_STRUCT;
 	McACMVFCVFAutCfgType : STRUCT (*Automatic configuration of parameters*)
 		Type : McACMVFCVFAutCfgEnum; (*Automatic configuration selector setting*)
@@ -1700,12 +1786,80 @@ TYPE
 	McACMVFCType : STRUCT (*Type mcACM_V_FREQ_CTRL settings*)
 		VoltageFrequency : McACMVFCVFType; (*V/f control parameters*)
 	END_STRUCT;
+	McACMVCFreqAdptEnum :
+		( (*Frequency adaption selector setting*)
+		mcACMVCFA_NOT_USE := 0, (*Not used - The frequency adaption is not used*)
+		mcACMVCFA_USE := 1 (*Used - The frequency adaption is not used*)
+		);
+	McACMVCFreqAdptUseType : STRUCT (*Type mcACMVCFA_USE settings*)
+		ProportionalGain : REAL; (*Vibration control: Amplification factor frequency control [Hz/rad]*)
+		IntegrationTime : REAL; (*Vibration control: Integration time frequency control [s]*)
+		ReferenceValue : REAL; (*Vibration control: Reference value of 3rd harmonic phase shift [rad]*)
+	END_STRUCT;
+	McACMVCFreqAdptType : STRUCT (*Usage of the frequency adaption*)
+		Type : McACMVCFreqAdptEnum; (*Frequency adaption selector setting*)
+		Used : McACMVCFreqAdptUseType; (*Type mcACMVCFA_USE settings*)
+	END_STRUCT;
+	McACMVCAmpAdptEnum :
+		( (*Amplitude adaption selector setting*)
+		mcACMVCAA_NOT_USE := 0, (*Not used - The amplitude adaption is not used*)
+		mcACMVCAA_USE := 1 (*Used - The amplitude adaption is not used*)
+		);
+	McACMVCAmpAdptUseType : STRUCT (*Type mcACMVCAA_USE settings*)
+		ProportionalGain : REAL; (*Vibration control: Amplification factor amplitude control [A/V]*)
+		IntegrationTime : REAL; (*Vibration control: Integration time amplitude control [s]*)
+		ReferenceValue : REAL; (*Vibration control: Reference value of 3rd harmonic amplitude [V]*)
+	END_STRUCT;
+	McACMVCAmpAdptType : STRUCT (*Usage of the amplitude adaption*)
+		Type : McACMVCAmpAdptEnum; (*Amplitude adaption selector setting*)
+		Used : McACMVCAmpAdptUseType; (*Type mcACMVCAA_USE settings*)
+	END_STRUCT;
+	McACMVCCurCtrlEnum :
+		( (*Current controller selector setting*)
+		mcACMVCCC_DEF := 0, (*Default - Usage of the default values calculated on the drive*)
+		mcACMVCCC_USR_DEF := 1 (*User defined - The current controller parameters are set by the user*)
+		);
+	McACMVCCurCtrlUsrDefType : STRUCT (*Type mcACMVCCC_USR_DEF settings*)
+		ProportionalGain : REAL; (*Current controller Proportional gain [V/A]*)
+		IntegrationTime : REAL; (*Current controller Integration time [s]*)
+	END_STRUCT;
+	McACMVCCurCtrlType : STRUCT (*Current controller settings*)
+		Type : McACMVCCurCtrlEnum; (*Current controller selector setting*)
+		UserDefined : McACMVCCurCtrlUsrDefType; (*Type mcACMVCCC_USR_DEF settings*)
+	END_STRUCT;
+	McACMVCOptParAmpScEnum :
+		( (*Amplitude scaling selector setting*)
+		mcACMVCOPAS_NOT_USE := 0, (*Not used - Scaling is not used*)
+		mcACMVCOPAS_USE := 1 (*Used - Scaling is used*)
+		);
+	McACMVCOptParAmpScType : STRUCT (*Vibration control: Mode for scaling of amplitude of 3rd harmonic*)
+		Type : McACMVCOptParAmpScEnum; (*Amplitude scaling selector setting*)
+	END_STRUCT;
+	McACMVCOptParType : STRUCT (*Optional parameters*)
+		BoostGain : REAL; (*Vibration control: Boost gain*)
+		BoostTime : REAL; (*Vibration control: Boost time [s]*)
+		BrakeTime : REAL; (*Vibration control: Brake time [s]*)
+		AmplitudeLimit : REAL; (*Vibration control: Upper amplitude limit [A]*)
+		AmplitudeScaling : McACMVCOptParAmpScType; (*Vibration control: Mode for scaling of amplitude of 3rd harmonic*)
+	END_STRUCT;
+	McACMVCType : STRUCT (*Type mcACM_VIB_CTRL settings*)
+		ExcitationFrequency : REAL; (*Vibration control: Excitation frequency. Range 10..MOTOR_SPEED_MAX/60*0.5 [Hz]*)
+		ExcitationAmplitude : REAL; (*Vibration control Excitation amplitude [A]*)
+		AmplificationFactorFirstHarmonic : REAL; (*Vibration control Amplification factor fundamental first harmonic*)
+		AmplificationFactorThirdHarmonic : REAL; (*Vibration control Amplification factor third harmonic*)
+		FrequencyAdaption : McACMVCFreqAdptType; (*Usage of the frequency adaption*)
+		AmplitudeAdaption : McACMVCAmpAdptType; (*Usage of the amplitude adaption*)
+		CurrentController : McACMVCCurCtrlType; (*Current controller settings*)
+		OptionalParameters : McACMVCOptParType; (*Optional parameters*)
+		CycleTimeMode : McACCTMType; (*Controller cascade cycle time mode; Position/Speed/Current; Check documentation for limitations*)
+	END_STRUCT;
 	McACModType : STRUCT (*Mode of the axis controller*)
 		Type : McACModEnum; (*Mode selector setting*)
 		PositionController : McACMPCType; (*Type mcACM_POS_CTRL settings*)
 		PositionControllerTorqueFf : McACMPCFFType; (*Type mcACM_POS_CTRL_TORQ_FF settings*)
 		PositionControllerModelBased : McACMPCMBCType; (*Type mcACM_POS_CTRL_MDL_BASED settings*)
 		VoltageFrequencyControl : McACMVFCType; (*Type mcACM_V_FREQ_CTRL settings*)
+		VibrationControl : McACMVCType; (*Type mcACM_VIB_CTRL settings*)
 	END_STRUCT;
 	McACType : STRUCT (*Axis controller parameters*)
 		Mode : McACModType; (*Mode of the axis controller*)
@@ -1717,7 +1871,6 @@ TYPE
 		mcAHM_SW_GATE := 2, (*Switch gate - Homing with reference switch gate*)
 		mcAHM_LIM_SW := 3, (*Limit switch - Homing with hardware end switch*)
 		mcAHM_ABS := 4, (*Absolute - Homing by setting the home offset*)
-		mcAHM_ABS_INT := 11, (*Absolute internal - Homing by determining the home offset on drive*)
 		mcAHM_ABS_CORR := 5, (*Absolute correction - Homing by setting the home offset with counting range correction*)
 		mcAHM_DIST_C_MARKS := 6, (*Distance coded marks - Homing with distance coded reference marks*)
 		mcAHM_DIST_C_MARKS_CORR := 7, (*Distance coded marks correction - Homing with distance coded reference marks and counting range correction*)
@@ -1742,18 +1895,18 @@ TYPE
 		mcAHMKD_YES := 1 (*Yes - mcSWITCH_ON*)
 		);
 	McAHModDirRefPUseType : STRUCT (*Type mcAHMDRP_USE settings*)
-		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [Measurement units/s]*)
-		Acceleration : REAL; (*Acceleration for homing movement [Measurement units/s²]*)
+		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [measurement units/s]*)
+		Acceleration : REAL; (*Acceleration for homing movement [measurement units/s²]*)
 		HomingDirection : McAHModHomeDirEnum; (*Movement direction in which the homing event is evaluated*)
 		KeepDirection : McAHModKeepDirEnum; (*Keep direction (move only in one direction)*)
-		ReferencePulseBlockingDistance : LREAL; (*Distance for blocking the activation of triggering reference pulse [Measurement units]*)
+		ReferencePulseBlockingDistance : LREAL; (*Distance for blocking the activation of triggering reference pulse [measurement units]*)
 	END_STRUCT;
 	McAHModDirRefPType : STRUCT (*Use reference pulse of encoder*)
 		Type : McAHModDirRefPEnum; (*Reference pulse selector setting*)
 		Used : McAHModDirRefPUseType; (*Type mcAHMDRP_USE settings*)
 	END_STRUCT;
 	McAHModDirType : STRUCT (*Type mcAHM_DIR settings*)
-		Position : LREAL; (*Home position [Measurement units]*)
+		Position : LREAL; (*Home position [measurement units]*)
 		ReferencePulse : McAHModDirRefPType; (*Use reference pulse of encoder*)
 	END_STRUCT;
 	McAHModSwEdgEnum :
@@ -1767,17 +1920,17 @@ TYPE
 		mcAHMRP_USE := 1 (*Used - Reference pulse is used*)
 		);
 	McAHModRefPUseType : STRUCT (*Type mcAHMRP_USE settings*)
-		ReferencePulseBlockingDistance : LREAL; (*Distance for blocking the activation of triggering reference pulse [Measurement units]*)
+		ReferencePulseBlockingDistance : LREAL; (*Distance for blocking the activation of triggering reference pulse [measurement units]*)
 	END_STRUCT;
 	McAHModRefPType : STRUCT (*Use reference pulse of encoder*)
 		Type : McAHModRefPEnum; (*Reference pulse selector setting*)
 		Used : McAHModRefPUseType; (*Type mcAHMRP_USE settings*)
 	END_STRUCT;
 	McAHModAbsSwType : STRUCT (*Type mcAHM_ABS_SW settings*)
-		Position : LREAL; (*Home position [Measurement units]*)
-		StartVelocity : REAL; (*Speed for searching the reference switch [Measurement units/s]*)
-		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [Measurement units/s]*)
-		Acceleration : REAL; (*Acceleration for homing movement [Measurement units/s²]*)
+		Position : LREAL; (*Home position [measurement units]*)
+		StartVelocity : REAL; (*Speed for searching the reference switch [measurement units/s]*)
+		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [measurement units/s]*)
+		Acceleration : REAL; (*Acceleration for homing movement [measurement units/s²]*)
 		SwitchEdge : McAHModSwEdgEnum; (*Edge of reference switch*)
 		HomingDirection : McAHModHomeDirEnum; (*Movement direction in which the homing event is evaluated*)
 		KeepDirection : McAHModKeepDirEnum; (*Keep direction (move only in one direction)*)
@@ -1789,10 +1942,10 @@ TYPE
 		mcAHMSD_NEG := 1 (*Negative - Negative movement direction*)
 		);
 	McAHModSwGateType : STRUCT (*Type mcAHM_SW_GATE settings*)
-		Position : LREAL; (*Home position [Measurement units]*)
-		StartVelocity : REAL; (*Speed for searching the reference switch [Measurement units/s]*)
-		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [Measurement units/s]*)
-		Acceleration : REAL; (*Acceleration for homing movement [Measurement units/s²]*)
+		Position : LREAL; (*Home position [measurement units]*)
+		StartVelocity : REAL; (*Speed for searching the reference switch [measurement units/s]*)
+		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [measurement units/s]*)
+		Acceleration : REAL; (*Acceleration for homing movement [measurement units/s²]*)
 		SwitchEdge : McAHModSwEdgEnum; (*Edge of reference switch*)
 		StartDirection : McAHModStartDirEnum; (*Start direction of movement for searching the reference switch*)
 		HomingDirection : McAHModHomeDirEnum; (*Movement direction in which the homing event is evaluated*)
@@ -1800,71 +1953,104 @@ TYPE
 		ReferencePulse : McAHModRefPType; (*Use reference pulse of encoder*)
 	END_STRUCT;
 	McAHModLimSwType : STRUCT (*Type mcAHM_LIM_SW settings*)
-		Position : LREAL; (*Home position [Measurement units]*)
-		StartVelocity : REAL; (*Speed for searching the reference switch [Measurement units/s]*)
-		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [Measurement units/s]*)
-		Acceleration : REAL; (*Acceleration for homing movement [Measurement units/s²]*)
+		Position : LREAL; (*Home position [measurement units]*)
+		StartVelocity : REAL; (*Speed for searching the reference switch [measurement units/s]*)
+		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [measurement units/s]*)
+		Acceleration : REAL; (*Acceleration for homing movement [measurement units/s²]*)
 		SwitchEdge : McAHModSwEdgEnum; (*Edge of reference switch*)
 		HomingDirection : McAHModHomeDirEnum; (*Movement direction in which the homing event is evaluated*)
 		KeepDirection : McAHModKeepDirEnum; (*Keep direction (move only in one direction)*)
 		ReferencePulse : McAHModRefPType; (*Use reference pulse of encoder*)
 	END_STRUCT;
 	McAHModAbsType : STRUCT (*Type mcAHM_ABS settings*)
-		Position : LREAL; (*Home offset [Measurement units]*)
-	END_STRUCT;
-	McAHModAbsIntType : STRUCT (*Type mcAHM_ABS_INT settings*)
-		Position : LREAL; (*Home offset [Measurement units]*)
+		Position : LREAL; (*Home offset [measurement units]*)
 	END_STRUCT;
 	McAHModAbsCorrType : STRUCT (*Type mcAHM_ABS_CORR settings*)
-		Position : LREAL; (*Home offset [Measurement units]*)
+		Position : LREAL; (*Home offset [measurement units]*)
 	END_STRUCT;
 	McAHModDistCMarksType : STRUCT (*Type mcAHM_DIST_C_MARKS settings*)
-		Position : LREAL; (*Home position [Measurement units]*)
-		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [Measurement units/s]*)
-		Acceleration : REAL; (*Acceleration for homing movement [Measurement units/s²]*)
+		Position : LREAL; (*Home position [measurement units]*)
+		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [measurement units/s]*)
+		Acceleration : REAL; (*Acceleration for homing movement [measurement units/s²]*)
 		HomingDirection : McAHModHomeDirEnum; (*Movement direction in which the homing event is evaluated*)
 		KeepDirection : McAHModKeepDirEnum; (*Keep direction (move only in one direction)*)
 	END_STRUCT;
 	McAHModDistCMarksCorrType : STRUCT (*Type mcAHM_DIST_C_MARKS_CORR settings*)
-		Position : LREAL; (*Home position [Measurement units]*)
-		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [Measurement units/s]*)
-		Acceleration : REAL; (*Acceleration for homing movement [Measurement units/s²]*)
+		Position : LREAL; (*Home position [measurement units]*)
+		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [measurement units/s]*)
+		Acceleration : REAL; (*Acceleration for homing movement [measurement units/s²]*)
 		HomingDirection : McAHModHomeDirEnum; (*Movement direction in which the homing event is evaluated*)
 		KeepDirection : McAHModKeepDirEnum; (*Keep direction (move only in one direction)*)
 	END_STRUCT;
 	McAHModBlkRefPNotUseType : STRUCT (*Type mcAHMRP_NOT_USE settings*)
-		MinimumReturnDistance : LREAL; (*Minimum return distance after the blockade is reached [Measurement units]*)
+		MinimumReturnDistance : LREAL; (*Minimum return distance after the blockade is reached [measurement units]*)
 	END_STRUCT;
 	McAHModBlkRefPUseType : STRUCT (*Type mcAHMRP_USE settings*)
-		ReferencePulseBlockingDistance : LREAL; (*Distance for blocking the activation of triggering reference pulse [Measurement units]*)
+		ReferencePulseBlockingDistance : LREAL; (*Distance for blocking the activation of triggering reference pulse [measurement units]*)
 	END_STRUCT;
 	McAHModBlkRefPType : STRUCT (*Use reference pulse of encoder*)
 		Type : McAHModRefPEnum; (*Reference pulse selector setting*)
 		NotUsed : McAHModBlkRefPNotUseType; (*Type mcAHMRP_NOT_USE settings*)
 		Used : McAHModBlkRefPUseType; (*Type mcAHMRP_USE settings*)
 	END_STRUCT;
+	McAHModBlkTorqAddTorqLimEnum :
+		( (*Additional torque limit selector setting*)
+		mcAHMBTATL_NOT_USE := 0, (*Not used - Additional torque limit is not used*)
+		mcAHMBTATL_POS_DIR := 1, (*Positive direction - Additional torque limit is active in positive movement direction*)
+		mcAHMBTATL_NEG_DIR := 2 (*Negative direction - Additional torque limit is active in negative movement direction*)
+		);
+	McAHModBlkTqAddTqLimPosDirType : STRUCT (*Type mcAHMBTATL_POS_DIR settings*)
+		TorqueLimit : REAL; (*Additional torque limit in positive movement direction for homing on block [Nm]*)
+	END_STRUCT;
+	McAHModBlkTqAddTqLimNegDirType : STRUCT (*Type mcAHMBTATL_NEG_DIR settings*)
+		TorqueLimit : REAL; (*Additional torque limit in negative movement direction for homing on block [Nm]*)
+	END_STRUCT;
+	McAHModBlkTorqAddTorqLimType : STRUCT (*Activate an additional torque limit for a defined movement direction*)
+		Type : McAHModBlkTorqAddTorqLimEnum; (*Additional torque limit selector setting*)
+		PositiveDirection : McAHModBlkTqAddTqLimPosDirType; (*Type mcAHMBTATL_POS_DIR settings*)
+		NegativeDirection : McAHModBlkTqAddTqLimNegDirType; (*Type mcAHMBTATL_NEG_DIR settings*)
+	END_STRUCT;
 	McAHModBlkTorqType : STRUCT (*Type mcAHM_BLK_TORQ settings*)
-		Position : LREAL; (*Home position [Measurement units]*)
-		StartVelocity : REAL; (*Speed for searching the reference switch [Measurement units/s]*)
-		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [Measurement units/s]*)
-		Acceleration : REAL; (*Acceleration for homing movement [Measurement units/s²]*)
+		Position : LREAL; (*Home position [measurement units]*)
+		StartVelocity : REAL; (*Speed for searching the reference switch [measurement units/s]*)
+		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [measurement units/s]*)
+		Acceleration : REAL; (*Acceleration for homing movement [measurement units/s²]*)
 		StartDirection : McAHModStartDirEnum; (*Start direction of movement for searching the reference switch*)
 		HomingDirection : McAHModHomeDirEnum; (*Movement direction in which the homing event is evaluated*)
 		ReferencePulse : McAHModBlkRefPType; (*Use reference pulse of encoder*)
 		TorqueLimit : REAL; (*Torque limit for homing on block [Nm]*)
-		PositionErrorStopLimit : LREAL; (*Lag error for stop of the homing movement [Measurement units]*)
+		PositionErrorStopLimit : LREAL; (*Lag error for stop of the homing movement [measurement units]*)
+		AdditionalTorqueLimit : McAHModBlkTorqAddTorqLimType; (*Activate an additional torque limit for a defined movement direction*)
+	END_STRUCT;
+	McAHModBlkLagErrAddTorqLimEnum :
+		( (*Additional torque limit selector setting*)
+		mcAHMBLEATL_NOT_USE := 0, (*Not used - Additional torque limit is not used*)
+		mcAHMBLEATL_POS_DIR := 1, (*Positive direction - Additional torque limit is active in positive movement direction*)
+		mcAHMBLEATL_NEG_DIR := 2 (*Negative direction - Additional torque limit is active in negative movement direction*)
+		);
+	McAHModBlkLErrAddTqLimPosDirType : STRUCT (*Type mcAHMBLEATL_POS_DIR settings*)
+		TorqueLimit : REAL; (*Additional torque limit in positive movement direction for homing on block [Nm]*)
+	END_STRUCT;
+	McAHModBlkLErrAddTqLimNegDirType : STRUCT (*Type mcAHMBLEATL_NEG_DIR settings*)
+		TorqueLimit : REAL; (*Additional torque limit in negative movement direction for homing on block [Nm]*)
+	END_STRUCT;
+	McAHModBlkLagErrAddTorqLimType : STRUCT (*Activate an additional torque limit for a defined movement direction*)
+		Type : McAHModBlkLagErrAddTorqLimEnum; (*Additional torque limit selector setting*)
+		PositiveDirection : McAHModBlkLErrAddTqLimPosDirType; (*Type mcAHMBLEATL_POS_DIR settings*)
+		NegativeDirection : McAHModBlkLErrAddTqLimNegDirType; (*Type mcAHMBLEATL_NEG_DIR settings*)
 	END_STRUCT;
 	McAHModBlkLagErrType : STRUCT (*Type mcAHM_BLK_LAG_ERR settings*)
-		Position : LREAL; (*Home position [Measurement units]*)
-		StartVelocity : REAL; (*Speed for searching the reference switch [Measurement units/s]*)
-		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [Measurement units/s]*)
-		Acceleration : REAL; (*Acceleration for homing movement [Measurement units/s²]*)
+		Position : LREAL; (*Home position [measurement units]*)
+		StartVelocity : REAL; (*Speed for searching the reference switch [measurement units/s]*)
+		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [measurement units/s]*)
+		Acceleration : REAL; (*Acceleration for homing movement [measurement units/s²]*)
 		StartDirection : McAHModStartDirEnum; (*Start direction of movement for searching the reference switch*)
 		HomingDirection : McAHModHomeDirEnum; (*Movement direction in which the homing event is evaluated*)
 		ReferencePulse : McAHModBlkRefPType; (*Use reference pulse of encoder*)
 		TorqueLimit : REAL; (*Torque limit for homing on block [Nm]*)
-		PositionErrorStopLimit : LREAL; (*Lag error for stop of the homing movement [Measurement units]*)
-		BlockDetectionPositionError : LREAL; (*Lag error for block detection [Measurement units]*)
+		PositionErrorStopLimit : LREAL; (*Lag error for stop of the homing movement [measurement units]*)
+		BlockDetectionPositionError : LREAL; (*Lag error for block detection [measurement units]*)
+		AdditionalTorqueLimit : McAHModBlkLagErrAddTorqLimType; (*Activate an additional torque limit for a defined movement direction*)
 	END_STRUCT;
 	McAHModType : STRUCT (*Homing mode*)
 		Type : McAHModEnum; (*Mode selector setting*)
@@ -1873,48 +2059,70 @@ TYPE
 		SwitchGate : McAHModSwGateType; (*Type mcAHM_SW_GATE settings*)
 		LimitSwitch : McAHModLimSwType; (*Type mcAHM_LIM_SW settings*)
 		Absolute : McAHModAbsType; (*Type mcAHM_ABS settings*)
-		AbsoluteInternal : McAHModAbsIntType; (*Type mcAHM_ABS_INT settings*)
 		AbsoluteCorrection : McAHModAbsCorrType; (*Type mcAHM_ABS_CORR settings*)
 		DistanceCodedMarks : McAHModDistCMarksType; (*Type mcAHM_DIST_C_MARKS settings*)
 		DistanceCodedMarksCorrection : McAHModDistCMarksCorrType; (*Type mcAHM_DIST_C_MARKS_CORR settings*)
 		BlockTorque : McAHModBlkTorqType; (*Type mcAHM_BLK_TORQ settings*)
 		BlockLagError : McAHModBlkLagErrType; (*Type mcAHM_BLK_LAG_ERR settings*)
 	END_STRUCT;
+	McAHMRPAPCEnum :
+		( (*Restore position axis scaling check selector setting*)
+		mcAHMRPAPC_NOT_USE := 0, (*Not used - Axis parameterization check is not performed*)
+		mcAHMRPAPC_USE := 1 (*Used - Axis parameterization check is performed*)
+		);
+	McAHMRPAPCType : STRUCT (*Activate check if axis parameterization has change for restore position*)
+		Type : McAHMRPAPCEnum; (*Restore position axis scaling check selector setting*)
+	END_STRUCT;
 	McAHType : STRUCT (*Homing mode and parameters which can be used within the application program as preconfigured setting*)
 		Mode : McAHModType; (*Homing mode*)
 		RestorePositionVariable : STRING[250]; (*Remanent variable used for homing mode: Restore position*)
+		AxParCk : McAHMRPAPCType; (*Activate check if axis parameterization has change for restore position*)
 	END_STRUCT;
 	McASRQstopEnum :
 		( (*Quickstop selector setting*)
 		mcASRQ_DEC_LIM := 0, (*Deceleration limit - Stop with deceleration limits*)
 		mcASRQ_DEC_LIM_W_JERK_FLTR := 1, (*Deceleration limit with jerk filter - Stop with deceleration limits and jerk filter*)
 		mcASRQ_TORQ_LIM := 2, (*Torque limit - Stop with torque limits*)
+		mcASRQ_TORQ_LIM_W_JERK_FLTR := 4, (*Torque limit with jerk filter - Stop with torque limits and jerk filter*)
+		mcASRQ_VEL_CTRL := 5, (*Velocity control - Stop velocity controlled with axis limits*)
 		mcASRQ_INDUCT_HALT := 3 (*Induction halt - Stop with an induction halt*)
 		);
 	McASRQstopDecLimWJerkFltrType : STRUCT (*Type mcASRQ_DEC_LIM_W_JERK_FLTR settings*)
 		JerkTime : REAL; (*Jerk filter time, max. Axis Jerk time / 2 [s]*)
 	END_STRUCT;
+	McASRQstopTorqLimWJerkFltrType : STRUCT (*Type mcASRQ_TORQ_LIM_W_JERK_FLTR settings*)
+		JerkTime : REAL; (*Jerk filter time, max. Axis Jerk time / 2 [s]*)
+	END_STRUCT;
 	McASRQstopType : STRUCT (*Deceleration ramp / reaction in case of a quickstop which is caused by an active quickstop input*)
 		Type : McASRQstopEnum; (*Quickstop selector setting*)
 		DecelerationLimitWithJerkFilter : McASRQstopDecLimWJerkFltrType; (*Type mcASRQ_DEC_LIM_W_JERK_FLTR settings*)
+		TorqueLimitWithJerkFilter : McASRQstopTorqLimWJerkFltrType; (*Type mcASRQ_TORQ_LIM_W_JERK_FLTR settings*)
 	END_STRUCT;
 	McASRDrvErrEnum :
 		( (*Drive error selector setting*)
 		mcASRDE_DEC_LIM := 0, (*Deceleration limit - Stop with deceleration limits*)
+		mcASRDE_TORQ_LIM := 4, (*Torque limit - Stop with torque limits*)
+		mcASRDE_TORQ_LIM_W_JERK_FLTR := 5, (*Torque limit with jerk filter - Stop with torque limits and jerk filter*)
+		mcASRDE_VEL_CTRL := 6, (*Velocity control - Stop velocity controlled with axis limits*)
 		mcASRDE_INDUCT_HALT := 1, (*Induction halt - Stop with an induction halt*)
 		mcASRDE_COAST_TO_STANDSTILL := 2, (*Coast to standstill - Controller is deactivated*)
 		mcASRDE_CYC_DEC_FROM_AX_GRP := 3 (*Cyclic deceleration from axes group - The deceleration calculation is done by the axes group on the PLC and the value is forwarded to the axis*)
 		);
+	McASRDrvErrTorqLimWJerkFltrType : STRUCT (*Type mcASRDE_TORQ_LIM_W_JERK_FLTR settings*)
+		JerkTime : REAL; (*Jerk filter time, max. Axis Jerk time / 2 [s]*)
+	END_STRUCT;
 	McASRDrvErrCycDecFromAxGrpType : STRUCT (*Type mcASRDE_CYC_DEC_FROM_AX_GRP settings*)
 		DefaultDeceleration : REAL; (*Default deceleration value. If 0.0, the maximum allowed value is used [Measurement units/s²]*)
 	END_STRUCT;
 	McASRDrvErrType : STRUCT (*Deceleration ramp / Response in the event of ErrorStop caused by drive error*)
 		Type : McASRDrvErrEnum; (*Drive error selector setting*)
+		TorqueLimitWithJerkFilter : McASRDrvErrTorqLimWJerkFltrType; (*Type mcASRDE_TORQ_LIM_W_JERK_FLTR settings*)
 		CyclicDecelerationFromAxesGroup : McASRDrvErrCycDecFromAxGrpType; (*Type mcASRDE_CYC_DEC_FROM_AX_GRP settings*)
 	END_STRUCT;
 	McASRType : STRUCT (*Reactions of the axis in case of certain stop conditions*)
 		Quickstop : McASRQstopType; (*Deceleration ramp / reaction in case of a quickstop which is caused by an active quickstop input*)
 		DriveError : McASRDrvErrType; (*Deceleration ramp / Response in the event of ErrorStop caused by drive error*)
+		FilterTime : REAL; (*Filter time for stop reaction [s]*)
 	END_STRUCT;
 	McAMELVelErrMonEnum :
 		( (*Velocity error monitoring selector setting*)
@@ -1924,14 +2132,14 @@ TYPE
 		mcAMELVEM_NOT_USE := 3 (*Not used - Velocity error monitoring is not active*)
 		);
 	McAMELVelErrMonUsrDefType : STRUCT (*Type mcAMELVEM_USRDEF settings*)
-		VelocityError : REAL; (*Velocity error limit for stopping a movement [Measurement units/s]*)
+		VelocityError : REAL; (*Velocity error limit for stopping a movement [measurement units/s]*)
 	END_STRUCT;
 	McAMELVelErrMonType : STRUCT (*Velocity error monitoring mode*)
 		Type : McAMELVelErrMonEnum; (*Velocity error monitoring selector setting*)
 		UserDefined : McAMELVelErrMonUsrDefType; (*Type mcAMELVEM_USRDEF settings*)
 	END_STRUCT;
 	McAMELType : STRUCT (*Limit values that result in a stop reaction when exceeded*)
-		PositionError : LREAL; (*Lag error limit for stopping a movement [Measurement units]*)
+		PositionError : LREAL; (*Lag error limit for stopping a movement [measurement units]*)
 		VelocityErrorMonitoring : McAMELVelErrMonType; (*Velocity error monitoring mode*)
 	END_STRUCT;
 	McAJFEnum :
@@ -1995,13 +2203,13 @@ TYPE
 		Variable : McADIAllSrcVarType; (*Type mcADIAS_VAR settings*)
 	END_STRUCT;
 	McADILvlEnum :
-		( (*Level of the digital input hardware which leads to an active level of the functionality*)
+		( (*Level of the digital input hardware which leads to an active level of the functionality, not used with 'Force by function block'*)
 		mcADIL_HIGH := 0, (*High*)
 		mcADIL_LOW := 1 (*Low*)
 		);
 	McADIHomeSwType : STRUCT (*Homing switch input functionality*)
 		Source : McADIHomeSwSrcType; (*Source of the digital input hardware which is used for this functionality*)
-		Level : McADILvlEnum; (*Level of the digital input hardware which leads to an active level of the functionality*)
+		Level : McADILvlEnum; (*Level of the digital input hardware which leads to an active level of the functionality, not used with 'Force by function block'*)
 	END_STRUCT;
 	McADIPosLimSwSrcType : STRUCT (*Source of the digital input hardware which is used for this functionality*)
 		Type : McADIAllSrcEnum; (*Source selector setting*)
@@ -2009,7 +2217,7 @@ TYPE
 	END_STRUCT;
 	McADIPosLimSwType : STRUCT (*Positive limit switch input functionality*)
 		Source : McADIPosLimSwSrcType; (*Source of the digital input hardware which is used for this functionality*)
-		Level : McADILvlEnum; (*Level of the digital input hardware which leads to an active level of the functionality*)
+		Level : McADILvlEnum; (*Level of the digital input hardware which leads to an active level of the functionality, not used with 'Force by function block'*)
 	END_STRUCT;
 	McADINegLimSwSrcType : STRUCT (*Source of the digital input hardware which is used for this functionality*)
 		Type : McADIAllSrcEnum; (*Source selector setting*)
@@ -2017,7 +2225,7 @@ TYPE
 	END_STRUCT;
 	McADINegLimSwType : STRUCT (*Negative limit switch input functionality*)
 		Source : McADINegLimSwSrcType; (*Source of the digital input hardware which is used for this functionality*)
-		Level : McADILvlEnum; (*Level of the digital input hardware which leads to an active level of the functionality*)
+		Level : McADILvlEnum; (*Level of the digital input hardware which leads to an active level of the functionality, not used with 'Force by function block'*)
 	END_STRUCT;
 	McADITrg1SrcType : STRUCT (*Source of the digital input hardware which is used for this functionality*)
 		Type : McADIAllSrcEnum; (*Source selector setting*)
@@ -2025,7 +2233,7 @@ TYPE
 	END_STRUCT;
 	McADITrg1Type : STRUCT (*Trigger 1 input functionality*)
 		Source : McADITrg1SrcType; (*Source of the digital input hardware which is used for this functionality*)
-		Level : McADILvlEnum; (*Level of the digital input hardware which leads to an active level of the functionality*)
+		Level : McADILvlEnum; (*Level of the digital input hardware which leads to an active level of the functionality, not used with 'Force by function block'*)
 	END_STRUCT;
 	McADITrg2SrcType : STRUCT (*Source of the digital input hardware which is used for this functionality*)
 		Type : McADIAllSrcEnum; (*Source selector setting*)
@@ -2033,7 +2241,7 @@ TYPE
 	END_STRUCT;
 	McADITrg2Type : STRUCT (*Trigger 2 input functionality*)
 		Source : McADITrg2SrcType; (*Source of the digital input hardware which is used for this functionality*)
-		Level : McADILvlEnum; (*Level of the digital input hardware which leads to an active level of the functionality*)
+		Level : McADILvlEnum; (*Level of the digital input hardware which leads to an active level of the functionality, not used with 'Force by function block'*)
 	END_STRUCT;
 	McADIQstopInEnum :
 		( (*Digital input functionality triggering an axis quickstop*)
@@ -2101,7 +2309,7 @@ TYPE
 	McASPMComplType : STRUCT (*Type mcASPM_COMPL settings*)
 		LoadModel : McASLMType; (*Parameters of the load simulation model*)
 	END_STRUCT;
-	McASPMType : STRUCT (*Parameters for the simulation of this real axis on the PLC*)
+	McASPMType : STRUCT (*Parameters for the simulation of this real axis on the PLC in case of 'Activate ACOPOS simulation on PLC = On' or ARsim is active*)
 		Type : McASPMEnum; (*Simulation mode on PLC selector setting*)
 		Complete : McASPMComplType; (*Type mcASPM_COMPL settings*)
 	END_STRUCT;
@@ -2119,11 +2327,11 @@ TYPE
 		Complete : McASAMComplType; (*Type mcASAM_COMPL settings*)
 	END_STRUCT;
 	McASType : STRUCT (*Parameters which influence the simulation possibilities of this axis*)
-		ModeOnPLC : McASPMType; (*Parameters for the simulation of this real axis on the PLC*)
+		ModeOnPLC : McASPMType; (*Parameters for the simulation of this real axis on the PLC in case of 'Activate ACOPOS simulation on PLC = On' or ARsim is active*)
 		ModeOnACOPOS : McASAMType; (*Parameters for the motor and load simulation on the drive*)
 	END_STRUCT;
 	McAAFType : STRUCT (*Features for an axis*)
-		FeatureReference : McCfgUnboundedArrayType; (*Name of the axis feature reference*)
+		FeatureReference : McCfgUnboundedArrayType; (*Name of the axis feature reference (Connect array of type McCfgReferenceType)*)
 	END_STRUCT;
 	McCfgAcpAxType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_ACP_AX*)
 		AxisReference : McCfgReferenceType; (*Name of the referenced axis component*)
@@ -2321,10 +2529,16 @@ TYPE
 		DCPowerSupplyModuleReference : McAMPwrSupDCPwrSupModRefType; (*Type mcAMPS_DC_PWR_SUP_MOD_REF settings*)
 		DCBusVoltage : McAMPwrSupDCBusVType; (*Type mcAMPS_DC_BUS_V settings*)
 	END_STRUCT;
+	McAMSWRstAFwUpdEnum :
+		( (*If 'On' is selected, an ACOPOS reset is automatically carried out after the firmware update by sending ParID CMD_SW_RESET*)
+		mcAMSRAFU_ON := 0, (*On - Perform automatic ACOPOS reset after firmware download*)
+		mcAMSRAFU_OFF := 1 (*Off - ACOPOS reset is not performed automatically after firmware download*)
+		);
 	McCfgAcpModType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_ACP_MOD*)
 		ActivateACOPOSSimulationOnPLC : McAMActAcpSimOnPLCEnum; (*Activates or deactivates the ACOPOS simulation on the PLC*)
 		BusVoltage : UINT; (*Bus voltage [V]*)
 		PowerSupply : McAMPwrSupType; (*Selects the power supply or DC bus voltage*)
+		SWResetAfterFirmwareUpdate : McAMSWRstAFwUpdEnum; (*If 'On' is selected, an ACOPOS reset is automatically carried out after the firmware update by sending ParID CMD_SW_RESET*)
 	END_STRUCT;
 	McAEEncX6AIfTypEnum :
 		( (*Interface type selector setting*)
@@ -2499,7 +2713,8 @@ TYPE
 		mcAEX41IT_HIPERFACE_DSL := 4, (*HIPERFACE DSL -*)
 		mcAEX41IT_TFMT := 5, (*T-Format - Tamagawa digital interface*)
 		mcAEX41IT_MOT_DAT_IF := 6, (*Motion Data Interface - B&R bi-directional asynchronous serial interface*)
-		mcAEX41IT_ENDAT_SAFEMOTION := 7 (*EnDat SafeMOTION -*)
+		mcAEX41IT_ENDAT_SAFEMOTION := 7, (*EnDat SafeMOTION -*)
+		mcAEX41IT_ENDAT_3 := 8 (*EnDat 3 -*)
 		);
 	McAEX41BPwrSupEnum :
 		( (*Power supply of the encoder*)
@@ -2602,7 +2817,8 @@ TYPE
 		mcAEX42IT_HIPERFACE_DSL := 4, (*HIPERFACE DSL -*)
 		mcAEX42IT_TFMT := 5, (*T-Format - Tamagawa digital interface*)
 		mcAEX42IT_MOT_DAT_IF := 6, (*Motion Data Interface - B&R bi-directional asynchronous serial interface*)
-		mcAEX42IT_ENDAT_SAFEMOTION := 7 (*EnDat SafeMOTION -*)
+		mcAEX42IT_ENDAT_SAFEMOTION := 7, (*EnDat SafeMOTION -*)
+		mcAEX42IT_ENDAT_3 := 8 (*EnDat 3 -*)
 		);
 	McAEX42BPwrSupEnum :
 		( (*Power supply of the encoder*)
@@ -2705,7 +2921,8 @@ TYPE
 		mcAEX43IT_HIPERFACE_DSL := 4, (*HIPERFACE DSL -*)
 		mcAEX43IT_TFMT := 5, (*T-Format - Tamagawa digital interface*)
 		mcAEX43IT_MOT_DAT_IF := 6, (*Motion Data Interface - B&R bi-directional asynchronous serial interface*)
-		mcAEX43IT_ENDAT_SAFEMOTION := 7 (*EnDat SafeMOTION -*)
+		mcAEX43IT_ENDAT_SAFEMOTION := 7, (*EnDat SafeMOTION -*)
+		mcAEX43IT_ENDAT_3 := 8 (*EnDat 3 -*)
 		);
 	McAEX43BPwrSupEnum :
 		( (*Power supply of the encoder*)
@@ -2971,7 +3188,7 @@ TYPE
 		mcAVAVAUHM_NOT_USE := 100 (*Not used - No preconfigured homing settings used*)
 		);
 	McAVAVirtAxUseHomeModDirType : STRUCT (*Type mcAVAVAUHM_DIR settings*)
-		Position : LREAL; (*Home position [Measurement units]*)
+		Position : LREAL; (*Home position [measurement units]*)
 	END_STRUCT;
 	McAVAVirtAxUseHomeModType : STRUCT (*Homing mode*)
 		Type : McAVAVirtAxUseHomeModEnum; (*Mode selector setting*)
@@ -2980,6 +3197,7 @@ TYPE
 	McAVAVirtAxUseHomeType : STRUCT (*Homing mode and parameters which can be used within the application program as preconfigured setting*)
 		Mode : McAVAVirtAxUseHomeModType; (*Homing mode*)
 		RestorePositionVariable : STRING[250]; (*Remanent variable used for homing mode: Restore position*)
+		AxParCk : McAHMRPAPCType; (*Activate check if axis parameterization has change for restore position*)
 	END_STRUCT;
 	McAVAVirtAxUseType : STRUCT (*Type mcAVAVA_USE settings*)
 		AxisReference : McCfgReferenceType; (*Name of the referenced axis component*)
@@ -3005,7 +3223,7 @@ TYPE
 		mcAVHHM_NOT_USE := 100 (*Not used - No preconfigured homing settings used*)
 		);
 	McAVHHomeModDirType : STRUCT (*Type mcAVHHM_DIR settings*)
-		Position : LREAL; (*Home position [Measurement units]*)
+		Position : LREAL; (*Home position [measurement units]*)
 	END_STRUCT;
 	McAVHHomeModType : STRUCT (*Homing mode*)
 		Type : McAVHHomeModEnum; (*Mode selector setting*)
@@ -3014,6 +3232,7 @@ TYPE
 	McAVHHomeType : STRUCT (*Homing mode and parameters which can be used within the application program as preconfigured setting*)
 		Mode : McAVHHomeModType; (*Homing mode*)
 		RestorePositionVariable : STRING[250]; (*Remanent variable used for homing mode: Restore position*)
+		AxParCk : McAHMRPAPCType; (*Activate check if axis parameterization has change for restore position*)
 	END_STRUCT;
 	McCfgAcpVirtHomeType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_ACP_VIRT_HOME*)
 		Homing : McAVHHomeType; (*Homing mode and parameters which can be used within the application program as preconfigured setting*)
@@ -3028,7 +3247,7 @@ TYPE
 		ZeroVibrationFilter : McAZVFType; (*Zero vibration filter*)
 	END_STRUCT;
 	McACFChFeatType : STRUCT (*Features for the channel of a module*)
-		FeatureReference : McCfgUnboundedArrayType; (*Name of the axis feature reference*)
+		FeatureReference : McCfgUnboundedArrayType; (*Name of the axis feature reference (Connect array of type McCfgReferenceType)*)
 	END_STRUCT;
 	McCfgAcpChFeatType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_ACP_CH_FEAT*)
 		ChannelFeatures : McACFChFeatType; (*Features for the channel of a module*)
@@ -3053,10 +3272,369 @@ TYPE
 		mcAEEAUELOEPE_ENC_SS1X11 := 6, (*Encoder SS1.X11 - Plug-in module in SS1*)
 		mcAEEAUELOEPE_ENC_SS2X11 := 7, (*Encoder SS2.X11 - Plug-in module in SS2*)
 		mcAEEAUELOEPE_ENC_SS3X11 := 8, (*Encoder SS3.X11 - Plug-in module in SS3*)
-		mcAEEAUELOEPE_ENC_SS4X11 := 9 (*Encoder SS4.X11 - Plug-in module in SS4*)
+		mcAEEAUELOEPE_ENC_SS4X11 := 9, (*Encoder SS4.X11 - Plug-in module in SS4*)
+		mcAEEAUELOEPE_ENC_ON_NETW := 10 (*Encoder on network - Encoder on Network*)
 		);
+	McAEEON0Enum :
+		( (*Position type selector setting*)
+		mcAEEON0_ABS := 0, (*Absolute - Position from an absolute encoder*)
+		mcAEEON0_INCR := 1 (*Incremental - Position from an incremental encoder*)
+		);
+	McAEEON00Enum :
+		( (*Position format selector setting*)
+		mcAEEON00_D64B := 0, (*d64b - Data from a 64 bit source*)
+		mcAEEON00_D32B := 1, (*d32b - Data from a 32 bit source*)
+		mcAEEON00_D16B := 2 (*d16b - Data from a 16 bit source*)
+		);
+	McAEEON00d64bPosLWEnum :
+		( (*Position LW selector setting*)
+		mcAEEON00DPL_IO_CH_DINT := 0, (*I/O channel DINT - Data from a signed 32 bit I/O channel*)
+		mcAEEON00DPL_IO_CH_UDINT := 1 (*I/O channel UDINT - Data from an unsigned 32 bit I/O channel*)
+		);
+	McAEEON00d64bPosLWIOChDINTType : STRUCT (*Type mcAEEON00DPL_IO_CH_DINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the position low word*)
+	END_STRUCT;
+	McAEEON00d64bPosLWIOChUDINTType : STRUCT (*Type mcAEEON00DPL_IO_CH_UDINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the position low word*)
+	END_STRUCT;
+	McAEEON00d64bPosLWType : STRUCT (*Position low word source*)
+		Type : McAEEON00d64bPosLWEnum; (*Position LW selector setting*)
+		IOChannelDINT : McAEEON00d64bPosLWIOChDINTType; (*Type mcAEEON00DPL_IO_CH_DINT settings*)
+		IOChannelUDINT : McAEEON00d64bPosLWIOChUDINTType; (*Type mcAEEON00DPL_IO_CH_UDINT settings*)
+	END_STRUCT;
+	McAEEON00d64bPosHWEnum :
+		( (*Position HW selector setting*)
+		mcAEEON00DPH_IO_CH_DINT := 0, (*I/O channel DINT - Data from a signed 32 bit I/O channel*)
+		mcAEEON00DPH_IO_CH_UDINT := 1 (*I/O channel UDINT - Data from an unsigned 32 bit I/O channel*)
+		);
+	McAEEON00d64bPosHWIOChDINTType : STRUCT (*Type mcAEEON00DPH_IO_CH_DINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the position high word*)
+	END_STRUCT;
+	McAEEON00d64bPosHWIOChUDINTType : STRUCT (*Type mcAEEON00DPH_IO_CH_UDINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the position high word*)
+	END_STRUCT;
+	McAEEON00d64bPosHWType : STRUCT (*Position high word source*)
+		Type : McAEEON00d64bPosHWEnum; (*Position HW selector setting*)
+		IOChannelDINT : McAEEON00d64bPosHWIOChDINTType; (*Type mcAEEON00DPH_IO_CH_DINT settings*)
+		IOChannelUDINT : McAEEON00d64bPosHWIOChUDINTType; (*Type mcAEEON00DPH_IO_CH_UDINT settings*)
+	END_STRUCT;
+	McAEEON00d64bType : STRUCT (*Type mcAEEON00_D64B settings*)
+		ValueRangeOfPositionLW : UDINT; (*Value range (span) of position low word [increment]*)
+		ValueRangeOfPositionHW : UDINT; (*Value range (span) of position high word [increment]*)
+		PositionLW : McAEEON00d64bPosLWType; (*Position low word source*)
+		PositionHW : McAEEON00d64bPosHWType; (*Position high word source*)
+	END_STRUCT;
+	McAEEON00d32bPosEnum :
+		( (*Position selector setting*)
+		mcAEEON00DP_IO_CH_DINT := 0, (*I/O channel DINT - Data from a signed 32 bit I/O channel*)
+		mcAEEON00DP_IO_CH_UDINT := 1 (*I/O channel UDINT - Data from an unsigned 32 bit I/O channel*)
+		);
+	McAEEON00d32bPosIOChDINTType : STRUCT (*Type mcAEEON00DP_IO_CH_DINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the position*)
+	END_STRUCT;
+	McAEEON00d32bPosIOChUDINTType : STRUCT (*Type mcAEEON00DP_IO_CH_UDINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the position*)
+	END_STRUCT;
+	McAEEON00d32bPosType : STRUCT (*Position source*)
+		Type : McAEEON00d32bPosEnum; (*Position selector setting*)
+		IOChannelDINT : McAEEON00d32bPosIOChDINTType; (*Type mcAEEON00DP_IO_CH_DINT settings*)
+		IOChannelUDINT : McAEEON00d32bPosIOChUDINTType; (*Type mcAEEON00DP_IO_CH_UDINT settings*)
+	END_STRUCT;
+	McAEEON00d32bType : STRUCT (*Type mcAEEON00_D32B settings*)
+		ValueRangeOfPosition : UDINT; (*Value range (span) of position [increment]*)
+		Position : McAEEON00d32bPosType; (*Position source*)
+	END_STRUCT;
+	McAEEON00d16bPosEnum :
+		( (*Position selector setting*)
+		mcAEEON00DP_IO_CH_INT := 2, (*I/O channel INT - Data from a signed 16 bit I/O channel*)
+		mcAEEON00DP_IO_CH_UINT := 3 (*I/O channel UINT - Data from an unsigned 16 bit I/O channel*)
+		);
+	McAEEON00d16bPosIOChINTType : STRUCT (*Type mcAEEON00DP_IO_CH_INT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the position*)
+	END_STRUCT;
+	McAEEON00d16bPosIOChUINTType : STRUCT (*Type mcAEEON00DP_IO_CH_UINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the position*)
+	END_STRUCT;
+	McAEEON00d16bPosType : STRUCT (*Position source*)
+		Type : McAEEON00d16bPosEnum; (*Position selector setting*)
+		IOChannelINT : McAEEON00d16bPosIOChINTType; (*Type mcAEEON00DP_IO_CH_INT settings*)
+		IOChannelUINT : McAEEON00d16bPosIOChUINTType; (*Type mcAEEON00DP_IO_CH_UINT settings*)
+	END_STRUCT;
+	McAEEON00d16bType : STRUCT (*Type mcAEEON00_D16B settings*)
+		ValueRangeOfPosition : UDINT; (*Value range (span) of position [increment]*)
+		Position : McAEEON00d16bPosType; (*Position source*)
+	END_STRUCT;
+	McAEEON00Type : STRUCT (*Position value format*)
+		Type : McAEEON00Enum; (*Position format selector setting*)
+		d64b : McAEEON00d64bType; (*Type mcAEEON00_D64B settings*)
+		d32b : McAEEON00d32bType; (*Type mcAEEON00_D32B settings*)
+		d16b : McAEEON00d16bType; (*Type mcAEEON00_D16B settings*)
+	END_STRUCT;
+	McAEEON01Enum :
+		( (*Position rollover selector setting*)
+		mcAEEON01_AT_ENC_MEAS_RNG := 0, (*At encoder measurement range - At encoder measurement range: for true absolute encoder*)
+		mcAEEON01_AT_DAT_TYP_RNG := 1 (*At data type range - At data type range: for incremental encoder with absolute information*)
+		);
+	McAEEON01Type : STRUCT (*Position value rollover mode*)
+		Type : McAEEON01Enum; (*Position rollover selector setting*)
+	END_STRUCT;
+	McAEEON02Enum :
+		( (*Position time selector setting*)
+		mcAEEON02_IO_CH_DINT := 0, (*I/O channel DINT - Data from a signed 32 bit I/O channel*)
+		mcAEEON02_IO_CH_UDINT := 1, (*I/O channel UDINT - Data from an unsigned 32 bit I/O channel*)
+		mcAEEON02_IO_CH_INT := 2, (*I/O channel INT - Data from a signed 16 bit I/O channel*)
+		mcAEEON02_IO_CH_UINT := 3, (*I/O channel UINT - Data from an unsigned 16 bit I/O channel*)
+		mcAEEON02_NOT_USE := 4 (*Not used - Position time not used*)
+		);
+	McAEEON02IOChDINTType : STRUCT (*Type mcAEEON02_IO_CH_DINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the position time*)
+	END_STRUCT;
+	McAEEON02IOChUDINTType : STRUCT (*Type mcAEEON02_IO_CH_UDINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the position time*)
+	END_STRUCT;
+	McAEEON02IOChINTType : STRUCT (*Type mcAEEON02_IO_CH_INT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the position time*)
+	END_STRUCT;
+	McAEEON02IOChUINTType : STRUCT (*Type mcAEEON02_IO_CH_UINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the position time*)
+	END_STRUCT;
+	McAEEON02Type : STRUCT (*Position time source*)
+		Type : McAEEON02Enum; (*Position time selector setting*)
+		IOChannelDINT : McAEEON02IOChDINTType; (*Type mcAEEON02_IO_CH_DINT settings*)
+		IOChannelUDINT : McAEEON02IOChUDINTType; (*Type mcAEEON02_IO_CH_UDINT settings*)
+		IOChannelINT : McAEEON02IOChINTType; (*Type mcAEEON02_IO_CH_INT settings*)
+		IOChannelUINT : McAEEON02IOChUINTType; (*Type mcAEEON02_IO_CH_UINT settings*)
+	END_STRUCT;
+	McAEEON03Enum :
+		( (*Encoder status selector setting*)
+		mcAEEON03_IO_CH_DINT := 0, (*I/O channel DINT - Data from a signed 32 bit I/O channel*)
+		mcAEEON03_IO_CH_UDINT := 1, (*I/O channel UDINT - Data from an unsigned 32 bit I/O channel*)
+		mcAEEON03_IO_CH_INT := 2, (*I/O channel INT - Data from a signed 16 bit I/O channel*)
+		mcAEEON03_IO_CH_UINT := 3, (*I/O channel UINT - Data from an unsigned 16 bit I/O channel*)
+		mcAEEON03_IO_CH_SINT := 4, (*I/O channel SINT - Data from a signed 8 bit I/O channel*)
+		mcAEEON03_IO_CH_USINT := 5, (*I/O channel USINT - Data from an unsigned 8 bit I/O channel*)
+		mcAEEON03_NOT_USE := 6 (*Not used - Encoder status not used*)
+		);
+	McAEEON03IOChDINTType : STRUCT (*Type mcAEEON03_IO_CH_DINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the encoder status*)
+	END_STRUCT;
+	McAEEON03IOChUDINTType : STRUCT (*Type mcAEEON03_IO_CH_UDINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the encoder status*)
+	END_STRUCT;
+	McAEEON03IOChINTType : STRUCT (*Type mcAEEON03_IO_CH_INT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the encoder status*)
+	END_STRUCT;
+	McAEEON03IOChUINTType : STRUCT (*Type mcAEEON03_IO_CH_UINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the encoder status*)
+	END_STRUCT;
+	McAEEON03IOChSINTType : STRUCT (*Type mcAEEON03_IO_CH_SINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the encoder status*)
+	END_STRUCT;
+	McAEEON03IOChUSINTType : STRUCT (*Type mcAEEON03_IO_CH_USINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the encoder status*)
+	END_STRUCT;
+	McAEEON03Type : STRUCT (*Encoder status source*)
+		Type : McAEEON03Enum; (*Encoder status selector setting*)
+		IOChannelDINT : McAEEON03IOChDINTType; (*Type mcAEEON03_IO_CH_DINT settings*)
+		IOChannelUDINT : McAEEON03IOChUDINTType; (*Type mcAEEON03_IO_CH_UDINT settings*)
+		IOChannelINT : McAEEON03IOChINTType; (*Type mcAEEON03_IO_CH_INT settings*)
+		IOChannelUINT : McAEEON03IOChUINTType; (*Type mcAEEON03_IO_CH_UINT settings*)
+		IOChannelSINT : McAEEON03IOChSINTType; (*Type mcAEEON03_IO_CH_SINT settings*)
+		IOChannelUSINT : McAEEON03IOChUSINTType; (*Type mcAEEON03_IO_CH_USINT settings*)
+	END_STRUCT;
+	McAEEON0AbsType : STRUCT (*Type mcAEEON0_ABS settings*)
+		PositionFormat : McAEEON00Type; (*Position value format*)
+		PositionRollover : McAEEON01Type; (*Position value rollover mode*)
+		PositionTime : McAEEON02Type; (*Position time source*)
+		EncoderStatus : McAEEON03Type; (*Encoder status source*)
+	END_STRUCT;
+	McAEEON04Enum :
+		( (*Position selector setting*)
+		mcAEEON04_IO_CH_DINT := 0, (*I/O channel DINT - Data from a signed 32 bit I/O channel*)
+		mcAEEON04_IO_CH_UDINT := 1, (*I/O channel UDINT - Data from an unsigned 32 bit I/O channel*)
+		mcAEEON04_IO_CH_INT := 2, (*I/O channel INT - Data from a signed 16 bit I/O channel*)
+		mcAEEON04_IO_CH_UINT := 3 (*I/O channel UINT - Data from an unsigned 16 bit I/O channel*)
+		);
+	McAEEON04IOChDINTType : STRUCT (*Type mcAEEON04_IO_CH_DINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the position*)
+	END_STRUCT;
+	McAEEON04IOChUDINTType : STRUCT (*Type mcAEEON04_IO_CH_UDINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the position*)
+	END_STRUCT;
+	McAEEON04IOChINTType : STRUCT (*Type mcAEEON04_IO_CH_INT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the position*)
+	END_STRUCT;
+	McAEEON04IOChUINTType : STRUCT (*Type mcAEEON04_IO_CH_UINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the position*)
+	END_STRUCT;
+	McAEEON04Type : STRUCT (*Position source*)
+		Type : McAEEON04Enum; (*Position selector setting*)
+		IOChannelDINT : McAEEON04IOChDINTType; (*Type mcAEEON04_IO_CH_DINT settings*)
+		IOChannelUDINT : McAEEON04IOChUDINTType; (*Type mcAEEON04_IO_CH_UDINT settings*)
+		IOChannelINT : McAEEON04IOChINTType; (*Type mcAEEON04_IO_CH_INT settings*)
+		IOChannelUINT : McAEEON04IOChUINTType; (*Type mcAEEON04_IO_CH_UINT settings*)
+	END_STRUCT;
+	McAEEON05Enum :
+		( (*Position time selector setting*)
+		mcAEEON05_IO_CH_DINT := 0, (*I/O channel DINT - Data from a signed 32 bit I/O channel*)
+		mcAEEON05_IO_CH_UDINT := 1, (*I/O channel UDINT - Data from an unsigned 32 bit I/O channel*)
+		mcAEEON05_IO_CH_INT := 2, (*I/O channel INT - Data from a signed 16 bit I/O channel*)
+		mcAEEON05_IO_CH_UINT := 3, (*I/O channel UINT - Data from an unsigned 16 bit I/O channel*)
+		mcAEEON05_NOT_USE := 4 (*Not used - Position time not used*)
+		);
+	McAEEON05IOChDINTType : STRUCT (*Type mcAEEON05_IO_CH_DINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the position time*)
+	END_STRUCT;
+	McAEEON05IOChUDINTType : STRUCT (*Type mcAEEON05_IO_CH_UDINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the position time*)
+	END_STRUCT;
+	McAEEON05IOChINTType : STRUCT (*Type mcAEEON05_IO_CH_INT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the position time*)
+	END_STRUCT;
+	McAEEON05IOChUINTType : STRUCT (*Type mcAEEON05_IO_CH_UINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the position time*)
+	END_STRUCT;
+	McAEEON05Type : STRUCT (*Position time source*)
+		Type : McAEEON05Enum; (*Position time selector setting*)
+		IOChannelDINT : McAEEON05IOChDINTType; (*Type mcAEEON05_IO_CH_DINT settings*)
+		IOChannelUDINT : McAEEON05IOChUDINTType; (*Type mcAEEON05_IO_CH_UDINT settings*)
+		IOChannelINT : McAEEON05IOChINTType; (*Type mcAEEON05_IO_CH_INT settings*)
+		IOChannelUINT : McAEEON05IOChUINTType; (*Type mcAEEON05_IO_CH_UINT settings*)
+	END_STRUCT;
+	McAEEON06Enum :
+		( (*Encoder status selector setting*)
+		mcAEEON06_IO_CH_DINT := 0, (*I/O channel DINT - Data from a signed 32 bit I/O channel*)
+		mcAEEON06_IO_CH_UDINT := 1, (*I/O channel UDINT - Data from an unsigned 32 bit I/O channel*)
+		mcAEEON06_IO_CH_INT := 2, (*I/O channel INT - Data from a signed 16 bit I/O channel*)
+		mcAEEON06_IO_CH_UINT := 3, (*I/O channel UINT - Data from an unsigned 16 bit I/O channel*)
+		mcAEEON06_IO_CH_SINT := 4, (*I/O channel SINT - Data from a signed 8 bit I/O channel*)
+		mcAEEON06_IO_CH_USINT := 5, (*I/O channel USINT - Data from an unsigned 8 bit I/O channel*)
+		mcAEEON06_NOT_USE := 6 (*Not used - Encoder status not used*)
+		);
+	McAEEON06IOChDINTType : STRUCT (*Type mcAEEON06_IO_CH_DINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the encoder status*)
+	END_STRUCT;
+	McAEEON06IOChUDINTType : STRUCT (*Type mcAEEON06_IO_CH_UDINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the encoder status*)
+	END_STRUCT;
+	McAEEON06IOChINTType : STRUCT (*Type mcAEEON06_IO_CH_INT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the encoder status*)
+	END_STRUCT;
+	McAEEON06IOChUINTType : STRUCT (*Type mcAEEON06_IO_CH_UINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the encoder status*)
+	END_STRUCT;
+	McAEEON06IOChSINTType : STRUCT (*Type mcAEEON06_IO_CH_SINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the encoder status*)
+	END_STRUCT;
+	McAEEON06IOChUSINTType : STRUCT (*Type mcAEEON06_IO_CH_USINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the encoder status*)
+	END_STRUCT;
+	McAEEON06Type : STRUCT (*Encoder status source*)
+		Type : McAEEON06Enum; (*Encoder status selector setting*)
+		IOChannelDINT : McAEEON06IOChDINTType; (*Type mcAEEON06_IO_CH_DINT settings*)
+		IOChannelUDINT : McAEEON06IOChUDINTType; (*Type mcAEEON06_IO_CH_UDINT settings*)
+		IOChannelINT : McAEEON06IOChINTType; (*Type mcAEEON06_IO_CH_INT settings*)
+		IOChannelUINT : McAEEON06IOChUINTType; (*Type mcAEEON06_IO_CH_UINT settings*)
+		IOChannelSINT : McAEEON06IOChSINTType; (*Type mcAEEON06_IO_CH_SINT settings*)
+		IOChannelUSINT : McAEEON06IOChUSINTType; (*Type mcAEEON06_IO_CH_USINT settings*)
+	END_STRUCT;
+	McAEEON07Enum :
+		( (*Reference pulse selector setting*)
+		mcAEEON07_NOT_USE := 0, (*Not used - Reference pulse not used*)
+		mcAEEON07_USE := 1 (*Used - Reference pulse used*)
+		);
+	McAEEON07UsePosEnum :
+		( (*Position selector setting*)
+		mcAEEON07UP_IO_CH_DINT := 0, (*I/O channel DINT - Data from a signed 32 bit I/O channel*)
+		mcAEEON07UP_IO_CH_UDINT := 1, (*I/O channel UDINT - Data from an unsigned 32 bit I/O channel*)
+		mcAEEON07UP_IO_CH_INT := 2, (*I/O channel INT - Data from a signed 16 bit I/O channel*)
+		mcAEEON07UP_IO_CH_UINT := 3 (*I/O channel UINT - Data from an unsigned 16 bit I/O channel*)
+		);
+	McAEEON07UsePosIOChDINTType : STRUCT (*Type mcAEEON07UP_IO_CH_DINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the reference pulse position*)
+	END_STRUCT;
+	McAEEON07UsePosIOChUDINTType : STRUCT (*Type mcAEEON07UP_IO_CH_UDINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the reference pulse position*)
+	END_STRUCT;
+	McAEEON07UsePosIOChINTType : STRUCT (*Type mcAEEON07UP_IO_CH_INT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the reference pulse position*)
+	END_STRUCT;
+	McAEEON07UsePosIOChUINTType : STRUCT (*Type mcAEEON07UP_IO_CH_UINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the reference pulse position*)
+	END_STRUCT;
+	McAEEON07UsePosType : STRUCT (*Reference pulse position source*)
+		Type : McAEEON07UsePosEnum; (*Position selector setting*)
+		IOChannelDINT : McAEEON07UsePosIOChDINTType; (*Type mcAEEON07UP_IO_CH_DINT settings*)
+		IOChannelUDINT : McAEEON07UsePosIOChUDINTType; (*Type mcAEEON07UP_IO_CH_UDINT settings*)
+		IOChannelINT : McAEEON07UsePosIOChINTType; (*Type mcAEEON07UP_IO_CH_INT settings*)
+		IOChannelUINT : McAEEON07UsePosIOChUINTType; (*Type mcAEEON07UP_IO_CH_UINT settings*)
+	END_STRUCT;
+	McAEEON07UseCntEnum :
+		( (*Count selector setting*)
+		mcAEEON07UC_IO_CH_DINT := 0, (*I/O channel DINT - Data from a signed 32 bit I/O channel*)
+		mcAEEON07UC_IO_CH_UDINT := 1, (*I/O channel UDINT - Data from an unsigned 32 bit I/O channel*)
+		mcAEEON07UC_IO_CH_INT := 2, (*I/O channel INT - Data from a signed 16 bit I/O channel*)
+		mcAEEON07UC_IO_CH_UINT := 3 (*I/O channel UINT - Data from an unsigned 16 bit I/O channel*)
+		);
+	McAEEON07UseCntIOChDINTType : STRUCT (*Type mcAEEON07UC_IO_CH_DINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the reference pulse count*)
+	END_STRUCT;
+	McAEEON07UseCntIOChUDINTType : STRUCT (*Type mcAEEON07UC_IO_CH_UDINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the reference pulse count*)
+	END_STRUCT;
+	McAEEON07UseCntIOChINTType : STRUCT (*Type mcAEEON07UC_IO_CH_INT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the reference pulse count*)
+	END_STRUCT;
+	McAEEON07UseCntIOChUINTType : STRUCT (*Type mcAEEON07UC_IO_CH_UINT settings*)
+		ChannelMapping : STRING[250]; (*Input source for the reference pulse count*)
+	END_STRUCT;
+	McAEEON07UseCntType : STRUCT (*Reference pulse count source*)
+		Type : McAEEON07UseCntEnum; (*Count selector setting*)
+		IOChannelDINT : McAEEON07UseCntIOChDINTType; (*Type mcAEEON07UC_IO_CH_DINT settings*)
+		IOChannelUDINT : McAEEON07UseCntIOChUDINTType; (*Type mcAEEON07UC_IO_CH_UDINT settings*)
+		IOChannelINT : McAEEON07UseCntIOChINTType; (*Type mcAEEON07UC_IO_CH_INT settings*)
+		IOChannelUINT : McAEEON07UseCntIOChUINTType; (*Type mcAEEON07UC_IO_CH_UINT settings*)
+	END_STRUCT;
+	McAEEON07UseType : STRUCT (*Type mcAEEON07_USE settings*)
+		Position : McAEEON07UsePosType; (*Reference pulse position source*)
+		Count : McAEEON07UseCntType; (*Reference pulse count source*)
+	END_STRUCT;
+	McAEEON07Type : STRUCT (*Use reference pulse*)
+		Type : McAEEON07Enum; (*Reference pulse selector setting*)
+		Used : McAEEON07UseType; (*Type mcAEEON07_USE settings*)
+	END_STRUCT;
+	McAEEON0IncrType : STRUCT (*Type mcAEEON0_INCR settings*)
+		Position : McAEEON04Type; (*Position source*)
+		PositionTime : McAEEON05Type; (*Position time source*)
+		EncoderStatus : McAEEON06Type; (*Encoder status source*)
+		ReferencePulse : McAEEON07Type; (*Use reference pulse*)
+	END_STRUCT;
+	McAEEON0Type : STRUCT (*Type of the encoder*)
+		Type : McAEEON0Enum; (*Position type selector setting*)
+		Absolute : McAEEON0AbsType; (*Type mcAEEON0_ABS settings*)
+		Incremental : McAEEON0IncrType; (*Type mcAEEON0_INCR settings*)
+	END_STRUCT;
+	McAEEON10Enum :
+		( (*Position interpolation selector setting*)
+		mcAEEON10_NOT_USE := 0, (*Not used - Encoder position interpolation is not used*)
+		mcAEEON10_USE := 1 (*Used - Encoder position inerpolation is used*)
+		);
+	McAEEON10Type : STRUCT (*Encoder position interpolation*)
+		Type : McAEEON10Enum; (*Position interpolation selector setting*)
+	END_STRUCT;
+	McAEEON1Type : STRUCT (*Position information processing parameters*)
+		TimeoutValue : REAL; (*Encoder position information refresh timeout time [s]*)
+		PositionInterpolation : McAEEON10Type; (*Encoder position interpolation*)
+		NetworkCompensationTime : REAL; (*The encoder position is pre-calculated by this amount of time [s]*)
+	END_STRUCT;
+	McAEEAUseEncLinkOEPEEONType : STRUCT (*Type mcAEEAUELOEPE_ENC_ON_NETW settings*)
+		IncrementsPerEncoderRevolution : UDINT; (*Absolute number of increments of an encoder revolution [increment/rev]*)
+		PositionType : McAEEON0Type; (*Type of the encoder*)
+		PositionProcessing : McAEEON1Type; (*Position information processing parameters*)
+	END_STRUCT;
 	McAEEAUseEncLinkOneEncPosEncType : STRUCT
 		Type : McAEEAUseEncLinkOneEncPosEncEnum; (*Position encoder selector setting*)
+		EncoderOnNetwork : McAEEAUseEncLinkOEPEEONType; (*Type mcAEEAUELOEPE_ENC_ON_NETW settings*)
 	END_STRUCT;
 	McAEEAUELOneEncPosFltrEnum :
 		( (*Position filter selector setting*)
@@ -3064,7 +3642,7 @@ TYPE
 		);
 	McAEEAUELOEPosFltrExtpolDistType : STRUCT (*Type mcAEEAUELOEPF_EXTPOL_AND_DIST settings*)
 		PositionFilterTimeConstant : REAL; (*Time constant for acutal position filter*)
-		ExtrapolationTime : REAL; (*Extrapolation time for acutal position filter*)
+		ExtrapolationTime : REAL; (*Extrapolation time for acutal position filter [s]*)
 	END_STRUCT;
 	McAEEAUELOneEncPosFltrType : STRUCT (*Filter for the encoder position*)
 		Type : McAEEAUELOneEncPosFltrEnum; (*Position filter selector setting*)
@@ -3095,11 +3673,11 @@ TYPE
 		Type : McAEEAHModDirRefPEnum; (*Reference pulse selector setting*)
 	END_STRUCT;
 	McAEEAHModDirType : STRUCT (*Type mcAEEAHM_DIR settings*)
-		Position : LREAL; (*Home position [Measurement units]*)
+		Position : LREAL; (*Home position [measurement units]*)
 		ReferencePulse : McAEEAHModDirRefPType; (*Use reference pulse of encoder*)
 	END_STRUCT;
 	McAEEAHModAbsType : STRUCT (*Type mcAEEAHM_ABS settings*)
-		Position : LREAL; (*Home offset [Measurement units]*)
+		Position : LREAL; (*Home offset [measurement units]*)
 	END_STRUCT;
 	McAEEAHModType : STRUCT (*Homing mode*)
 		Type : McAEEAHModEnum; (*Mode selector setting*)
@@ -3109,6 +3687,7 @@ TYPE
 	McAEEAHType : STRUCT (*Homing mode and parameters which can be used within the application program as preconfigured setting*)
 		Mode : McAEEAHModType; (*Homing mode*)
 		RestorePositionVariable : STRING[250]; (*Remanent variable used for homing mode: Restore position*)
+		AxParCk : McAHMRPAPCType; (*Activate check if axis parameterization has change for restore position*)
 	END_STRUCT;
 	McAEEAExtEncAxUseType : STRUCT (*Type mcAEEAEEA_USE settings*)
 		AxisReference : McCfgReferenceType; (*Name of the referenced axis component*)
@@ -3158,8 +3737,8 @@ TYPE
 	McAFAIAnInScUseType : STRUCT (*Type mcAFAIAIS_USE settings*)
 		MinimumVoltage : REAL; (*Minimum voltage of the analog input [V]*)
 		MaximumVoltage : REAL; (*Maximum voltage of the analog input [V]*)
-		MinimumScaledValue : REAL; (*Minimum scaled value of the analog input [Signal units]*)
-		MaximumScaledValue : REAL; (*Maximum scaled value of the analog input [Signal units]*)
+		MinimumScaledValue : REAL; (*Minimum scaled value of the analog input [signal units]*)
+		MaximumScaledValue : REAL; (*Maximum scaled value of the analog input [signal units]*)
 	END_STRUCT;
 	McAFAIAnInScType : STRUCT
 		Type : McAFAIAnInScEnum; (*Scaling selector setting*)
@@ -3173,7 +3752,7 @@ TYPE
 		Common : McAFAIACPAnInCmnType; (*Common settings for all Type values*)
 	END_STRUCT;
 	McAFAIACPType : STRUCT (*Type mcAFAIPF_ACP settings*)
-		AnalogInput : McCfgUnboundedArrayType;
+		AnalogInput : McCfgUnboundedArrayType; (*Connect array of type McAFAIACPAnInType*)
 	END_STRUCT;
 	McAFAIACPmultiAnInEnum :
 		( (*Analog input 1-4 selector setting*)
@@ -3190,7 +3769,7 @@ TYPE
 		Common : McAFAIACPmultiAnInCmnType; (*Common settings for all Type values*)
 	END_STRUCT;
 	McAFAIACPmultiType : STRUCT (*Type mcAFAIPF_ACPM settings*)
-		AnalogInput : McCfgUnboundedArrayType;
+		AnalogInput : McCfgUnboundedArrayType; (*Connect array of type McAFAIACPmultiAnInType*)
 	END_STRUCT;
 	McAFAIACPP3AnInEnum :
 		( (*Analog input 1-3 selector setting*)
@@ -3206,7 +3785,7 @@ TYPE
 		Common : McAFAIACPP3AnInCmnType; (*Common settings for all Type values*)
 	END_STRUCT;
 	McAFAIACPP3Type : STRUCT (*Type mcAFAIPF_ACP_P3 settings*)
-		AnalogInput : McCfgUnboundedArrayType;
+		AnalogInput : McCfgUnboundedArrayType; (*Connect array of type McAFAIACPP3AnInType*)
 	END_STRUCT;
 	McAFAIProdFamType : STRUCT
 		Type : McAFAIProdFamEnum; (*ACOPOS product family selector setting*)
@@ -3217,7 +3796,22 @@ TYPE
 	McCfgAxFeatAInType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_AX_FEAT_A_IN*)
 		ProductFamily : McAFAIProdFamType;
 	END_STRUCT;
+	McAFAPTTranOrdEnum :
+		( (*Transfer order in reference to other configuration parameters*)
+		mcAFAPTTO_END_OF_INIT := 0, (*End of initialization - Transfer after other configuration parameters*)
+		mcAFAPTTO_ST_OF_INIT := 1 (*Start of initialization - Transfer before other configuration parameters*)
+		);
 	McCfgAxFeatAcpParTblType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_AX_FEAT_ACP_PAR_TBL*)
 		ACOPOSParameterTableReference : STRING[250]; (*Name of the ACOPOS parameter table*)
+		TransferOrder : McAFAPTTranOrdEnum; (*Transfer order in reference to other configuration parameters*)
+	END_STRUCT;
+	McAFASPTCTranOrdEnum :
+		( (*Transfer order in reference to other configuration parameters*)
+		mcAFASPTCTO_END_OF_INIT := 0, (*End of initialization - Transfer after other configuration parameters*)
+		mcAFASPTCTO_ST_OF_INIT := 1 (*Start of initialization - Transfer before other configuration parameters*)
+		);
+	McCfgAxFeatAcpSptChartType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_AX_FEAT_ACP_SPT_CHART*)
+		ACOPOSSptChartReference : McCfgReferenceType; (*Name of the ACOPOS spt chart*)
+		TransferOrder : McAFASPTCTranOrdEnum; (*Transfer order in reference to other configuration parameters*)
 	END_STRUCT;
 END_TYPE

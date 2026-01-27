@@ -3,17 +3,9 @@
   <header creationtool="B&amp;R Automation Studio" creationtoolversion="4.2" datatype="unknown" segtype="sentence" adminlang="en" srclang="en" o-tmf="TMX">
     <note>Do not change anything in this file, else the tmx-file will not be recognized as a valid system text anymore</note>
     <prop type="x-BR-TS:Namespace">BR/EventLog</prop>
-    <prop type="x-BR-TS:systemtextsig">Nad1GkILIbY+Gfz5e9irxfycVdxWMPHcXVPSgorPSdtEuhf/04DHuJfmAPgrH+KKjq1W2j3cWo5qyGXY7nd1KleyY4glPp11RR/WFDHBcP/1I6Dr46ooHq24gTyBKu93+Q9DX0qfwdWB5OX2syAkHgVfaTQX3A0+VS9uAYE0yPE=</prop>
+    <prop type="x-BR-TS:systemtextsig">IBpWamNAwlh4DaJOh1/eB+25jh5K/uxXErN9dOD6TL3l0DDds79Lu7Jb8nuOUnjvptINWqZedoJyIHQSwpyZRWoF1jZj489HNuogATtun5CXrfSPqQf9+yh49ohITJvnyJtjm0kPjVSeM/wWZCoLE1yNAMHrTv62rb0NMZXsQrs=</prop>
   </header>
   <body>
-    <tu tuid="-1064236540">
-      <tuv xml:lang="en">
-        <seg>Binding to inactive object {2} requested</seg>
-      </tuv>
-      <tuv xml:lang="de">
-        <seg>Binding für inaktives Objekt {2} angefordert</seg>
-      </tuv>
-    </tu>
     <tu tuid="-1064236544">
       <tuv xml:lang="en">
         <seg>Error sent by client ({2}: {3})</seg>
@@ -22,12 +14,12 @@
         <seg>Fehler von Client ({2}: {3})</seg>
       </tuv>
     </tu>
-    <tu tuid="-1064236543">
+    <tu tuid="-1064236540">
       <tuv xml:lang="en">
-        <seg>Method does not exist</seg>
+        <seg>Binding to inactive object {2} requested</seg>
       </tuv>
       <tuv xml:lang="de">
-        <seg>Fehler von Client ({2}: {3})</seg>
+        <seg>Binding für inaktives Objekt {2} angefordert</seg>
       </tuv>
     </tu>
   </body>

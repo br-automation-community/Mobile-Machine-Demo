@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Content id="Simulation" height="600" width="1280" xmlns="http://www.br-automation.com/iat2015/contentDefinition/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Content id="Simulation" guid="abd4d7a2-9a9a-44ab-bab9-d957d7a8304b" height="600" width="1280" xmlns="http://www.br-automation.com/iat2015/contentDefinition/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Widgets>
     <Widget xsi:type="widgets.brease.Joystick" id="Joystick1" top="80" left="220" width="300" height="300" zIndex="0" thumbSize="60px" />
     <Widget xsi:type="widgets.brease.Joystick" id="Joystick2" top="80" left="760" width="300" height="300" zIndex="1" thumbSize="60px" />

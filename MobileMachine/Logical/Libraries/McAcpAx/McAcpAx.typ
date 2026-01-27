@@ -9,6 +9,9 @@ TYPE
 		mcACPAX_PARTYPE_UINT,  (*Data type: Whole number, 2 bytes, positive numbers only*)
 		mcACPAX_PARTYPE_UDINT,  (*Data type: Whole number, 4 bytes, positive numbers only*)
 		mcACPAX_PARTYPE_REAL,  (*Data type: Floating point, 4 bytes*)
+		mcACPAX_PARTYPE_DINT_REAL := 64, (*Data type: 4 byte signed integer + 4 byte floating point (a.k.a I4+R4)*)
+		mcACPAX_PARTYPE_DINT_REAL_COUNT := 65, (*Data type: 4 byte signed integer + 4 byte floating point + 4 byte unsigned integer for count (a.k.a I4+R4+UI4Cnt)*)
+		mcACPAX_PARTYPE_DINT_REAL_TIME := 66, (*Data type: 4 byte signed integer + 4 byte floating point + 4 byte unsigned integer for time stamp (a.k.a I4+R4+UI4Time)*)
 		mcACPAX_PARTYPE_VOID := 65535   (*General data type*)
 	);
 
@@ -22,7 +25,8 @@ TYPE
 	(
 		mcACPAX_PARID_GET := 0,  (*Read ParID(s)*)
 		mcACPAX_PARID_SET,	 (*Write ParID(s)*)
-		mcACPAX_PARID_GET_NO_NCT  (*Read ParID(s) without entry in the NCT*)
+		mcACPAX_PARID_GET_NO_NCT,  (*Read ParID(s) without entry in the NCT*)
+		mcACPAX_PARID_GET_NO_LOG  (*Read ParID(s) without NCT and logger entry. If an error occurs while reading, an entry is still created.*)
 	);
 
 	McAcpAxProcessParTabModeEnum :
@@ -53,6 +57,14 @@ TYPE
 		mcACPAX_LL_WITH_FEED_FORWARD := 0,  (*The overall torque is limited, i.e. the sum of feed-forward torque and corrective action*)
 		mcACPAX_LL_WITHOUT_FEED_FORWARD    (*Only the share of torque that results from control deviations is limited. Feed-forward torque is ignored*)
 	);
+
+	McAcpAxLimitLoadParIDModeEnum :
+	(
+		mcACPAX_LLPM_NO_INIT := 0, (*Value of ParID will not be initialized - default value*)
+		mcACPAX_LLPM_INIT_FB_INPUT := 1 (*Value of ParID will be initialized with the value of respective input*)
+
+	);
+
 
 	McAcpAxBrakeTestCmdEnum :
 	(
@@ -209,6 +221,16 @@ TYPE
 		mcACPAX_RECEIVE_CHANNEL_5 := 5 (*Select channel 5*)
 	);
 
+	McAcpAxSctrlLimitLoadModeEnum :
+	(
+		mcACPAX_SLL_LIMIT_AND_REPORT := 0  (*Limit load (torque) and report limitation status.*)
+	);
+
+	McAcpAxHomingAddTorqLimParType : STRUCT
+		PositiveDirection : REAL; (*Positive torque limit value for homing to blocks. If '0.0' is specified, the value of 'TorqueLimit' is used for positive direction. [Nm]*)
+		NegativeDirection : REAL; (*Negative torque limit value for homing to blocks. If '0.0' is specified, the value of 'TorqueLimit' is used for negative direction. [Nm]*)
+	END_STRUCT;
+
    	McAcpAxHomingParType : STRUCT
         HomingMode : McHomingModeEnum; (*Mode for homing*)
 		Position : LREAL; (*Absolute position or homing offset when homing signal [Measurement units] occurs*)
@@ -225,6 +247,7 @@ TYPE
 		BlockDetectionPositionError : REAL; (*Lag error for block detection [Measurement units]*)
 		PositionErrorStopLimit : REAL; (*Lag error for canceling homing procedure [Measurement units]*)
 		RestorePositionVariableAddress : UDINT; (*Address of a remanent variable of type McAcpAxRestorePosType that is needed for "HomingMode" mcHOMING_RESTORE_POSITION*)
+		AdditionalTorqueLimit : McAcpAxHomingAddTorqLimParType; (*Additional, direction dependent torque limit values for homing to block*)
 	END_STRUCT;
 
 	McAcpAxProcessParIDType : STRUCT
@@ -260,6 +283,9 @@ TYPE
 		LoadPosDecelParID : UINT; (*ParID with limit value for decelerating torque in the positive direction*)
 		LoadNegAccelParID : UINT; (*ParID with limit value for accelerating torque in the negative direction*)
 		LoadNegDecelParID : UINT; (*ParID with limit value for decelerating torque in the negative direction*)
+		LoadParIDMode : McAcpAxLimitLoadParIDModeEnum; (*Mode which defines if the ParID is initialized with the respective input value*)
+		StopMode : McLimitLoadStopModeEnum; (*Mode defines how and if limits are switched when movement is aborted*)
+		StopTorque : REAL; (*If Stop mode is mcLLSM_USER_DEFINED, switch over to limit value contained in StopTorque is performed*)
 	END_STRUCT;
 
 	McAcpAxBrakeParType : STRUCT
@@ -623,122 +649,6 @@ TYPE
 		Parameters : McCfgAcpCtrlType; (*Parameter structure for usage on MC_BR_ProcessConfig and MC_BR_ProcessParam*)
 	END_STRUCT;
 
-	McAcpAxAdvCamAutSetParType : STRUCT
-		ParLock : McCamAutParLockCmdEnum; (*Command for the transfer of the parameter*)
-	END_STRUCT;
-
-	McAcpAxCamAutEventParType : STRUCT
-	    Type : McCamAutEventTypeEnum; (*Event type*)
-	    Transition :	McCamAutEventTransitionEnum; (*Event transition*)
-	    SynchronousUpdate: McSwitchEnum; (*Synchronous parameter update if event occurs*)
-	    NextState : USINT; (*Index of the next state if the event occurs*)
-	END_STRUCT;
-
-	McAcpAxCamAutCompParType : STRUCT
-	    MasterCompDistance : LREAL; (*Compensation distance for the master axis [Measurement units of master]*)
-	    SlaveCompDistance : LREAL; (*Compensation distance for the slave axis [Measurement units of slave]*)
-	    MasterCamLeadIn : LREAL; (*Relative position at which the master axis enters the state [Measurement units of master]*)
-	    MinMasterCompDistance : LREAL; (*Minimum compensation distance for the master axis [Measurement units of master]*)
-	    MinSlaveCompDistance : LREAL; (*Minimum compensation distance for the slave axis [Measurement units of slave]*)
-	    MaxSlaveCompDistance : LREAL; (*Maximum compensation distance for the slave axis [Measurement units of slave]*)
-	    MinSlaveCompVelocity : REAL; (*Minimum velocity of the slave axis during compensation [Measurement units of slave/s]*)
-	    MaxSlaveCompVelocity : REAL; (*Maximum velocity of the slave axis during compensation [Measurement units of slave/s]*)
-	    MaxSlaveCompAccel1 : REAL; (*Maximum acceleration of the slave axis during compensation phase 1 [Measurement units of slave/s²]*)
-	    MaxSlaveCompAccel2 : REAL; (*Maximum acceleration of the slave axis during compensation phase 2 [Measurement units of slave/s²]*)
-	    SlaveCompJoltTime : REAL; (*Jerk time of the slave axis during compensation [s]*)
-	END_STRUCT;
-
-	McAcpAxCamAutAdvStateParType : STRUCT
-	    RepeatCounterInit : UINT; (*Starting value of state repetitions for event*)
-	    RepeatCounterSetTransfer : McSwitchEnum; (*"RepeatCounterInit" is transferred*)
-	    RepeatCounterSet : UINT; (*State repetitions counter for event*)
-	    MasterAxis : REFERENCE TO McAxisType; (*Master axis for this state*)
-	    MasterParID : UINT; (*Parameter ID of the master axis for this state*)
-	END_STRUCT;
-
-	McAcpAxCamAutStateParType : STRUCT
-	    CamID : UINT; (*Index of the cam data for a state*)
-	    MasterFactor : DINT; (*Master gauge factor for the cam profile for this state*)
-	    SlaveFactor: DINT; (*Slave gauge factor for the cam profile for this state*)
-	    CompensationMode : McCamAutCompModeEnum; (*Compensation gear mode*)
-	    CompensationParameters : McAcpAxCamAutCompParType; (*Parameter for the compensation gear*)
-	    AdvancedParameters : McAcpAxCamAutAdvStateParType; (*Advanced state parameter*)
-	    Event : ARRAY[0..4] OF McAcpAxCamAutEventParType; (*Definition of the event for a state*)
-	END_STRUCT;
-
-	McAcpAxCamAutCtrlSettingsType : STRUCT
-	    CrossLeftBoundary : McCamAutCrossLeftBoundEnum; (*Function on the left cam edge during backward movement of the master without event*)
-	    CamChangeImmediately : McCamAutCamChangeImmedEnum; (*Direction of the cam change on event transition*)
-	END_STRUCT;
-
-	McAcpAxCamAutMsgSettingsType : STRUCT
-	    ErrorsInStandby : McCamAutErrorsInStandbyEnum; (*Used for setting an error message in stand-by mode*)
-	    ExceedingLimits : McCamAutExceedingLimitsEnum; (*Used for setting a message if the limit values are exceeded*)
-	END_STRUCT;
-
-	McAcpAxCamAutTriggerAndLatchType : STRUCT
-	    Trigger1Delay : REAL; (*Trigger1 delay time [s] to compensate for a signal delay*)
-	    Trigger2Delay : REAL; (*Trigger2 delay time [s] to compensate for a signal delay*)
-	    SlaveLatchParID : UINT; (*Parameter ID for the latch value of the slave axis*)
-	END_STRUCT;
-
-	McAcpAxCamAutStartStateParType : STRUCT
-	    StartState : USINT; (*State in which the cam automat is started*)
-	    MasterStartRelPos : LREAL; (*Master position within the starting state at which the cam automat is started [Measurements units of the master]*)
-	END_STRUCT;
-
-	McAcpAxCamAutAddAxesType : STRUCT
-	    AdditiveMasterAxis : REFERENCE TO McAxisType; (*Axis reference of additive master axis*)
-	    AdditiveMasterParID : UINT; (*ParID of the additive master axis*)
-	    AdditiveSlaveAxis : REFERENCE TO McAxisType; (*Axis reference of additive slave axis*)
-	    AdditiveSlaveParID : UINT; (*ParID of additive slave axis*)
-	END_STRUCT;
-
-	McAcpAxCamAutCommonFactorsType : STRUCT
-	    SlaveFactorParID : UINT; (*Parameter ID for multiplication factor of the slave axis*)
-	END_STRUCT;
-
-	McAcpAxCamAutAdvParType : STRUCT
-		StartStateParam : McAcpAxCamAutStartStateParType; (*Parameter used for starting directly from a state*)
-		AdditiveAxes : McAcpAxCamAutAddAxesType; (*Parameter for additive axes*)
-	    MasterStartPosMode : McCamAutMaStartPosModeEnum; (*Mode for event type*)
-	    ControlSettings : McAcpAxCamAutCtrlSettingsType; (*Control settings for cam automat*)
-	    MessageSettings : McAcpAxCamAutMsgSettingsType; (*Settings for warnings and error messages*)
-	    TriggerAndLatch : McAcpAxCamAutTriggerAndLatchType; (*Settings for triggering delay times and for latch value*)
-	    EventParID1 : UINT; (*Parameter ID for event input 1*)
-	    EventParID2 : UINT; (*Parameter ID for event input 2*)
-	    EventParID3 : UINT; (*Parameter ID for event input 3*)
-	    EventParID4 : UINT; (*Parameter ID for event input 4*)
-	    StartIntervalPos1 : LREAL; (*Relative starting positions of the master axis in the interval for generating event*)
-	    StartIntervalPos2 : LREAL; (*Relative starting positions of the master axis in the interval for generating event*)
-	    StartIntervalPos3 : LREAL; (*Relative starting positions of the master axis in the interval for generating event*)
-	    StartIntervalPos4 : LREAL; (*Relative starting positions of the master axis in the interval for generating event*)
-	    Factors : McAcpAxCamAutCommonFactorsType; (*Multiplication factors for all states of the cam automat*)
-	END_STRUCT;
-
-	McAcpAxCamAutMasterParType : STRUCT
-	    MasterAxis : REFERENCE TO McAxisType; (*Axis reference of the master axis*)
-	    MasterParID : UINT; (*ParID of the master axis*)
-	    MasterStartPosition : LREAL; (*Starting position of the master axis [Measurement units of master]*)
-	    MasterStartInterval : LREAL; (*Starting interval of the master axis [Measurement units of master]*)
-	    MaxMasterVelocity : REAL; (*Maximum velocity of the master axis [Measurement units of master/s]*)
-	END_STRUCT;
-
-	McAcpAxCamAutCommonParType : STRUCT
-	    Master : McAcpAxCamAutMasterParType; (*Parameter for the cam automat master*)
-	    AdvancedParameters : McAcpAxCamAutAdvParType; (*Optional parameter for the cam automat*)
-	END_STRUCT;
-
-	McAcpAxCamAutParType : STRUCT
-	    Common : McAcpAxCamAutCommonParType; (*General parameter for all states of the cam automat*)
-	    State : ARRAY[0..14] OF McAcpAxCamAutStateParType; (*Parameter for the states of the cam automat*)
-	END_STRUCT;
-
-	 McAcpAxCamAutDefineType : STRUCT
-	    DataObjectName : STRING[32]; (*Name of the cam automat configuration object*)
-	    DataAddress : UDINT; (*Address of a variable of data type McAcpAxCamAutParType*)
-	END_STRUCT;
-
 	McAcpAxAdvPhasingParType : STRUCT
 	    VelocityParID : UINT; (*ParID from which the velocity for the phase shift is read*)
 	    PosVelocityTriggerParID : UINT; (*ParID controls the addition of velocity "CyclicVelocity" or the value of "VelocityParID"*)
@@ -802,6 +712,7 @@ TYPE
 		NodeNumber : USINT; (*Node number of the POWERLINK station from which data should be received.*)
 		BitOffset : UINT; (*Bit offset of the POWERLINK data in the telegram from the transmitter from which point the data is read, must be a multiple of 16.*)
 		ReceiveChannel : McAcpAxReceiveChannelEnum; (*Requested channel number on the axis to be used to receive the data.*)
+		CycleTime : UDINT; (*Update cycle time of the transmitted user data [us].*)
 	END_STRUCT;
 
 	McAcpAxAdvReceiveParIDOnPLCType : STRUCT
@@ -833,5 +744,82 @@ TYPE
 		FourByteCount : USINT; (*Number of four byte (32 bit) data in this record.*)
 		ParIDCount : USINT; (*Number of ParIDs configured in this record (i.e. OneByteCount + TwoByteCount + FourByteCount).*)
 		ParID : ARRAY[0..11] OF UINT; (*Array of ParIDs configured in this record.*)
+	END_STRUCT;
+
+	McAcpAxAdvSctrlLimitLoadParType : STRUCT
+		LoadPositiveParID : UINT; (*Parameter ID of the positive load (torque) limit.*)
+		LoadNegativeParID : UINT; (*Parameter ID of the negative load (torque) limit.*)
+	END_STRUCT;
+
+	McAcpAxSafeOutDataType : STRUCT
+		Control_Reset : BOOL; (*Reset bit*)
+		Control_Activate : BOOL; (*Enable axis of the SafeMotion module*)
+		Control_STO : BOOL; (*STO control bit (FALSE = requested, if configured in safety application)*)
+		Control_SBC : BOOL; (*SBC control bit (FALSE = requested, if configured in safety application)*)
+		Control_SS1 : BOOL; (*SS1 control bit (FALSE = requested, if configured in safety application)*)
+		reserved_bit5 : BOOL; (*Reserved*)
+		Control_STO1 : BOOL; (*STO1 control bit (FALSE = requested, if configured in safety application)*)
+		reserved_bit7 : BOOL; (*Reserved*)
+		Control_SOS : BOOL; (*SOS control bit (FALSE = requested, if configured in safety application)*)
+		Control_SS2 : BOOL; (*SS2 control bit (FALSE = requested, if configured in safety application)*)
+		Control_SLA : BOOL; (*SLA control bit (FALSE = requested, if configured in safety application)*)
+		Control_SLS1 : BOOL; (*SLS1 control bit (FALSE = requested, if configured in safety application)*)
+		Control_SLS2 : BOOL; (*SLS2 control bit (FALSE = requested, if configured in safety application)*)
+		reserved_bit13 : BOOL; (*Reserved*)
+		Control_SLS3 : BOOL; (*SLS3 control bit (FALSE = requested, if configured in safety application)*)
+		Control_SLS4 : BOOL; (*SLS4 control bit (FALSE = requested, if configured in safety application)*)
+		Control_SDI_P : BOOL; (*SDI positive control bit (FALSE = requested, if configured in safety application)*)
+		Control_SDI_N : BOOL; (*SDI negative control bit (FALSE = requested, if configured in safety application)*)
+		Control_SLI : BOOL; (*SLI control bit (FALSE = requested, if configured in safety application)*)
+		Control_SBT : BOOL; (*SBT control bit (FALSE = requested, if configured in safety application)*)
+		reserved_bit20 : BOOL; (*Reserved*)
+		Control_SLT : BOOL; (*SLT control bit (FALSE = requested, if configured in safety application)*)
+		Control_SwitchUserData : BOOL; (*Switch between output of SafeSpeed (FALSE) and SafeTorque (TRUE) on output SafeUserData*)
+		reserved_bit23 : BOOL; (*Reserved*)
+		reserved_bit24 : BOOL; (*Reserved*)
+		Control_Homing : BOOL; (*Homing control bit (TRUE = safe homing requested)*)
+		Control_RefSwitch : BOOL; (*Reference switch input*)
+		Control_SLP : BOOL; (*SLP control bit (FALSE = requested, if configured in safety application)*)
+		reserved_bit28 : BOOL; (*Reserved*)
+		reserved_bit29 : BOOL; (*Reserved*)
+		Control_SwitchHomingMode : BOOL; (*Switch between configured homing mode (FALSE) and restore Remanent Safe Position (TRUE)*)
+		reserved_bit31 : BOOL; (*Reserved*)
+	END_STRUCT;
+
+	McAcpAxSafeInDataType : STRUCT
+		Status_NotErrFunc : BOOL; (*Functional Fail Safe status bit (FALSE = functional error)*)
+		Status_Operational : BOOL; (*Axis is in state Operational*)
+		Status_STO : BOOL; (*STO status bit (TRUE = active)*)
+		Status_SBC : BOOL; (*SBC status bit (TRUE = active)*)
+		Status_SS1 : BOOL; (*SS1 status bit (TRUE = active)*)
+		Status_NotErrEnc : BOOL; (*Encoder error status bit (FALSE = encoder error)*)
+		Status_STO1 : BOOL; (*STO1 status bit (TRUE = active)*)
+		Status_SDC : BOOL; (*SDC status bit (TRUE = active)*)
+		Status_SOS : BOOL; (*SOS status bit (TRUE = active)*)
+		Status_SS2 : BOOL; (*SS2 status bit (TRUE = active)*)
+		Status_SLA : BOOL; (*SLA status bit (TRUE = active)*)
+		Status_SLS1 : BOOL; (*SLS1 status bit (TRUE = active)*)
+		Status_SLS2 : BOOL; (*SLS2 status bit (TRUE = active)*)
+		reserved_bit13 : BOOL; (*Reserved*)
+		Status_SLS3 : BOOL; (*SLS3 status bit (TRUE = active)*)
+		Status_SLS4 : BOOL; (*SLS4 status bit (TRUE = active)*)
+		Status_SDI_P : BOOL; (*SDI positive status bit (TRUE = active)*)
+		Status_SDI_N : BOOL; (*SDI negative status bit (TRUE = active)*)
+		Status_SLI : BOOL; (*SLI status bit (TRUE = active)*)
+		Status_SBT_Valid : BOOL; (*SBT valid bit (TRUE = valid)*)
+		Status_SBT_Active : BOOL; (*SBT active bit (TRUE = active)*)
+		Status_SLT : BOOL; (*SLT status bit (TRUE = active)*)
+		Status_SFR : BOOL; (*At least one safety function is requested*)
+		Status_AllReqActive : BOOL; (*All requested safety functions are active*)
+		Status_NotErrEnc2 : BOOL; (*Encoder error status bit 2 (FALSE = encoder error)*)
+		Status_Homing : BOOL; (*Safe position valid bit (TRUE = valid)*)
+		Status_ReqHomingOK : BOOL; (*State of the safe homing request*)
+		Status_SLP : BOOL; (*SLP status bit (TRUE = active)*)
+		Status_SMP : BOOL; (*SMP status bit (TRUE = active)*)
+		Status_SafeUserData : BOOL; (*SafeUserData status bit (TRUE = SafeUserData active)*)
+		Status_RSP_Valid : BOOL; (*RSP valid bit (TRUE = valid)*)
+		Status_SetPosAlive : BOOL; (*Alive-testing of set position is valid*)
+		SafePosition : DINT; (*Safe position*)
+		SafeUserData : DINT; (*Safe speed or safe torque*)
 	END_STRUCT;
 END_TYPE

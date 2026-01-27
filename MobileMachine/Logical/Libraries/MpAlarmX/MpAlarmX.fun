@@ -5,6 +5,7 @@ FUNCTION_BLOCK MpAlarmXCore (*mapp component for advanced centralized alarm coll
 		MpLink : REFERENCE TO MpComIdentType; (*Incoming communication handle (mapp standard interface)*) (* *) (*#PAR#;*)
 		Enable : BOOL; (*Enables/Disables the function block (mapp standard interface)*) (* *) (*#PAR#;*)
 		ErrorReset : BOOL; (*Resets all function block errors (mapp standard interface)*) (* *) (*#PAR#;*)
+		AcknowledgeAll : BOOL; (*Acknowledge all alarms*) (* *) (*#CMD#;*)
 	END_VAR
 	VAR_OUTPUT
 		Active : BOOL; (*Function block is active (mapp standard interface)*) (* *) (*#PAR#;*)
@@ -12,10 +13,15 @@ FUNCTION_BLOCK MpAlarmXCore (*mapp component for advanced centralized alarm coll
 		StatusID : DINT; (*Error/Status information (mapp standard interface)*) (* *) (*#PAR#; *)
 		ActiveAlarms : UDINT; (*Number of alarms which are currently active*) (* *) (*#CMD#;*)
 		PendingAlarms : UDINT; (*Number of alarms which are currently pending (either active, or not yet acknowleged)*) (* *) (*#CMD#;*)
-		Info : MpAlarmXInfoType; (*Additional information*) (* *) (*#CMD#;*)
+		UnacknowledgedAlarms : UDINT; (*Number of alarms which are not acknowledged (waiting for acknowledged) *) (* *) (*#CMD#;*)
+		UnconfirmedAlarms : UDINT; (*Number of alarms which are not confirmed (waiting for confirmation)*) (* *) (*#CMD#;*)
+		CommandBusy : BOOL; (*Function block is busy processing a command.*) (* *) (*#CMD#OPT#;*)
+		CommandDone : BOOL; (*Command has finished and was successful.*) (* *) (*#CMD#;*)
+		Info : MpAlarmXCoreInfoType; (*Additional information*) (* *) (*#CMD#;*)
 	END_VAR
 	VAR
-		Internal : {REDUND_UNREPLICABLE} MpComInternalDataType; (*Internal data*) (* *) (*#OMIT#;*)
+		InternalState : USINT;
+		InternalData : ARRAY[0..21] OF UDINT;
 	END_VAR
 END_FUNCTION_BLOCK
 (*UI Function Blocks*)
@@ -26,16 +32,19 @@ FUNCTION_BLOCK MpAlarmXListUI (*add-on function block that provides VC4 connecti
 		Enable : BOOL; (*Enables/Disables the function block (mapp standard interface)*) (* *) (*#PAR#;*)
 		ErrorReset : BOOL; (*Resets all function block errors (mapp standard interface)*) (* *) (*#PAR#;*)
 		UISetup : MpAlarmXListUISetupType; (*Setup UI connection - must be configured before enabling the FB*) (* *) (*#PAR#;*)
+		Language : REFERENCE TO STRING[20]; (*Language ID that will be used when exporting the data. (e.g. "en")*) (* *) (*#CMD#;*)
+		MeasurementSystem : MpAlarmXMeasurementSystemEnum; (*Measurement-system that will be used when exporting data*) (* *) (*#CMD#;*)
 		UIConnect : REFERENCE TO MpAlarmXListUIConnectType; (*UI connection datapoints*) (* *) (*#CMD#;*)
 	END_VAR
 	VAR_OUTPUT
 		Active : BOOL; (*Function block is active (mapp standard interface)*) (* *) (*#PAR#;*)
 		Error : BOOL; (*Indicates an error (mapp standard interface)*) (* *) (*#PAR#;*)
 		StatusID : DINT; (*Error/Status information (mapp standard interface)*) (* *) (*#PAR#; *)
-		Info : MpAlarmXInfoType; (*Additional information*) (* *) (*#CMD#;*)
+		Info : MpAlarmXListUIInfoType; (*Additional information*) (* *) (*#CMD#;*)
 	END_VAR
 	VAR
-		Internal : {REDUND_UNREPLICABLE} MpComInternalDataType; (*Internal data*) (* *) (*#OMIT#;*)
+		InternalState : USINT;
+		InternalData : ARRAY[0..34] OF UDINT;
 	END_VAR
 END_FUNCTION_BLOCK
 
@@ -45,16 +54,19 @@ FUNCTION_BLOCK MpAlarmXHistoryUI (*add-on function block that provides VC4 conne
 		Enable : BOOL; (*Enables/Disables the function block (mapp standard interface)*) (* *) (*#PAR#;*)
 		ErrorReset : BOOL; (*Resets all function block errors (mapp standard interface)*) (* *) (*#PAR#;*)
 		UISetup : MpAlarmXHistoryUISetupType; (*Setup UI connection - must be configured before enabling the FB*) (* *) (*#PAR#;*)
+		Language : REFERENCE TO STRING[20]; (*Language ID that will be used when exporting the data (e.g. "en")*) (* *) (*#CMD#;*)
+		MeasurementSystem : MpAlarmXMeasurementSystemEnum; (*Measurement-system that will be used when exporting data*) (* *) (*#CMD#;*)
 		UIConnect : REFERENCE TO MpAlarmXHistoryUIConnectType; (*UI connection datapoints*) (* *) (*#CMD#;*)
 	END_VAR
 	VAR_OUTPUT
 		Active : BOOL; (*Function block is active (mapp standard interface)*) (* *) (*#PAR#;*)
 		Error : BOOL; (*Indicates an error (mapp standard interface)*) (* *) (*#PAR#;*)
 		StatusID : DINT; (*Error/Status information (mapp standard interface)*) (* *) (*#PAR#; *)
-		Info : MpAlarmXInfoType; (*Additional information*) (* *) (*#CMD#;*)
+		Info : MpAlarmXHistoryUIInfoType; (*Additional information*) (* *) (*#CMD#;*)
 	END_VAR
 	VAR
-		Internal : {REDUND_UNREPLICABLE} MpComInternalDataType; (*Internal data*) (* *) (*#OMIT#;*)
+		InternalState : USINT;
+		InternalData : ARRAY[0..37] OF UDINT;
 	END_VAR
 END_FUNCTION_BLOCK
 (*General add-ons*)
@@ -103,6 +115,20 @@ FUNCTION MpAlarmXAcknowledgeID : DINT (*Add-On function to acknowledge an alarm.
 	END_VAR
 END_FUNCTION
 
+FUNCTION MpAlarmXConfirm : DINT (*Add-On function to confirm an alarm. By calling this function the alarm system is informed that the operator has confirmed an alarm. Returns result code.*) (* $GROUP=mapp Services,$CAT=Alarm System,$GROUPICON=Icon_mapp.png,$CATICON=Icon_MpAlarmX.png *)
+	VAR_INPUT
+		MpLink : MpComIdentType; (*Incoming communication handle (mapp standard interface)*) (* *) (*#PAR#;*)
+		Name : STRING[255]; (*Unique name of the alarm*) (* *) (*#PAR#;*)
+	END_VAR
+END_FUNCTION
+
+FUNCTION MpAlarmXConfirmID : DINT (*Add-On function to confirm an alarm. By calling this function the alarm system is informed that the operator has confirmed an alarm. Returns result code.*) (* $GROUP=mapp Services,$CAT=Alarm System,$GROUPICON=Icon_mapp.png,$CATICON=Icon_MpAlarmX.png *)
+	VAR_INPUT
+		MpLink : MpComIdentType; (*Incoming communication handle (mapp standard interface)*) (* *) (*#PAR#;*)
+		InstanceID : UDINT; (*Instance ID of the alarm that should be acknowledged*) (* *) (*#PAR#;*)
+	END_VAR
+END_FUNCTION
+
 FUNCTION MpAlarmXReset : DINT (*Add-On function to reset a user alarm. By calling this function the alarm system is informed that a specific alarm is inactive. Returns result code.*) (* $GROUP=mapp Services,$CAT=Alarm System,$GROUPICON=Icon_mapp.png,$CATICON=Icon_MpAlarmX.png *)
 	VAR_INPUT
 		MpLink : MpComIdentType; (*Incoming communication handle (mapp standard interface)*) (* *) (*#PAR#;*)
@@ -124,84 +150,38 @@ FUNCTION_BLOCK MpAlarmXHistory (*Historical recording of all alarm related event
 		Enable : BOOL; (*Enables/Disables the function block (mapp standard interface)*) (* *) (*#PAR#;*)
 		ErrorReset : BOOL; (*Resets all function block errors (mapp standard interface)*) (* *) (*#PAR#;*)
 		DeviceName : REFERENCE TO STRING[50]; (*Name of device to export the alarm history to*) (* *) (*#CMD#;*)
-		Language : REFERENCE TO STRING[20]; (*Language ID that should be used when exporting data*) (* *) (*#CMD#OPT#;*)
+		FileName : REFERENCE TO STRING[255]; (*Name of file to export the alarm history to (the name may contain a time-stamp pattern)*) (* *) (*#CMD#;*)
+		Overwrite : {REDUND_UNREPLICABLE} BOOL; (*Overwrite existing file when necessary*) (* *) (*#CMD#;*)
+		Language : REFERENCE TO STRING[20]; (*Language ID that will be used when exporting data (e.g. "en")*) (* *) (*#CMD#;*)
+		MeasurementSystem : MpAlarmXMeasurementSystemEnum; (*Measurement-system that will be used when exporting data*) (* *) (*#CMD#;*)
 		Export : BOOL; (*Save the current alarm history data (since last archiving) to the given file device (as a human-readable file)*) (* *) (*#CMD#;*)
+		Clear : BOOL; (*Clear the complete alarm-history*) (* *) (*#CMD#;*)
 	END_VAR
 	VAR_OUTPUT
 		Active : BOOL; (*Function block is active (mapp standard interface)*) (* *) (*#PAR#;*)
 		Error : BOOL; (*Indicates an error (mapp standard interface)*) (* *) (*#PAR#;*)
 		StatusID : DINT; (*Error/Status information (mapp standard interface)*) (* *) (*#PAR#; *)
+		HistoryEntries : UDINT; (*Number of entries in the alarm-history*) (* *) (*#CMD#;*)
 		CommandBusy : BOOL; (*Function block is busy processing a command.*) (* *) (*#CMD#OPT#;*)
 		CommandDone : BOOL; (*Command has finished and was successful.*) (* *) (*#CMD#;*)
-		Info : MpAlarmXInfoType; (*Additional information*) (* *) (*#CMD#;*)
+		Info : MpAlarmXHistoryInfoType; (*Additional information*) (* *) (*#CMD#;*)
 	END_VAR
 	VAR
-		Internal : {REDUND_UNREPLICABLE} MpComInternalDataType; (* *) (* *) (*#OMIT#;*)
+		InternalState : USINT;
+		InternalData : ARRAY[0..20] OF UDINT;
 	END_VAR
 END_FUNCTION_BLOCK
-
-FUNCTION MpAlarmXClearHistory : DINT (*Add-On function to clear the complete alarm history*) (* $GROUP=mapp Services,$CAT=Alarm System,$GROUPICON=Icon_mapp.png,$CATICON=Icon_MpAlarmX.png *)
-	VAR_INPUT
-		MpLink : MpComIdentType; (*Incoming communication handle (mapp standard interface)*) (* *) (*#PAR#;*)
-	END_VAR
-END_FUNCTION
 (*Configuration add-ons*)
-
-FUNCTION_BLOCK MpAlarmXConfigAlarm (*add-on function block that allows to load and save alarm configurations *) (* $GROUP=mapp Services,$CAT=Alarm System,$GROUPICON=Icon_mapp.png,$CATICON=Icon_MpAlarmX.png *)
-	VAR_INPUT
-		MpLink : REFERENCE TO MpComIdentType; (*Incoming communication handle (mapp standard interface)*) (* *) (*#PAR#;*)
-		Enable : BOOL; (*Enables/Disables the function block (mapp standard interface)*) (* *) (*#PAR#;*)
-		ErrorReset : BOOL; (*Resets all function block errors (mapp standard interface)*) (* *) (*#PAR#;*)
-		Name : REFERENCE TO STRING[255]; (*Unique Identifier of the alarm*) (* *) (*#PAR#;*)
-		Configuration : REFERENCE TO MpAlarmXAlarmConfigType; (*Configuration parameters (mapp standard interface)*) (* *) (*#PAR#;*)
-		Load : BOOL; (*Read configuration from AR into the config structure*) (* *) (*#CMD#*)
-		Save : BOOL; (*Write configuration from config structure to AR*) (* *) (*#CMD#*)
-	END_VAR
-	VAR_OUTPUT
-		Active : BOOL; (*Function block is active (mapp standard interface)*) (* *) (*#PAR#;*)
-		Error : BOOL; (*Indicates an error (mapp standard interface)*) (* *) (*#PAR#;*)
-		StatusID : DINT; (*Error/Status information (mapp standard interface)*) (* *) (*#PAR#; *)
-		CommandBusy : BOOL; (*Function block is busy processing a command.*) (* *) (*#CMD#OPT#;*)
-		CommandDone : BOOL; (*Command has finished and was successful.*) (* *) (*#CMD#;*)
-		Info : MpAlarmXInfoType; (*Additional information*) (* *) (*#CMD#;*)
-	END_VAR
-	VAR
-		Internal : {REDUND_UNREPLICABLE} MpComInternalDataType; (*Internal data*) (* *) (*#OMIT#;*)
-	END_VAR
-END_FUNCTION_BLOCK
-
-FUNCTION_BLOCK MpAlarmXConfigMapping (*add-on function block that allows to load and save mapping configurations *) (* $GROUP=mapp Services,$CAT=Alarm System,$GROUPICON=Icon_mapp.png,$CATICON=Icon_MpAlarmX.png *)
-	VAR_INPUT
-		MpLink : REFERENCE TO MpComIdentType; (*Incoming communication handle (mapp standard interface)*) (* *) (*#PAR#;*)
-		Enable : BOOL; (*Enables/Disables the function block (mapp standard interface)*) (* *) (*#PAR#;*)
-		ErrorReset : BOOL; (*Resets all function block errors (mapp standard interface)*) (* *) (*#PAR#;*)
-		Type : MpAlarmXMappingTypeEnum; (*Type of the mapping (Alarm Name, Severity or Default)*) (* *) (*#PAR#;*)
-		Name : REFERENCE TO STRING[255]; (*Name (meaning depends on the Type setting)*) (* *) (*#PAR#;*)
-		Configuration : REFERENCE TO MpAlarmXMappingConfigType; (*Configuration parameters (mapp standard interface)*) (* *) (*#PAR#;*)
-		Load : BOOL; (*Read configuration from AR into the config structure*) (* *) (*#CMD#*)
-		Save : BOOL; (*Write configuration from config structure to AR*) (* *) (*#CMD#*)
-	END_VAR
-	VAR_OUTPUT
-		Active : BOOL; (*Function block is active (mapp standard interface)*) (* *) (*#PAR#;*)
-		Error : BOOL; (*Indicates an error (mapp standard interface)*) (* *) (*#PAR#;*)
-		StatusID : DINT; (*Error/Status information (mapp standard interface)*) (* *) (*#PAR#; *)
-		CommandBusy : BOOL; (*Function block is busy processing a command.*) (* *) (*#CMD#OPT#;*)
-		CommandDone : BOOL; (*Command has finished and was successful.*) (* *) (*#CMD#;*)
-		Info : MpAlarmXInfoType; (*Additional information*) (* *) (*#CMD#;*)
-	END_VAR
-	VAR
-		Internal : {REDUND_UNREPLICABLE} MpComInternalDataType; (*Internal data*) (* *) (*#OMIT#;*)
-	END_VAR
-END_FUNCTION_BLOCK
 
 FUNCTION_BLOCK MpAlarmXQuery (*Add-on function block that can be used to get data from the Alarm system using configured Queries.*) (*$GROUP=mapp Services,$CAT=Alarm System,$GROUPICON=Icon_mapp.png,$CATICON=Icon_MpAlarmX.png *)
 	VAR_INPUT
 		MpLink : REFERENCE TO MpComIdentType; (*Incoming communication handle (mapp standard interface)*) (* *) (*#PAR#;*)
 		Enable : BOOL; (*Enables/Disables the function block (mapp standard interface)*) (* *) (*#PAR#;*)
 		ErrorReset : BOOL; (*Resets all function block errors (mapp standard interface)*) (* *) (*#PAR#;*)
-		Language : REFERENCE TO STRING[20]; (*Language ID (and optionally measurement-system) that will be used when exporting the data. (e.g. "en|metric").*) (* *) (*#PAR#;*)
 		Mode : MpAlarmXQueryModeEnum; (*Specify the kind of query. For the "Pending alarms" Query source, the Mode input is ignored and behaves always like the mpALARMX_QUERY_MODE_ALL*) (* *) (*#CMD#;*)
 		Name : REFERENCE TO STRING[50]; (*Name of the Query to execute*) (* *) (*#CMD#;*)
+		Language : REFERENCE TO STRING[20]; (*Language ID that will be used when exporting the data (e.g. "en")*) (* *) (*#CMD#;*)
+		MeasurementSystem : MpAlarmXMeasurementSystemEnum; (*Measurement-system that will be used when exporting data*) (* *) (*#CMD#;*)
 		Execute : BOOL; (*Execute the query*) (* *) (*#CMD#;*)
 		Next : BOOL; (*Execute the query - get next entries*) (* *) (*#CMD#;*)
 	END_VAR
@@ -214,27 +194,8 @@ FUNCTION_BLOCK MpAlarmXQuery (*Add-on function block that can be used to get dat
 		Info : MpAlarmXQueryInfoType; (*Additional information*) (* *) (*#CMD#;*)
 	END_VAR
 	VAR
-		Internal : {REDUND_UNREPLICABLE} MpComInternalDataType; (*Internal data*) (* *) (*#OMIT#;*)
-	END_VAR
-END_FUNCTION_BLOCK
-
-FUNCTION_BLOCK MpAlarmXAcknowledgeAll (*Add-on function block that can be used to acknowledge all alarms from the Alarm system.*) (*$GROUP=mapp Services,$CAT=Alarm System,$GROUPICON=Icon_mapp.png,$CATICON=Icon_MpAlarmX.png *)
-	VAR_INPUT
-		MpLink : REFERENCE TO MpComIdentType; (*Incoming communication handle (mapp standard interface)*) (* *) (*#PAR#;*)
-		Enable : BOOL; (*Enables/Disables the function block (mapp standard interface)*) (* *) (*#PAR#;*)
-		ErrorReset : BOOL; (*Resets all function block errors (mapp standard interface)*) (* *) (*#PAR#;*)
-		Execute : BOOL; (*Execute the command acknowledgeAll*) (* *) (*#CMD#;*)
-	END_VAR
-	VAR_OUTPUT
-		Active : BOOL; (*Function block is active (mapp standard interface)*) (* *) (*#PAR#;*)
-		Error : BOOL; (*Indicates an error (mapp standard interface)*) (* *) (*#PAR#;*)
-		StatusID : DINT; (*Error/Status information (mapp standard interface)*) (* *) (*#PAR#; *)
-		CommandBusy : BOOL; (*Function block is busy processing a command.*) (* *) (*#CMD#OPT#;*)
-		CommandDone : BOOL; (*Command has finished and was successful.*) (* *) (*#CMD#;*)
-		Info : MpAlarmXAcknowledgeAllInfoType; (*Additional information*) (* *) (*#CMD#;*)
-	END_VAR
-	VAR
-		Internal : {REDUND_UNREPLICABLE} MpComInternalDataType; (*Internal data*) (* *) (*#OMIT#;*)
+		InternalState : USINT;
+		InternalData : ARRAY[0..21] OF UDINT;
 	END_VAR
 END_FUNCTION_BLOCK
 
@@ -248,6 +209,7 @@ FUNCTION_BLOCK MpAlarmXAlarmControl (*Add-on function block that can be used to 
 		Set : BOOL; (*Set (raise) the specified alarm (Name). By setting this command the alarm system is informed that the alarm is active. Same behaviour as MpAlarmXSet*) (* *) (*#CMD#;*)
 		Reset : BOOL; (*Reset the specfified alarm (Name or ID when ID != 0). By setting this command the alarm system is informed that the alarm is inactive. Same behaviour as MpAlarmXReset(ID)*) (* *) (*#CMD#;*)
 		Acknowledge : BOOL; (*Acknowledge the speficief alarm (Name or ID when ID != 0). By setting this command the alarm system is informed that the operator has acknowledged the alarm. Same behaviour as MpAlarmXAcknowledge(ID)*) (* *) (*#CMD#;*)
+		Confirm : BOOL; (*Confirm the specified alarm (Name or ID when ID != 0). By setting this command the alarm system is informed that the operator has confirmed the alarm. Same behaviour as MpAlarmXConfirm(ID)*) (* *) (*#CMD#;*)
 	END_VAR
 	VAR_OUTPUT
 		Active : BOOL; (*Function block is active (mapp standard interface)*) (* *) (*#PAR#;*)
@@ -256,9 +218,10 @@ FUNCTION_BLOCK MpAlarmXAlarmControl (*Add-on function block that can be used to 
 		CommandBusy : BOOL; (*Function block is busy processing a command.*) (* *) (*#CMD#OPT#;*)
 		CommandDone : BOOL; (*Command has finished and was successful.*) (* *) (*#CMD#;*)
 		InstanceID : UDINT; (*SessionID of the last alarm-session that was set by this FB*) (* *) (*#PAR#;*)
-		Info : MpAlarmXControlInfoType; (*Additional information*) (* *) (*#CMD#;*)
+		Info : MpAlarmXAlarmControlInfoType; (*Additional information*) (* *) (*#CMD#;*)
 	END_VAR
 	VAR
-		Internal : {REDUND_UNREPLICABLE} MpComInternalDataType; (*Internal data*) (* *) (*#OMIT#;*)
+		InternalState : USINT;
+		InternalData : ARRAY[0..18] OF UDINT;
 	END_VAR
 END_FUNCTION_BLOCK

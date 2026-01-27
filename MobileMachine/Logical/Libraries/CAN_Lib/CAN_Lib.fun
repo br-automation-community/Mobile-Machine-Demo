@@ -113,28 +113,6 @@ END_FUNCTION_BLOCK
 	END_VAR
 END_FUNCTION_BLOCK
 
-{REDUND_CONTEXT} {REDUND_UNREPLICABLE} FUNCTION_BLOCK SetNdNr			(*saves the transferred node number and device description in the CRM*)
-	VAR_INPUT
-		enable	:BOOL;			(*enables execution*)
-		device	:UDINT;			(*pointer to a string containing the device description, e.g. "SLx.SSx.IFx"*)
-		nodenr	:USINT;			(*new node number*)
-	END_VAR
-	VAR_OUTPUT
-		status	:UINT;			(*execution status: ERR_OK, ERR_FUB_ENABLE_FALSE, 0xXXXX = see help*)
-	END_VAR
-END_FUNCTION_BLOCK
-
-{REDUND_CONTEXT} {REDUND_UNREPLICABLE} FUNCTION_BLOCK GetNdNr			(*reads the stored node number and device description from the CRM*)
-	VAR_INPUT
-		enable	:BOOL;			(*enables execution*)
-		dev_adr	:UDINT;			(*pointer to a string containing the device description, e.g. "SLx.SSx.IFx"*)
-	END_VAR
-	VAR_OUTPUT
-		nodenr	:USINT;			(*the node number read from the CRM*)
-		status	:UINT;			(*execution status: ERR_OK, ERR_FUB_ENABLE_FALSE, 0xXXXX = see help*)
-	END_VAR
-END_FUNCTION_BLOCK
-
 {REDUND_CONTEXT} {REDUND_UNREPLICABLE} FUNCTION_BLOCK CMSexit			(*free the ressources of the list of CMS objects defined with the CMSinit() function*)
 	VAR_INPUT
 		enable	:BOOL;			(*enables execution*)
@@ -249,17 +227,6 @@ END_FUNCTION_BLOCK
 		old_enable	:BOOL;		(*internal variable*)
 		cob_handle	:UDINT;		(*internal variable*)
 		init_cnt	:UDINT;		(*internal variable*)
-	END_VAR
-END_FUNCTION_BLOCK
-
-{REDUND_CONTEXT} {REDUND_UNREPLICABLE} FUNCTION_BLOCK CANxnode			(*determines the node number set with the x-th CAN node switch*)
-	VAR_INPUT	
-		enable	:BOOL;			(*enables execution*)
-		us_ident	:UDINT;		(*user Ident from CANopen()*)
-	END_VAR
-	VAR_OUTPUT
-		node_nr	:USINT;			(*node number of the CAN station (0x00 through 0xFF)*)
-		status	:UINT;			(*execution status: ERR_OK, ERR_FUB_ENABLE_FALSE, 0xXXXX = see help*)
 	END_VAR
 END_FUNCTION_BLOCK
 
@@ -427,16 +394,6 @@ END_FUNCTION_BLOCK
 	VAR
 		old_enable	:BOOL;		(*internal variable*)
 		init_cnt	:UDINT;		(*internal variable*)
-	END_VAR
-END_FUNCTION_BLOCK
-
-{REDUND_CONTEXT} {REDUND_UNREPLICABLE} FUNCTION_BLOCK CANnode			(*determines the CAN node number*)
-	VAR_INPUT
-		enable	:BOOL;			(*enables execution*)
-	END_VAR
-	VAR_OUTPUT
-		node_nr	:USINT;			(*node number of the CAN station (0x00 through 0xFF)*)
-		status	:UINT;			(*execution status: ERR_OK, ERR_FUB_ENABLE_FALSE, 0xXXXX = see help*)
 	END_VAR
 END_FUNCTION_BLOCK
 

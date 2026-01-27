@@ -1,4 +1,4 @@
 VAR
-	MpJ1939Generic_0 : MpJ1939Generic;
+	(*MpJ1939Generic_0 : MpJ1939Generic;*)
 	EEC1_Data : MpJ1939EEC1Type;
 END_VAR

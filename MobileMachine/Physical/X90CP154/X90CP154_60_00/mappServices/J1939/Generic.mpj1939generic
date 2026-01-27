@@ -2,19 +2,51 @@
 <?AutomationStudio FileVersion="4.9"?>
 <Configuration>
   <Element ID="gJ1939Generic" Type="mpj1939generic">
-    <Group ID="GeneralSettings">
-      <Property ID="OwnDeviceAddress" Value="1" />
+    <Group ID="mapp.Gen">
+      <Property ID="Enable" Value="TRUE" />
+      <Property ID="EnableCockpit" Value="TRUE" />
+      <Property ID="TaskClass" Value="4" />
+      <Property ID="Parent" />
+    </Group>
+    <Group ID="InterfaceSettings">
+      <Property ID="OwnDeviceAddress" Value="0" />
       <Property ID="CANInterface" Value="IF7" />
     </Group>
     <Group ID="CyclicPGNsSettings">
       <Group ID="GenericMotor">
         <Property ID="Device" Value="2" />
+        <Selector ID="AMB" Value="Disabled" />
+        <Selector ID="CCVS1" Value="Disabled" />
+        <Selector ID="CI" Value="Disabled" />
+        <Selector ID="DM01" Value="Disabled" />
+        <Selector ID="EC1" Value="Disabled" />
         <Selector ID="EEC1" Value="Send">
           <Property ID="PV" Value="::GenericJ19:EEC1_Data" />
         </Selector>
+        <Selector ID="EEC2" Value="Disabled" />
+        <Selector ID="EEC3" Value="Disabled" />
+        <Selector ID="EFL_P1" Value="Disabled" />
+        <Selector ID="ET1" Value="Disabled" />
+        <Selector ID="HOURS" Value="Disabled" />
+        <Selector ID="IC1" Value="Disabled" />
+        <Selector ID="LFC1" Value="Disabled" />
+        <Selector ID="LFE1" Value="Disabled" />
+        <Selector ID="SHUTDN" Value="Disabled" />
+        <Selector ID="SOFT" Value="Disabled" />
+        <Selector ID="TSC1" Value="Disabled" />
+        <Selector ID="VEP1" Value="Disabled" />
       </Group>
       <Group ID="ExhaustTreatment">
         <Property ID="Device" Value="2" />
+        <Selector ID="AT1T1I1" Value="Disabled" />
+        <Selector ID="AT1IG1" Value="Disabled" />
+        <Selector ID="AT1IG2" Value="Disabled" />
+        <Selector ID="AT1IMG" Value="Disabled" />
+        <Selector ID="AT1OG1" Value="Disabled" />
+        <Selector ID="AT1OG2" Value="Disabled" />
+        <Selector ID="AT1S1" Value="Disabled" />
+        <Selector ID="CM1" Value="Disabled" />
+        <Selector ID="DPFC1" Value="Disabled" />
       </Group>
     </Group>
   </Element>

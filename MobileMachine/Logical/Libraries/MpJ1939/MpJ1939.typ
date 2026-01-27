@@ -433,9 +433,6 @@ TYPE
 		RequestedPercentFanSpeed : REAL;
 		Status : MpJ1939PGNStatusEnum;
 	END_STRUCT;
-	MpJ1939GenericInfoType : 	STRUCT  (*Status information*)
-		Diag : MpJ1939DiagType; (*Diagnostic structure for the function block*)
-	END_STRUCT;
 	MpJ1939CSEnum : 
 		(
 		mpJ1939_CS_NOT_AVAILABLE := 3,
@@ -1275,7 +1272,6 @@ TYPE
 	MpJ1939StatusIDType : 	STRUCT  (*Status ID details*)
 		ID : MpJ1939ErrorEnum; (*Error code for mapp component*)
 		Severity : MpComSeveritiesEnum; (*Describes the type of information supplied by the status ID (success, information, warning, error)*)
-		Code : UINT; (*Code for the status ID. This error number can be used to search for additional information in the help system*)
 	END_STRUCT;
 	MpJ1939TSASEnum : 
 		(

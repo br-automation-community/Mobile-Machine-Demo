@@ -15,37 +15,6 @@ extern "C"
 #ifndef _BUR_PUBLIC
 #define _BUR_PUBLIC
 #endif
-/* Constants */
-#ifdef _REPLACE_CONST
- #define arCAN_ERR_INVALID_DATALENGTH (-1070584150)
- #define arCAN_ERR_TIMEOUT (-1070584149)
- #define arCAN_ERR_DEVICE_NAME (-1070584148)
- #define arCAN_ERR_INVALID_PARAMETER (-1070584147)
- #define arCAN_ERR_BUFFER_FULL (-1070584146)
- #define arCAN_ERR_INVALID_ID (-1070584145)
- #define arCAN_RECEIVE_SINGLE_ID 4294967295U
- #define arCAN_RECEIVE_ALL 0U
- #define arCAN_29BIT 2U
- #define arCAN_11BIT 1U
-#else
- #ifndef _GLOBAL_CONST
-   #define _GLOBAL_CONST _WEAK const
- #endif
- _GLOBAL_CONST signed long arCAN_ERR_INVALID_DATALENGTH;
- _GLOBAL_CONST signed long arCAN_ERR_TIMEOUT;
- _GLOBAL_CONST signed long arCAN_ERR_DEVICE_NAME;
- _GLOBAL_CONST signed long arCAN_ERR_INVALID_PARAMETER;
- _GLOBAL_CONST signed long arCAN_ERR_BUFFER_FULL;
- _GLOBAL_CONST signed long arCAN_ERR_INVALID_ID;
- _GLOBAL_CONST unsigned long arCAN_RECEIVE_SINGLE_ID;
- _GLOBAL_CONST unsigned long arCAN_RECEIVE_ALL;
- _GLOBAL_CONST unsigned long arCAN_29BIT;
- _GLOBAL_CONST unsigned long arCAN_11BIT;
-#endif
-
-
-
-
 /* Datatypes and datatypes of function blocks */
 typedef struct ArCanFrameType
 {	plcbyte Data[64];
@@ -210,6 +179,34 @@ _BUR_PUBLIC void ArCanGetRtrData(struct ArCanGetRtrData* inst);
 _BUR_PUBLIC void ArCanRtr(struct ArCanRtr* inst);
 _BUR_PUBLIC void ArCanSetBaudrate(struct ArCanSetBaudrate* inst);
 _BUR_PUBLIC void ArCanSetBitTimingRegisters(struct ArCanSetBitTimingRegisters* inst);
+
+
+/* Constants */
+#ifdef _REPLACE_CONST
+ #define arCAN_ERR_INVALID_DATALENGTH (-1070584150)
+ #define arCAN_ERR_TIMEOUT (-1070584149)
+ #define arCAN_ERR_DEVICE_NAME (-1070584148)
+ #define arCAN_ERR_INVALID_PARAMETER (-1070584147)
+ #define arCAN_ERR_BUFFER_FULL (-1070584146)
+ #define arCAN_ERR_INVALID_ID (-1070584145)
+ #define arCAN_RECEIVE_SINGLE_ID 4294967295U
+ #define arCAN_RECEIVE_ALL 0U
+ #define arCAN_29BIT 2U
+ #define arCAN_11BIT 1U
+#else
+ _GLOBAL_CONST signed long arCAN_ERR_INVALID_DATALENGTH;
+ _GLOBAL_CONST signed long arCAN_ERR_TIMEOUT;
+ _GLOBAL_CONST signed long arCAN_ERR_DEVICE_NAME;
+ _GLOBAL_CONST signed long arCAN_ERR_INVALID_PARAMETER;
+ _GLOBAL_CONST signed long arCAN_ERR_BUFFER_FULL;
+ _GLOBAL_CONST signed long arCAN_ERR_INVALID_ID;
+ _GLOBAL_CONST unsigned long arCAN_RECEIVE_SINGLE_ID;
+ _GLOBAL_CONST unsigned long arCAN_RECEIVE_ALL;
+ _GLOBAL_CONST unsigned long arCAN_29BIT;
+ _GLOBAL_CONST unsigned long arCAN_11BIT;
+#endif
+
+
 
 
 #ifdef __cplusplus

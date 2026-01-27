@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* CpIsobus 1.01.0 */
+/* CpIsobus 1.1.1 */
 
 #ifndef _CPISOBUS_
 #define _CPISOBUS_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _CpIsobus_VERSION
-#define _CpIsobus_VERSION 1.01.0
+#define _CpIsobus_VERSION 1.1.1
 #endif
 
 #include <bur/plctypes.h>

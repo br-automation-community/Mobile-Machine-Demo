@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Content id="Screensaver" height="800" width="1280" xmlns="http://www.br-automation.com/iat2015/contentDefinition/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Content id="Screensaver" guid="9e139835-fdec-4597-8591-d02712a85285" height="800" width="1280" xmlns="http://www.br-automation.com/iat2015/contentDefinition/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Widgets>
     <Widget xsi:type="widgets.brease.Image" id="ImageScreensaver" top="180" left="100" width="1280" height="380" zIndex="0" image="Media/BRlogo.png" />
   </Widgets>

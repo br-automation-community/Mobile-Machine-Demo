@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Content id="Main" height="600" width="1280" xmlns="http://www.br-automation.com/iat2015/contentDefinition/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Content id="Main" guid="251a56d1-b5df-4acb-a362-3dc6a3ba9b65" height="600" width="1280" xmlns="http://www.br-automation.com/iat2015/contentDefinition/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Widgets>
     <Widget xsi:type="widgets.brease.Rectangle" id="RectangleGray2" top="280" left="800" width="380" height="160" zIndex="4" borderStyle="none" cornerRadius="0px" backColor="rgba(64, 64, 64, 1)" />
     <Widget xsi:type="widgets.brease.NumericOutput" id="NumericOutputEngineSpeed" top="160" left="280" width="180" height="100" zIndex="33" format="{'metric':{'decimalPlaces':0,'minimumIntegerDigits':1},'imperial':{'decimalPlaces':0,'minimumIntegerDigits':1},'imperial-us':{'decimalPlaces':0,'minimumIntegerDigits':1}}" unit="{'metric':'M46','imperial':'M46','imperial-us':'M46'}" unitAlign="bottom" unitTextAlign="right" textAlign="center" style="Header1" />
