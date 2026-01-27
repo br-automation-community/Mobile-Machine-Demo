@@ -8,7 +8,6 @@
   <Project StoreRuntimeInProject="false" />
   <Variables DefaultInitValue="0" DefaultRetain="false" DefaultVolatile="true" />
   <TechnologyPackages>
-    <mappCockpit Version="6.5.0" />
     <mappSafety Version="6.4.1" />
     <mappServices Version="6.5.1" />
     <mappView Version="6.5.0" />
