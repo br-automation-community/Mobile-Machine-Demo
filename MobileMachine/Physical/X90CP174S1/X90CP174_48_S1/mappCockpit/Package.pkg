@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?AutomationStudio FileVersion="4.9"?>
 <Package SubType="mappCockpit" PackageType="mappCockpit" xmlns="http://br-automation.co.at/AS/Package">
-  <Objects />
+  <Objects>
+    <Object Type="File" Reference="true">Physical\X90CP154\X90CP154_60_00\mappCockpit\mCoWebSc.mcowebservercfg</Object>
+    <Object Type="File" Reference="true">Physical\X90CP154\X90CP154_60_00\mappCockpit\Settings.mcocfg</Object>
+  </Objects>
 </Package>

@@ -4,5 +4,6 @@
   <Objects>
     <Object Type="File">XCore.mpalarmxcore</Object>
     <Object Type="File">History.mpalarmxhistory</Object>
+    <Object Type="File">Config.mpalarmxlist</Object>
   </Objects>
 </Package>

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?AutomationStudio FileVersion="6.0"?>
-<OpcUaSource FileVersion="10" ArVersion="I4.93">
+<OpcUaSource FileVersion="10">
   <Aliases>
     <ACLAliases />
     <EURangeViolationAliases />
@@ -26,7 +26,7 @@
       <Variable Name="AmbientTemperature" EngineeringUnitId="5" />
       <Variable Name="RevolutionWidget" EngineeringUnitId="4" />
       <Variable Name="MobileMachine">
-        <Variable Name="Parameter" RecursiveEnable="2" UpdateMembersInheritProperties="1">
+        <Variable Name="Parameter" RecursiveEnable="2">
           <Variable Name="EngineRevolution" EngineeringUnitId="4" />
           <Variable Name="EngineTemperature" EngineeringUnitId="5" />
           <Variable Name="Velocity" EURangesId="1" EngineeringUnitId="6" />
@@ -44,11 +44,50 @@
       </Variable>
     </Task>
     <Task Name="Simulation">
-      <Variable Name="JointPosition" RecursiveEnable="2" MembersInheritProperties="True" />
       <Variable Name="Joystick" RecursiveEnable="2" MembersInheritProperties="True" />
-      <Variable Name="JointPositionRad" RecursiveEnable="2" MembersInheritProperties="True" />
       <Variable Name="Cmd" RecursiveEnable="2" MembersInheritProperties="True" />
       <Variable Name="ViewPoint" RecursiveEnable="2" MembersInheritProperties="True" />
+      <Variable Name="Joint">
+        <Variable Name="J1">
+          <Variable Name="PositionDegree" />
+          <Variable Name="PositionRad" />
+        </Variable>
+        <Variable Name="J2">
+          <Variable Name="PositionDegree" />
+          <Variable Name="PositionRad" />
+        </Variable>
+        <Variable Name="J3">
+          <Variable Name="PositionDegree" />
+          <Variable Name="PositionRad" />
+        </Variable>
+        <Variable Name="J4">
+          <Variable Name="PositionRad" />
+        </Variable>
+        <Variable Name="J5">
+          <Variable Name="PositionRad" />
+        </Variable>
+        <Variable Name="J6">
+          <Variable Name="PositionRad" />
+        </Variable>
+        <Variable Name="J7">
+          <Variable Name="PositionRad" />
+        </Variable>
+        <Variable Name="J8">
+          <Variable Name="PositionRad" />
+        </Variable>
+        <Variable Name="J9">
+          <Variable Name="PositionRad" />
+        </Variable>
+        <Variable Name="J10">
+          <Variable Name="PositionRad" />
+        </Variable>
+        <Variable Name="J11">
+          <Variable Name="PositionRad" />
+        </Variable>
+        <Variable Name="J12">
+          <Variable Name="PositionRad" />
+        </Variable>
+      </Variable>
     </Task>
   </Module>
 </OpcUaSource>

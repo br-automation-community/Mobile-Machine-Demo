@@ -10,15 +10,18 @@ PROGRAM _INIT
 	CpLinScheduler_0.Enable := TRUE;
 	CpLinScheduler_0.Run := cpLIN_RUN_CYCLIC;
 	CpLinScheduler_0.DeviceName := 'IF5';
+	
 	(* Scheduler configuration *)
 	// Frame ID 1 is used to read button states. 
 	Schedule[0].Duration := 10;
 	Schedule[0].Frame.FrameId := 1;
 	Schedule[0].Frame.Length := 0;
+	
 	// Frame ID 2 is used to set colors of the LEDs
 	Schedule[1].Duration := 10;
 	Schedule[1].Frame.FrameId := 2;
 	Schedule[1].Frame.Length := 6;
+	
 	// Frame ID 59 is used to set background lighting of the switch
 	Schedule[2].Duration := 10;
 	Schedule[2].Frame.FrameId := 59;
@@ -31,6 +34,7 @@ PROGRAM _CYCLIC
 	CpLinScheduler_0.Schedule := ADR(Schedule);
 	CpLinScheduler_0.ScheduleLength := SIZEOF(Schedule)/SIZEOF(Schedule[0]);
 	CpLinScheduler_0();
+	
 	(* Reading input data *)
 	IF CpLinScheduler_0.FrameReceived THEN
 		nbReceivedFrames := nbReceivedFrames + 1;
@@ -45,6 +49,7 @@ PROGRAM _CYCLIC
 			lastErrorFlag := CpLinScheduler_0.Frame.ErrorFlags;
 		END_IF
 	END_IF
+	
 	(* Doing some logic *)
 	IF lpb_001_a THEN
 		// if upper button pressed, turn upper LED green 
@@ -58,6 +63,7 @@ PROGRAM _CYCLIC
 	ELSE
 		lpb_001_led_b_green_brightness := 0;
 	END_IF        
+	
 	(* Writing output data *)
 	// write LED colors
 	Schedule[1].Frame.Data[0] := lpb_001_led_b_green_brightness;
@@ -66,8 +72,10 @@ PROGRAM _CYCLIC
 	Schedule[1].Frame.Data[3] := lpb_001_led_a_red_brightness;
 	Schedule[1].Frame.Data[4] := lpb_001_led_b_blue_brightness;
 	Schedule[1].Frame.Data[5] := lpb_001_led_a_blue_brightness;
+	
 	// switch backlighting
 	Schedule[2].Frame.Data[0] := lpb_background_lighting;
+	
 	(* Error evaluation *)
 	IF CpLinScheduler_0.Error THEN
 		nbErrors := nbErrors + 1;

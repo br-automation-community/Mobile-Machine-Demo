@@ -3,23 +3,21 @@
   <Widgets>
     <Widget xsi:type="widgets.brease.Joystick" id="Joystick1" top="80" left="220" width="300" height="300" zIndex="0" thumbSize="60px" />
     <Widget xsi:type="widgets.brease.Joystick" id="Joystick2" top="80" left="760" width="300" height="300" zIndex="1" thumbSize="60px" />
-    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="SawInMomentaryPushButton" top="500" left="1100" width="140" height="50" zIndex="2" text="Saw In" />
-    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="SawOutMomentaryPushButton2" top="440" left="1100" width="140" height="50" zIndex="3" text="Saw Out" />
-    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="ClampsOpenMomentaryPushButton" top="440" left="380" width="140" height="50" zIndex="4" text="Open Clamps" />
-    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="ClampsCloseMomentaryPushButton4" top="500" left="380" width="140" height="50" zIndex="5" text="Close Clamps" />
-    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="TranspWheelUpMomentaryPushButton" top="440" left="920" width="160" height="50" zIndex="6" text="Transport Up" />
-    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="TranspWheelDownMomentaryPushButton" top="500" left="920" width="160" height="50" zIndex="7" text="Transport Down" />
-    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="PushArmOutMomentaryPushButton" top="440" left="40" width="140" height="50" zIndex="8" text="Push arm out" />
-    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="PushArmInMomentaryPushButton" top="500" left="40" width="140" height="50" zIndex="9" text="Push arm in" />
-    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="TranspClampsOpenMomentaryPushButton" top="440" left="540" width="160" height="50" zIndex="10" text="Open trans clamp" />
-    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="TranspClampsCloseMomentaryPushButton12" top="500" left="540" width="160" height="50" zIndex="11" text="Close trans clamp" />
-    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="ActuatorClockwiseYXMomentaryPushButton" top="440" left="200" width="160" height="50" zIndex="12" text="Actuator cw YX" />
-    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="ActuatorAntilockwiseYXMomentaryPushButton" top="500" left="200" width="160" height="50" zIndex="13" text="Actuator acw Y" />
-    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="BottomClampOpenMomentaryPushButton" top="440" left="720" width="180" height="50" zIndex="14" text="Open bottom clamp" />
-    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="BottomClampCloseMomentaryPushButton" top="500" left="720" width="180" height="50" zIndex="15" text="Close bottom clamp" />
-    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="OpenAllClampsMomentaryPushButton" top="300" left="580" width="140" height="50" zIndex="16" text="Open all clamps" />
-    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="CloseAllClampsMomentaryPushButton" top="360" left="580" width="140" height="50" zIndex="17" text="Close all clamps" />
-    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="MoveViewPointRightMomentaryPushButton" top="20" left="120" width="60" height="50" zIndex="18" image="Media/SymbolLib/Arrow/ArrowRight.svg" />
-    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="MoveViewPointLeftMomentaryPushButton" top="20" left="40" width="60" height="50" zIndex="19" image="Media/SymbolLib/Arrow/ArrowLeft.svg" />
+    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="ClampsOpenMomentaryPushButton" top="440" left="380" width="140" height="50" zIndex="2" text="Open Clamps" />
+    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="ClampsCloseMomentaryPushButton4" top="500" left="380" width="140" height="50" zIndex="3" text="Close Clamps" />
+    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="TranspWheelUpMomentaryPushButton" top="440" left="920" width="160" height="50" zIndex="4" text="Transport Up" />
+    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="TranspWheelDownMomentaryPushButton" top="500" left="920" width="160" height="50" zIndex="5" text="Transport Down" />
+    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="PushArmOutMomentaryPushButton" top="440" left="40" width="140" height="50" zIndex="6" text="Push arm out" />
+    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="PushArmInMomentaryPushButton" top="500" left="40" width="140" height="50" zIndex="7" text="Push arm in" />
+    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="TranspClampsOpenMomentaryPushButton" top="440" left="540" width="160" height="50" zIndex="8" text="Open trans clamp" />
+    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="TranspClampsCloseMomentaryPushButton12" top="500" left="540" width="160" height="50" zIndex="9" text="Close trans clamp" />
+    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="ActuatorClockwiseYXMomentaryPushButton" top="440" left="200" width="160" height="50" zIndex="10" text="Actuator cw YX" />
+    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="ActuatorAntilockwiseYXMomentaryPushButton" top="500" left="200" width="160" height="50" zIndex="11" text="Actuator acw Y" />
+    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="BottomClampOpenMomentaryPushButton" top="440" left="720" width="180" height="50" zIndex="12" text="Open bottom clamp" />
+    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="BottomClampCloseMomentaryPushButton" top="500" left="720" width="180" height="50" zIndex="13" text="Close bottom clamp" />
+    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="MoveViewPointRightMomentaryPushButton" top="20" left="120" width="60" height="50" zIndex="14" image="Media/SymbolLib/Arrow/ArrowRight.svg" />
+    <Widget xsi:type="widgets.brease.MomentaryPushButton" id="MoveViewPointLeftMomentaryPushButton" top="20" left="40" width="60" height="50" zIndex="15" image="Media/SymbolLib/Arrow/ArrowLeft.svg" />
+    <Widget xsi:type="widgets.brease.PushButton" id="ZeroPositionPushButton" top="500" left="1100" width="160" height="50" zIndex="16" text="Zero Position" />
+    <Widget xsi:type="widgets.brease.PushButton" id="PerformCutPushButton" top="440" left="1100" width="160" height="50" zIndex="17" text="Cut" />
   </Widgets>
 </Content>

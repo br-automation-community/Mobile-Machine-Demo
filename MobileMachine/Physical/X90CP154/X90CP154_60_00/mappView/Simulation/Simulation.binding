@@ -20,14 +20,8 @@
 <Target xsi:type="brease" contentRefId="Simulation" widgetRefId="Joystick1" attribute="xValue" />
 </Binding>
 
-<Binding mode="twoWay">
-<Source xsi:type="opcUa" refId="::Simulation:Cmd.SawIn" attribute="value" />
-<Target xsi:type="brease" contentRefId="Simulation" widgetRefId="SawInMomentaryPushButton" attribute="value" />
-</Binding>
-<Binding mode="twoWay">
-<Source xsi:type="opcUa" refId="::Simulation:Cmd.SawOut" attribute="value" />
-<Target xsi:type="brease" contentRefId="Simulation" widgetRefId="SawOutMomentaryPushButton2" attribute="value" />
-</Binding>
+
+
 <Binding mode="twoWay">
 <Source xsi:type="opcUa" refId="::Simulation:Cmd.ClampsOpen" attribute="value" />
 <Target xsi:type="brease" contentRefId="Simulation" widgetRefId="ClampsOpenMomentaryPushButton" attribute="value" />
@@ -77,14 +71,8 @@
 <Source xsi:type="opcUa" refId="::Simulation:Cmd.BottomClampOut" attribute="value" />
 <Target xsi:type="brease" contentRefId="Simulation" widgetRefId="BottomClampOpenMomentaryPushButton" attribute="value" />
 </Binding>
-<Binding mode="twoWay">
-<Source xsi:type="opcUa" refId="::Simulation:Cmd.CloseAllClamps" attribute="value" />
-<Target xsi:type="brease" contentRefId="Simulation" widgetRefId="CloseAllClampsMomentaryPushButton" attribute="value" />
-</Binding>
-<Binding mode="twoWay">
-<Source xsi:type="opcUa" refId="::Simulation:Cmd.OpenAllClamps" attribute="value" />
-<Target xsi:type="brease" contentRefId="Simulation" widgetRefId="OpenAllClampsMomentaryPushButton" attribute="value" />
-</Binding>
+
+
 <Binding mode="twoWay">
 <Source xsi:type="opcUa" refId="::Simulation:Cmd.MoveViewPointLeft" attribute="value" />
 <Target xsi:type="brease" contentRefId="Simulation" widgetRefId="MoveViewPointLeftMomentaryPushButton" attribute="value" />
@@ -92,6 +80,15 @@
 <Binding mode="twoWay">
 <Source xsi:type="opcUa" refId="::Simulation:Cmd.MoveViewPointRight" attribute="value" />
 <Target xsi:type="brease" contentRefId="Simulation" widgetRefId="MoveViewPointRightMomentaryPushButton" attribute="value" />
+</Binding>
+
+<Binding mode="twoWay">
+<Source xsi:type="opcUa" refId="::Simulation:Cmd.Cut" attribute="value" />
+<Target xsi:type="brease" contentRefId="Simulation" widgetRefId="PerformCutPushButton" attribute="value" />
+</Binding>
+<Binding mode="twoWay">
+<Source xsi:type="opcUa" refId="::Simulation:Cmd.MoveToZeroPosition" attribute="value" />
+<Target xsi:type="brease" contentRefId="Simulation" widgetRefId="ZeroPositionPushButton" attribute="value" />
 </Binding>
 </Bindings>
 </BindingsSet>

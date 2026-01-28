@@ -1,24 +1,23 @@
 VAR
 	Cmd : CmdType;
 	Joystick : JoystickType;
-	JointPosition : JointPositionType;
+	Joint : JointType;
 END_VAR
 (****Robot Studio****)
 VAR
-	JointPositionRad : JointPositionRadType;
 	ViewPoint : ARRAY[0..4] OF BOOL;
 END_VAR
 (****Temp****)
 VAR
+	l : USINT;
+	n : USINT;
 	i : USINT;
+	Step : USINT;
 	MoveViewPointOld : BOOL;
+	MovementDone : ARRAY[0..5] OF BOOL := [6(TRUE)];
 END_VAR
 (****Constants****)
 VAR CONSTANT
-	JOINT_LIMITS : JointLimitsType := (J5_MIN:=-75);
 	MAX_VIEW_POINTS : USINT := 2;
 	PI : REAL := 3.1415;
-END_VAR
-VAR
-	n : USINT;
 END_VAR

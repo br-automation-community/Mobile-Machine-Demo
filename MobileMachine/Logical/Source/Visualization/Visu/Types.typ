@@ -5,13 +5,13 @@ TYPE
 	END_STRUCT;
 	MachineParameterType : 	STRUCT 
 		EngineRevolution : INT;
-		EngineTemperature : INT;
+		EngineTemperature : INT := 15;
 		Velocity : USINT;
-		WorkingHours : INT;
-		TirePressure : REAL;
+		WorkingHours : INT := 524;
+		TirePressure : REAL := 0.92;
 		TankLevel : USINT;
-		MusicVolume : USINT(0..10) ;
-		AirConditioner : USINT(0..10) ;
+		MusicVolume : USINT(0..10)  := 6;
+		AirConditioner : USINT(0..10)  := 2;
 		LightMode : LightModeType;
 		VelocityMode : VelocityModeType;
 	END_STRUCT;

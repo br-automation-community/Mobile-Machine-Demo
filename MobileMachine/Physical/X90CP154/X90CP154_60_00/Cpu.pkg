@@ -20,8 +20,8 @@
     <Object Type="Package">ExternalHardware</Object>
   </Objects>
   <Configuration ModuleId="X90CP154.60-00">
-    <AutomationRuntime Version="6.4.2" />
-    <Build AnsicIncludeDirectories="\Logical\Libraries\CpIsobus\SG4\" GccVersion="11.3.0" />
+    <AutomationRuntime Version="6.6.2" />
+    <Build AnsicIncludeDirectories="\Logical\Libraries\CpIsobus\stack\" GccVersion="11.3.0" />
     <DefaultTargetMemory Tasks="UserROM" />
     <Safety SafetyRelease="0.0" />
     <Transfer AddToUserPart="False" AllowDowngrade="False" AllowInitialTransfer="False" AllowPartitioning="False" ExecuteInitExitProgram="True" ForceInitialTransfer="False" IgnoreVersion="True" KeepNonVolatileMemory="False" PreserveVariableValues="False" ProjectConsistent="True" RebootDuringTransfer="False" TargetIdentificationType="Always" TryToBootInRunMode="False" UserFilesIgnoreDifference="True" WaitForReconnectAfterReboot="True" />

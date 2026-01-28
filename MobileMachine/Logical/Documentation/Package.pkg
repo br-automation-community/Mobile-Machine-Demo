@@ -3,5 +3,6 @@
 <Package xmlns="http://br-automation.co.at/AS/Package">
   <Objects>
     <Object Type="File">PKP-2300-SI Datasheet.pdf</Object>
+    <Object Type="File">HarvesterDigitalTwin.mp4</Object>
   </Objects>
 </Package>

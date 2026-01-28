@@ -20,7 +20,7 @@
     <Parameter ID="PasswordService" Value="" />
     <Parameter ID="ActivateOpcUaServer" Value="1" />
   </Module>
-  <Module Name="PKP2300" Type="FBC.0x000003E2.211018_PKP2300_CANeds_V4" Version="4.1" Disabled="true" OrderNumber="PKP2300" NodeNumber="17">
+  <Module Name="PKP2300" Type="FBC.0x000003E2.211018_PKP2300_CANeds_V4" Version="4.1" OrderNumber="PKP2300" NodeNumber="21">
     <Connection Connector="CAN1" TargetModule="X90CP174_48_S1" TargetConnector="IF9" />
     <Parameter ID="p2000sub1_mapcount" Value="1" />
     <Parameter ID="p2001sub1_mapcount" Value="1" />
@@ -37,6 +37,7 @@
   </Module>
   <Module Name="X90AT910.04-00" Type="X90AT910.04-00" Version="1.0.3.0">
     <Connection Connector="ST" TargetModule="X90CP174_48_S1" TargetConnector="ST1" />
+    <Parameter ID="Supervision" Value="off" />
   </Module>
   <Module Name="X90CP174_48_S1" Type="X90CP174.48-S1" Version="1.5.1.0">
   <Module Name="X1" Type="X1" Virtual="true" Version="1.5.1.0">
@@ -47,20 +48,20 @@
   </Module>
 <Connection Connector="X1" TargetModule="X1" TargetConnector="SL" /><Connector Name="IF2">
       <Parameter ID="ActivateDevice" Value="1" />
-      <Parameter ID="Mode" Value="Manual" />
-      <Parameter ID="InternetAddress" Value="192.168.0.100" />
-      <Parameter ID="SubnetMask" Value="255.255.255.0" />
+      <Parameter ID="HostName" Value="mobile_machine_demo_cp174-s1" />
       <Parameter ID="ActivateSnmp" Value="2" />
     </Connector><Connector Name="IF3">
       <Parameter ID="EplNatSubnet" Value="192.168.102.0" />
     </Connector><Connector Name="IF7">
-      <Parameter ID="Baudrate" Description="" />
-      <Parameter ID="IdentifierLength" Value="1" Description="" />
+      <Parameter ID="Baudrate" Value="250000" />
+      <Parameter ID="IdentifierLength" Value="1" />
     </Connector><Connector Name="IF8">
+      <Parameter ID="Baudrate" Value="250000" />
       <Parameter ID="IdentifierLength" Value="1" />
     </Connector><Connector Name="IF9">
-      <Parameter ID="Baudrate" Value="250000" Description="required for isobus" />
+      <Parameter ID="Baudrate" Value="125000" Description="required for isobus" />
       <Parameter ID="IdentifierLength" Description="required for isobus" />
+      <Parameter ID="ActivateCANIO" Value="0" />
       <Parameter ID="ActivateCanOpen" Value="1" />
     </Connector>
     <Parameter ID="ConfigurationID" Value="MobileMachine_X90CP174S1" />
@@ -88,14 +89,13 @@
     <Parameter ID="FileDevicePath1" Value="USER_PATH" />
     <Parameter ID="TimeZone" Value="140" />
     <Parameter ID="ActivateSntpServer" Value="1" />
+    <Parameter ID="ActivateFtpServer" Value="1" />
     <Group ID="FtpUser1" />
     <Parameter ID="FtpUsername1" Value="w" />
     <Parameter ID="FtpUserPassword1" Value="R335wAtIk3g1WM36p4uvbPRbg8jBTuicu6EdNzNmnuw=" Description="w" />
     <Parameter ID="FtpUserSalt1" Value="okfyPP+H" />
-    <Parameter ID="ActivateOpcUa" Value="1" />
-    <Parameter ID="OpcUaInformationModels_PV_Version" Value="1" />
-    <Parameter ID="ActivateFtpServer" Value="1" />
     <Parameter ID="ActivateWebServer" Value="1" />
+    <Parameter ID="WebServerProtocol" Value="1" />
     <Parameter ID="ActivateSdm" Value="1" />
   </Module>
   <Module Name="X90SL104.48-S1" Type="X90SL104.48-S1" Version="2.5.3.1">

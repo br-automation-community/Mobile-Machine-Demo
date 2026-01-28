@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio FileVersion="4.9"?>
+<Configuration>
+  <Element ID="gAlarmXList" Type="mpalarmxlist">
+    <Group ID="mapp.AlarmX.Core.Configuration">
+      <Group ID="[0]">
+        <Property ID="Name" Value="Tire pressure" />
+        <Property ID="Message" Value="{$AlarmManagement/TirePressure}" />
+        <Property ID="Code" Value="10" />
+        <Property ID="Severity" Value="1" />
+        <Selector ID="Behavior" Value="EdgeAlarm">
+          <Property ID="Confirm" Value="0" />
+          <Property ID="ReactionWhilePending" Value="TRUE" />
+          <Property ID="Retain" Value="FALSE" />
+          <Property ID="Async" Value="FALSE" />
+          <Group ID="DataUpdate">
+            <Group ID="Activation">
+              <Property ID="TimeStamp" Value="FALSE" />
+              <Property ID="Snippets" Value="FALSE" />
+            </Group>
+          </Group>
+          <Group ID="Recording">
+            <Property ID="InactiveToActive" Value="TRUE" />
+            <Property ID="UnacknowledgedToAcknowledged" Value="TRUE" />
+            <Property ID="AcknowledgedToUnacknowledged" Value="FALSE" />
+            <Property ID="UnconfirmedToConfirmed" Value="TRUE" />
+            <Property ID="ConfirmedToUnconfirmed" Value="FALSE" />
+          </Group>
+        </Selector>
+        <Property ID="Disable" Value="FALSE" />
+        <Property ID="InhibitPV" />
+        <Property ID="AdditionalInformation1" />
+        <Property ID="AdditionalInformation2" />
+      </Group>
+      <Group ID="[1]">
+        <Property ID="Name" Value="Tank Level Low" />
+        <Property ID="Message" Value="{$AlarmManagement/TankLevelLow}" />
+        <Property ID="Code" Value="11" />
+        <Property ID="Severity" Value="1" />
+        <Selector ID="Behavior" Value="EdgeAlarm">
+          <Property ID="Confirm" Value="0" />
+          <Property ID="ReactionWhilePending" Value="TRUE" />
+          <Property ID="Retain" Value="FALSE" />
+          <Property ID="Async" Value="FALSE" />
+          <Group ID="DataUpdate">
+            <Group ID="Activation">
+              <Property ID="TimeStamp" Value="FALSE" />
+              <Property ID="Snippets" Value="FALSE" />
+            </Group>
+          </Group>
+          <Group ID="Recording">
+            <Property ID="InactiveToActive" Value="TRUE" />
+            <Property ID="UnacknowledgedToAcknowledged" Value="TRUE" />
+            <Property ID="AcknowledgedToUnacknowledged" Value="FALSE" />
+            <Property ID="UnconfirmedToConfirmed" Value="TRUE" />
+            <Property ID="ConfirmedToUnconfirmed" Value="FALSE" />
+          </Group>
+        </Selector>
+        <Property ID="Disable" Value="FALSE" />
+        <Property ID="InhibitPV" />
+        <Property ID="AdditionalInformation1" />
+        <Property ID="AdditionalInformation2" />
+      </Group>
+      <Group ID="[2]">
+        <Property ID="Name" Value="Engine Temperature" />
+        <Property ID="Message" Value="{$AlarmManagement/EngineTemperature}" />
+        <Property ID="Code" Value="12" />
+        <Property ID="Severity" Value="1" />
+        <Selector ID="Behavior" Value="PersistentAlarm">
+          <Property ID="Confirm" Value="0" />
+          <Property ID="ReactionWhilePending" Value="TRUE" />
+          <Property ID="Retain" Value="FALSE" />
+          <Property ID="Async" Value="FALSE" />
+          <Group ID="DataUpdate">
+            <Group ID="Activation">
+              <Property ID="TimeStamp" Value="FALSE" />
+              <Property ID="Snippets" Value="FALSE" />
+            </Group>
+          </Group>
+          <Group ID="Recording">
+            <Property ID="InactiveToActive" Value="TRUE" />
+            <Property ID="UnacknowledgedToAcknowledged" Value="TRUE" />
+            <Property ID="AcknowledgedToUnacknowledged" Value="FALSE" />
+            <Property ID="UnconfirmedToConfirmed" Value="TRUE" />
+            <Property ID="ConfirmedToUnconfirmed" Value="FALSE" />
+            <Property ID="Update" Value="FALSE" />
+          </Group>
+        </Selector>
+        <Property ID="Disable" Value="FALSE" />
+        <Property ID="InhibitPV" />
+        <Property ID="AdditionalInformation1" />
+        <Property ID="AdditionalInformation2" />
+      </Group>
+    </Group>
+    <Group ID="mapp.AlarmX.Snippets">
+      <Selector ID="AutoDetect" Value="0" />
+      <Group ID="[0]">
+        <Property ID="Key" Value="EngineTemperature" />
+        <Selector ID="Value" Value="PV">
+          <Property ID="PV" Value="::Visu:MobileMachine.Parameter.EngineTemperature" />
+        </Selector>
+        <Property ID="Alarm" />
+      </Group>
+      <Group ID="[1]">
+        <Property ID="Key" Value="TankLevel" />
+        <Selector ID="Value" Value="PV">
+          <Property ID="PV" Value="::Visu:MobileMachine.Parameter.TankLevel" />
+        </Selector>
+        <Property ID="Alarm" />
+      </Group>
+      <Group ID="[2]">
+        <Property ID="Key" Value="TirePressure" />
+        <Selector ID="Value" Value="PV">
+          <Property ID="PV" Value="::Visu:MobileMachine.Parameter.TirePressure" />
+        </Selector>
+        <Property ID="Alarm" />
+      </Group>
+    </Group>
+  </Element>
+</Configuration>

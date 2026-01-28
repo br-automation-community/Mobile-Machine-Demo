@@ -1,20 +1,19 @@
+(****Structure****)
 VAR
+	MobileMachine : MobileMachineType;
 	MachineState : MachineStateType;
+END_VAR
+(****Temp****)
+VAR
 	RevolutionWidget : REAL;
-	AmbientTemperature : USINT;
-	MpAlarmXCore_0 : MpAlarmXCore;
-	MpAlarmXHistory_0 : MpAlarmXHistory;
-	TON_10s : TON;
-	TON_5s : TON;
-	TON_20s : TON;
+	AmbientTemperature : USINT := 12;
 	CheckAlarmImage : BOOL;
 	TankOld : BOOL;
-	MobileMachine : MobileMachineType;
 	CuttingImage : BOOL;
 	TirePressureImage : BOOL;
 	BrakeImage : BOOL;
 END_VAR
-(*Constants*)
+(****Constants****)
 VAR CONSTANT
 	TANK_FULL : USINT := 98;
 	TANK_LEVEL_LOW : USINT := 15;
@@ -25,6 +24,12 @@ VAR CONSTANT
 	ENGINE_REVOLUTION_STEP1 : INT := 1890;
 	ENGINE_REVOLUTION_STEP2 : INT := 2290;
 END_VAR
+(****FBs****)
 VAR
 	DTGetTime_0 : DTGetTime;
+	TON_10s : TON;
+	TON_5s : TON;
+	TON_20s : TON;
+	MpAlarmXCore_0 : MpAlarmXCore;
+	MpAlarmXHistory_0 : MpAlarmXHistory;
 END_VAR

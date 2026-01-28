@@ -50,9 +50,7 @@
   </Module>
 <Connection Connector="X1" TargetModule="X1" TargetConnector="SL" /><Connector Name="IF2">
       <Parameter ID="ActivateDevice" Value="1" />
-      <Parameter ID="Mode" Value="Manual" />
-      <Parameter ID="InternetAddress" Value="192.168.0.80" />
-      <Parameter ID="SubnetMask" Value="255.255.255.0" />
+      <Parameter ID="HostName" Value="mobile_machine_demo_cp154" />
       <Parameter ID="ActivateSnmp" Value="2" />
     </Connector><Connector Name="IF3">
       <Parameter ID="SubnetMask" Value="255.255.255.0" />
@@ -70,7 +68,7 @@
       <Parameter ID="ActivateCANIO" Value="0" />
       <Parameter ID="ActivateCanOpen" Value="1" />
     </Connector><Connector Name="IF9">
-      <Parameter ID="Baudrate" Value="125000" Description="required for isobus" />
+      <Parameter ID="Baudrate" Value="250000" Description="required for isobus" />
       <Parameter ID="IdentifierLength" Description="required for isobus" />
       <Parameter ID="ActivateCANIO" Value="0" />
       <Parameter ID="ActivateCanOpen" Value="1" />
@@ -107,6 +105,7 @@
     <Parameter ID="FtpUserSalt1" Value="/7ycTJu1" />
     <Parameter ID="FTPAccessRight1" Value="0" />
     <Parameter ID="ActivateWebServer" Value="1" />
+    <Parameter ID="WebServerProtocol" Value="1" />
     <Parameter ID="ActivateSdm" Value="1" />
   </Module>
 </Hardware>

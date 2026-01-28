@@ -2,47 +2,21 @@
 <?AutomationStudio FileVersion="4.9"?>
 <Configuration>
   <Element ID="gAlarmXCore" Type="mpalarmxcore">
-    <Group ID="mapp.AlarmX.Core.Configuration">
+    <Group ID="mapp.Gen">
+      <Property ID="Enable" Value="TRUE" />
+      <Property ID="EnableCockpit" Value="TRUE" />
+      <Property ID="TaskClass" Value="4" />
+      <Property ID="Parent" />
+    </Group>
+    <Group ID="mapp.AlarmX.List">
       <Group ID="[0]">
-        <Property ID="Name" Value="Tire pressure" />
-        <Property ID="Message" Value="{$AlarmManagement/TirePressure}" />
-        <Property ID="Code" Value="10" />
-        <Selector ID="Behavior">
-          <Property ID="MultipleInstances" Value="FALSE" />
-        </Selector>
-      </Group>
-      <Group ID="[1]">
-        <Property ID="Name" Value="Tank Level Low" />
-        <Property ID="Message" Value="{$AlarmManagement/TankLevelLow}" />
-        <Property ID="Code" Value="11" />
-        <Selector ID="Behavior" Value="PersistentAlarm" />
-      </Group>
-      <Group ID="[2]">
-        <Property ID="Name" Value="Engine Temperature" />
-        <Property ID="Message" Value="{$AlarmManagement/EngineTemperature}" />
-        <Property ID="Code" Value="12" />
-        <Selector ID="Behavior" Value="PersistentAlarm" />
+        <Property ID="List" Value="gAlarmXList" />
+        <Property ID="Offset" Value="0" />
       </Group>
     </Group>
-    <Group ID="mapp.AlarmX.Core.Snippets">
-      <Group ID="[0]">
-        <Property ID="Key" Value="EngineTemperature" />
-        <Selector ID="Value">
-          <Property ID="PV" Value="::Visu:MobileMachine.Parameter.EngineTemperature" />
-        </Selector>
-      </Group>
-      <Group ID="[1]">
-        <Property ID="Key" Value="TankLevel" />
-        <Selector ID="Value">
-          <Property ID="PV" Value="::Visu:MobileMachine.Parameter.TankLevel" />
-        </Selector>
-      </Group>
-      <Group ID="[2]">
-        <Property ID="Key" Value="TirePressure" />
-        <Selector ID="Value">
-          <Property ID="PV" Value="::Visu:MobileMachine.Parameter.TirePressure" />
-        </Selector>
-      </Group>
+    <Selector ID="mapp.AlarmX.Create" Value="Disabled" />
+    <Group ID="mapp.AlarmX.Core.Retain">
+      <Selector ID="Memory" Value="0" />
     </Group>
   </Element>
 </Configuration>

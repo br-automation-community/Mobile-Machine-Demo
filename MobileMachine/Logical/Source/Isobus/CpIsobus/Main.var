@@ -1,7 +1,0 @@
-VAR
-	CAN_INTERFACE : {REDUND_UNREPLICABLE} STRING[80] := 'IF9'; (*Address of the CAN interface, e.g. "IF7".*)
-	IsobusState : CpIsobusStateEnum; (*Shows the current ISOBUS status*)
-	LOG_LEVEL : CpIsobusLogLevelEnum := cpISOBUS_LOG_LEVEL_INFO; (*Logging level*)
-	StartIsobus : BOOL; (*Command to start ISOBUS communication*)
-	StopIsobus : BOOL; (*Command to terminate ISOBUS communication*)
-END_VAR

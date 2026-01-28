@@ -21,11 +21,11 @@
     <Object Type="Package">ExternalHardware</Object>
   </Objects>
   <Configuration ModuleId="X90CP174.48-S1">
-    <AutomationRuntime Version="6.4.2" />
-    <Build AnsicIncludeDirectories="\Logical\Libraries\CpIsobus\SG4\" GccVersion="11.3.0" />
+    <AutomationRuntime Version="6.6.2" />
+    <Build AnsicIncludeDirectories="\Logical\Libraries\CpIsobus\stack\" GccVersion="11.3.0" />
     <DefaultTargetMemory Tasks="UserROM" />
     <Safety SafetyRelease="0.0" />
-    <Transfer SavedPipDestinationFolder="D:\" />
+    <Transfer SavedPipDestinationFolder="D:\" WaitForReconnectAfterReboot="True" />
     <Vc FirmwareVersion="6.0.0" />
   </Configuration>
 </Cpu>

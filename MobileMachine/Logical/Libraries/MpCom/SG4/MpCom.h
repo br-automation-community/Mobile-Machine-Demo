@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* MpCom 6.5.1 */
+/* MpCom 6.6.0 */
 
 #ifndef _MPCOM_
 #define _MPCOM_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _MpCom_VERSION
-#define _MpCom_VERSION 6.5.1
+#define _MpCom_VERSION 6.6.0
 #endif
 
 #include <bur/plctypes.h>

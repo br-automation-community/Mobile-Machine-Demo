@@ -2,7 +2,7 @@
 * Copyright: B&R Industrial Automation GmbH
 * Author: B&R
 * Date: 17/05/2024
-* Description: 	Used for simulation of generel visualization
+* Description: 	Used for simulation of general visualization
 				Can be adapted for your usecase
  ***********************************************************************************************************************)
 PROGRAM _INIT
@@ -18,13 +18,8 @@ PROGRAM _INIT
 	
 	//Assign initial values
 	MachineState := OFF;
-	MobileMachine.Parameter.WorkingHours := 524;
-	MobileMachine.Parameter.EngineTemperature := 15;
-	MobileMachine.Parameter.MusicVolume := 6;
-	MobileMachine.Parameter.AirConditioner := 2;
 	MobileMachine.Parameter.TankLevel := TANK_FULL;
-	MobileMachine.Parameter.TirePressure := 0.92;
-	AmbientTemperature := 12;
+	AmbientTemperature;
 	 
 END_PROGRAM
 

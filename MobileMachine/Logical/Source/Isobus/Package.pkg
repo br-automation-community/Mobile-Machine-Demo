@@ -2,7 +2,6 @@
 <?AutomationStudio FileVersion="4.9"?>
 <Package xmlns="http://br-automation.co.at/AS/Package">
   <Objects>
-    <Object Type="Program" Language="ANSIC" Description="Getting started">CpIsobus</Object>
-    <Object Type="Package">LibCpIsobus3_C</Object>
+    <Object Type="Program" Language="ANSIC" Description="Sales demo">Isobus</Object>
   </Objects>
 </Package>
