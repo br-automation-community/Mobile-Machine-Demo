@@ -1,0 +1,4 @@
+*.rsstn filter=lfs diff=lfs merge=lfs -text
+*.rspag filter=lfs diff=lfs merge=lfs -text
+
+
